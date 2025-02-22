@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_education_management_system_education_management_system,education_management_system.education_management_system,model_education_management_system_education_management_system,base.group_user,1,1,1,1
+access_education_student,access.education.student,model_education_student,base.group_user,1,1,1,1
+access_education_teacher,access.education.teacher,model_education_teacher,base.group_user,1,1,1,1
+access_education_class,access.education.class,model_education_class,base.group_user,1,1,1,1
