@@ -1,5 +1,4 @@
 <odoo>
-
     <data>
 
         <record model="ir.ui.view" id="education_student_list_view">
@@ -8,29 +7,64 @@
             <field name="arch" type="xml">
                 <list>
                     <field name="name"/>
-                    <field name="birth_date"/> 
                     <field name="student_id"/>
+                    <field name="birth_date"/> 
+                    <field name="student_phone_number"/>
+                    <field name="student_email"/>
+                    <field name="gender"/>
                     <field name="class_id"/>
-                    <field name="parent_name"/>
-                    <field name="contact"/>
+                    <!-- Optional fields -->
+                    <field name="address" optional="hide"/>
+                    <field name="postcal_code" optional="hide"/>
+                    <field name="father_name" optional="hide"/>
+                    <field name="father_phone_number" optional="hide"/>
+                    <field name="mother_name" optional="hide"/>
+                    <field name="mother_phone_number" optional="hide"/>
                 </list>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="education_student_form_view">
-            <field name="name">Education Student Form</field>
+        <record id="view_education_student_form" model="ir.ui.view">
+            <field name="name">education.student.form</field>
             <field name="model">education.student</field>
             <field name="arch" type="xml">
-                <form>
+                <form string="Student Record">
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="birth_date"/>
-                            <field name="student_id"/>
-                            <field name="class_id"/>
-                            <field name="parent_name"/>
-                            <field name="contact"/>
+                            <group><h1><field name="name" placeholder="Nama Siswa" nolabel="0"/></h1></group>
+                            <group><field name="student_image" widget="image" class="oe_avatar" nolabel="1"/></group>
                         </group>
+                        <notebook>
+                            <page string="Data Siswa">
+                                <group>
+                                    <field name="student_id"/>
+                                    <field name="birth_date"/>
+                                    <field name="gender"/>
+                                    <field name="student_phone_number"/>
+                                    <field name="address"/>
+                                    <field name="postcal_code"/>
+                                    <field name="class_id"/>
+                                </group>
+                            </page>
+                            <page string="Data Orangtua">
+                                <group>
+                                    <group string="Data Ayah">
+                                        <field name="father_name"/>
+                                        <field name="father_id"/>
+                                        <field name="father_occupation"/>
+                                        <field name="father_phone_number"/>
+                                        <field name="father_email"/>
+                                    </group>
+                                    <group string="Data Ibu">
+                                        <field name="mother_name"/>
+                                        <field name="mother_id"/>
+                                        <field name="mother_occupation"/>
+                                        <field name="mother_phone_number"/>
+                                        <field name="mother_email"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>

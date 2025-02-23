@@ -20,10 +20,12 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                        <field name="name"/>
-                        <field name="subject"/>
-                        <field name="contact"/>
-                        <field name="class_id"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="subject"/>
+                            <field name="contact"/>
+                            <field name="class_id"/>
+                        </group>
                     </sheet>
                 </form>
             </field>

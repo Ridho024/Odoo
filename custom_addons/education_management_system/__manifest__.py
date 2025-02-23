@@ -23,10 +23,11 @@
     'depends': ['base'],
     
     'data': [
-        'education_class_views.xml',
-        'education_teacher_views.xml',
-        'education_student_views.xml',
-        'education_management_system_menu.xml',
+        'views/education_class_views.xml',
+        'views/education_teacher_views.xml',
+        'views/education_student_views.xml',
+        'views/education_management_system_menu.xml',
+        'security/ir.model.access.csv',
     ],
     
     'demo': [
