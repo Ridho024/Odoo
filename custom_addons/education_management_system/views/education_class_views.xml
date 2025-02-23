@@ -8,6 +8,9 @@
             <list>
                 <field name="name"/>
                 <field name="teacher_id"/>
+                <field name="class_department"/>
+                <field name="homeroom_teacher"/>
+                <field name="total_student"/>
             </list>
         </field>
     </record>
@@ -21,8 +24,23 @@
                     <group>
                         <field name="name"/>
                         <field name="teacher_id"/>
-                        <field name="student_ids"/>
+                        <field name="class_department"/>
+                        <field name="homeroom_teacher"/>
+                        <field name="total_student"/>
                     </group>
+                    <notebook>
+                        <page string="Siswa Kelas   ">
+                            <field name="student_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="student_id"/>
+                                    <field name="gender"/>
+                                    <field name="student_phone_number"/>
+                                    <field name="student_email"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
