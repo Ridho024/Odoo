@@ -23,8 +23,10 @@
     'depends': ['base'],
     
     'data': [
-        'views/views.xml',
-        'views/templates.xml',
+        'education_class_views.xml',
+        'education_teacher_views.xml',
+        'education_student_views.xml',
+        'education_management_system_menu.xml',
     ],
     
     'demo': [

@@ -10,5 +10,5 @@ class EducationStudent(models.Model):
     class_id = fields.Many2one('education.class', string='Kelas', required=True, help='Kelas siswa.')
     parent_name = fields.Char(string='Nama Orang Tua', required=True, help='Nama orang tua siswa.')
     contact = fields.Char(string='Kontak', help='Nomor telepon atau email orang tua / siswa.')
-    attendance_ids = fields.One2many('education.attendance', 'student_id', string='Absensi', help='Absensi siswa.')
+    # attendance_ids = fields.One2many('education.attendance', 'student_id', string='Absensi', help='Absensi siswa.')
 

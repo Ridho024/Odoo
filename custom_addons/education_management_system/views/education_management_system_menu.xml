@@ -1,0 +1,28 @@
+<odoo>
+    <menuitem
+        id="education_management_system_root_menu"
+        name="Education Management"
+        sequence="10"/>
+
+    <menuitem
+        id="education_class_menu"
+        name="Classes"
+        action="education_class_action"
+        parent="education_management_system_root_menu"
+        sequence="11"/>
+
+    <menuitem
+        id="education_student_menu"
+        name="Students"
+        action="education_student_action"
+        parent="education_management_system_root_menu"
+        sequence="12"/>
+
+    <menuitem
+        id="education_teacher_menu"
+        name="Teachers"
+        action="education_teacher_action"
+        parent="education_management_system_root_menu"
+        sequence="13"/>
+
+</odoo>
