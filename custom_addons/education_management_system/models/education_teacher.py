@@ -18,9 +18,18 @@ class EducationTeacher(models.Model):
     email = fields.Char(string='Email', required=True,help='Alamat email guru.')
     address = fields.Char(string='Alamat', required=True,help='Alamat guru.')
     postcal_code = fields.Char(string='Kode Pos', required=True,help='Kode pos guru.')
+    last_education = fields.Char(string='Pendidikan Terakhir', required=True, help='Pendidikan terakhir guru.')
+    
+    employement_id = fields.Many2one('teacher.employement', string='Data Kepegawaian', help='Data kepegawaian guru.')
+    education_ids = fields.One2many('teacher.education', 'teacher_id', string='Pendidikan Guru', help='Pendidikan guru.')
+    workshop_ids = fields.One2many('teacher.workshop', 'teacher_id', string='Pelatihan Guru', help='Pelatihan yang pernah diikuti guru.')
+
+class TeacherEmployement(models.Model):
+    _name = 'teacher.employement'
+    _description = 'Teacher Employement'
     
     # Employement Affair
-    unique_id = fields.Char(string='Nomor Unik Guru', required=True, help='Nomor Unik Guru.')
+    name = fields.Char(string='Nomor Unik Guru', required=True, help='Nomor Unik Guru.')
     position = fields.Selection([
         ('guru','Guru'),
         ('staff','Staff'),
@@ -46,4 +55,33 @@ class EducationTeacher(models.Model):
         ('IV/e', 'Pembina Utama, jabatan fungsional guru utama'),
     ],string='Golongan/Pangkat', required=True, help='Golongan atau pangkat.')
     basic_salary = fields.Float(string='Gaji Pokok', required=True, help='Gaji pokok guru.')
+    
+class TeacherEducation(models.Model):
+    _name = 'teacher.education'
+    _description = 'Teacher Education'
+    
+    education_level = fields.Selection([
+        ('sd', 'SD'),
+        ('smp', 'SMP'),
+        ('sma', 'SMA'),
+        ('smk', 'SMK'),
+        ('d3', 'D3'),
+        ('d4', 'D4'),
+        ('s1', 'S1'),
+        ('s2', 'S2'),
+        ('s3', 'S3'),
+    ], string='Jenjang Pendidikan', required=True, help='Jenjang pendidikan guru.')
+    study_program = fields.Char(string='Program Studi', required=True, help='Program studi untuk smk/diploma/sarjana.')
+    university = fields.Char(string='Nama Universitas', required=True, help='Nama universitas guru.')
+    graduation_year = fields.Integer(string='Tahun Lulus', required=True, help='Tahun lulus.')
+    sertification = fields.Binary(string='sertifikasi', help='Bukti sertifikasi kelulusan.')
+    
+class TeacherWorkshoop(models.Model):
+    _name = 'teacher.workshop'
+    _description = 'Teacher Workshop'
+    
+    name = fields.Char(string='Nama Pelatihan', required=True, help='Nama pelatihan guru.')
+    workshop_date = fields.Date(string='Tanggal Pelatihan', required=True, help='Tanggal workshop guru.')
+    workshop_institution = fields.Char(string='Lembaga Pelatihan', required=True, help='Lembaga workshop guru.')
+    workshop_file = fields.Binary(string='File Workshop', required=True, help='File workshop guru.')
     
