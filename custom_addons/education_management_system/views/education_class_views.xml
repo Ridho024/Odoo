@@ -7,8 +7,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
-                <field name="teacher_id"/>
-                <field name="class_department"/>
+                <field name="class_major"/>
                 <field name="homeroom_teacher"/>
                 <field name="total_student"/>
             </list>
@@ -23,13 +22,12 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="teacher_id"/>
-                        <field name="class_department"/>
+                        <field name="class_major"/>
                         <field name="homeroom_teacher"/>
                         <field name="total_student"/>
                     </group>
                     <notebook>
-                        <page string="Siswa Kelas   ">
+                        <page string="Siswa Kelas">
                             <field name="student_ids">
                                 <list>
                                     <field name="name"/>
@@ -37,6 +35,19 @@
                                     <field name="gender"/>
                                     <field name="student_phone_number"/>
                                     <field name="student_email"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Jadwal Pelajaran">
+                            <field name="schedule_ids">
+                                <list>
+                                    <field name="day" />
+                                    <field name="lesson_name" />
+                                    <field name="teacher_id" />
+                                    <field name="start_time" />
+                                    <field name="end_time" />
+                                    <field name="duration" />
+                                    <field name="classroom" />
                                 </list>
                             </field>
                         </page>

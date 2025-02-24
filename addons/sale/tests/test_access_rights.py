@@ -6,7 +6,7 @@ from odoo.tests import tagged
 from odoo.tools import mute_logger
 
 from odoo.addons.base.tests.common import BaseUsersCommon
-from odoo.addons.sale.tests.common import SaleCommon
+from odoo.addons.sale.tests.common import SaleCommon # type:ignore
 
 
 @tagged('post_install', '-at_install')
