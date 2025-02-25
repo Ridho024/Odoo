@@ -7,7 +7,8 @@
             <field name="arch" type="xml">
                 <list>
                     <field name="name"/>
-                    <field name="student_id"/>
+                    <field name="nis"/>
+                    <field name="nisn"/>
                     <field name="birth_date"/> 
                     <field name="student_phone_number"/>
                     <field name="student_email"/>
@@ -37,13 +38,18 @@
                         <notebook>
                             <page string="Data Siswa">
                                 <group>
-                                    <field name="student_id"/>
-                                    <field name="birth_date"/>
-                                    <field name="gender"/>
-                                    <field name="student_phone_number"/>
-                                    <field name="address"/>
-                                    <field name="postcal_code"/>
-                                    <field name="class_id"/>
+                                    <group>
+                                        <field name="nis"/>
+                                        <field name="nisn"/>
+                                        <field name="birth_date"/>
+                                        <field name="gender"/>
+                                    </group>
+                                    <group>
+                                        <field name="student_phone_number"/>
+                                        <field name="address"/>
+                                        <field name="postcal_code"/>
+                                        <field name="class_id"/>
+                                    </group>
                                 </group>
                             </page>
                             <page string="Data Orangtua">

@@ -7,7 +7,8 @@ class EducationStudent(models.Model):
     # Student
     student_image = fields.Image(string='Foto', help='Foto siswa.', max_width=128, max_height=128)
     name = fields.Char(string='Nama', required=True, help='Nama lengkap siswa.')
-    student_id = fields.Char(string='Nomor Induk', required=True, help='Nomor induk siswa atau nomor induk siswa nasional.')
+    nis = fields.Char(string='NIS', required=True, help='Nomor induk siswa.')
+    nisn = fields.Char(string='NISN', required=True, help='Nomor induk siswa nasional.')
     birth_date = fields.Date(string='Tanggal Lahir', required=True, help='Tanggal lahir siswa.')
     student_phone_number = fields.Char(string='Nomor Telepon', required=True,help='Nomor telepon siswa.')
     student_email = fields.Char(string='Email', required=True,help='Alamat email siswa.')
