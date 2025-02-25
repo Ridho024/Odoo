@@ -8,17 +8,11 @@
                 <list>
                     <field name="name"/>
                     <field name="teacher_image" />
-                    <field name="id_card" />
-                    <field name="employement_id"/>
+                    <field name="nik" />
+                    <field name="nip"/>
                     <field name="gender"/>
                     <field name="phone_number" optional="show"/>
                     <field name="email" optional="show"/>
-                    <field name="position" optional="show"/>
-                    <field name="employement_status" optional="show"/>
-                    <!-- Optional Fields -->
-                    <field name="employement_rank" optional="hide"/>
-                    <field name="entry_date" optional="hide"/>
-                    <field name="end_date" optional="hide"/>
                 </list>
             </field>
         </record>
@@ -36,26 +30,41 @@
                         <notebook>
                             <page string="Data Pribadi">
                                 <group>
-                                    <field name="id_card"/>
-                                    <field name="employement_id"/>
-                                    <field name="gender"/>
-                                    <field name="birth_date"/>
-                                    <field name="phone_number"/>
-                                    <field name="email"/>
-                                    <field name="address"/>
-                                    <field name="postcal_code"/>
+                                    <group>
+                                        <field name="nik"/>
+                                        <field name="nip"/>
+                                        <field name="gender"/>
+                                        <field name="birth_date"/>
+                                        <field name="phone_number"/>
+                                    </group>
+                                    <group>
+                                        <field name="email"/>
+                                        <field name="address"/>
+                                        <field name="postcal_code"/>
+                                        <field name="employement_id"/>
+                                    </group>
                                 </group>
                             </page>
-                            <page string="Data Kepegawaian">
-                                <group>
-                                    <field name="unique_id"/>
-                                    <field name="position"/>
-                                    <field name="entry_date"/>
-                                    <field name="end_date"/>
-                                    <field name="employement_status"/>
-                                    <field name="employement_rank"/>
-                                    <field name="basic_salary"/>
-                                </group>
+                            <page string="Riwayat Pendidikan">
+                                <field name="education_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="study_program"/>
+                                        <field name="university"/>
+                                        <field name="graduation_year"/>
+                                        <field name="sertification"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Riwayat Pelatihan">
+                                <field name="workshop_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="workshop_date"/>
+                                        <field name="workshop_institution"/>
+                                        <field name="workshop_file"/>
+                                    </list>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>

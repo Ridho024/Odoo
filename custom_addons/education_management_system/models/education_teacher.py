@@ -7,8 +7,8 @@ class EducationTeacher(models.Model):
     # Personal Information
     name = fields.Char(string='Nama', required=True, help='Nama lengkap guru.')
     teacher_image = fields.Image(string='Foto', required=True,help='Foto guru.')
-    id_card = fields.Char(string='NIK', required=True, help='Nomor Induk Kependudukan guru.')
-    employement_id = fields.Char(string='NIP', required=True, help='Nomor Induk Pegawai guru.')
+    nik = fields.Char(string='NIK', required=True, help='Nomor Induk Kependudukan guru.')
+    nip = fields.Char(string='NIP', required=True, help='Nomor Induk Pegawai guru.')
     gender = fields.Selection([
         ('laki-laki', 'Laki-laki'),
         ('perempuan', 'Perempuan')
@@ -18,11 +18,10 @@ class EducationTeacher(models.Model):
     email = fields.Char(string='Email', required=True,help='Alamat email guru.')
     address = fields.Char(string='Alamat', required=True,help='Alamat guru.')
     postcal_code = fields.Char(string='Kode Pos', required=True,help='Kode pos guru.')
-    last_education = fields.Char(string='Pendidikan Terakhir', required=True, help='Pendidikan terakhir guru.')
     
     employement_id = fields.Many2one('teacher.employement', string='Data Kepegawaian', help='Data kepegawaian guru.')
-    education_ids = fields.One2many('teacher.education', 'teacher_id', string='Pendidikan Guru', help='Pendidikan guru.')
-    workshop_ids = fields.One2many('teacher.workshop', 'teacher_id', string='Pelatihan Guru', help='Pelatihan yang pernah diikuti guru.')
+    education_ids = fields.One2many('teacher.education', 'teacher_id', string='Pendidikan Guru', help='Riwayat pendidikan guru.')
+    workshop_ids = fields.One2many('teacher.workshop', 'teacher_id', string='Pelatihan Guru', help='Riwayat pelatihan yang pernah diikuti guru.')
 
 class TeacherEmployement(models.Model):
     _name = 'teacher.employement'
@@ -60,7 +59,8 @@ class TeacherEducation(models.Model):
     _name = 'teacher.education'
     _description = 'Teacher Education'
     
-    education_level = fields.Selection([
+    teacher_id = fields.Many2one('education.teacher', string='Guru', help='Guru yang bersangkutan.')
+    name = fields.Selection([
         ('sd', 'SD'),
         ('smp', 'SMP'),
         ('sma', 'SMA'),
@@ -80,6 +80,7 @@ class TeacherWorkshoop(models.Model):
     _name = 'teacher.workshop'
     _description = 'Teacher Workshop'
     
+    teacher_id = fields.Many2one('education.teacher', string='Guru', help='Guru yang bersangkutan.')
     name = fields.Char(string='Nama Pelatihan', required=True, help='Nama pelatihan guru.')
     workshop_date = fields.Date(string='Tanggal Pelatihan', required=True, help='Tanggal workshop guru.')
     workshop_institution = fields.Char(string='Lembaga Pelatihan', required=True, help='Lembaga workshop guru.')
