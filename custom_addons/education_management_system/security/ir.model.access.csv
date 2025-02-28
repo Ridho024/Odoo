@@ -1,8 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_education_student,access.education.student,model_education_student,base.group_user,1,1,1,1
-access_education_teacher,access.education.teacher,model_education_teacher,base.group_user,1,1,1,1
-access_teacher_employement,access.teacher.employement,model_teacher_employement,base.group_user,1,1,1,1
-access_teacher_education,access.teacher.education,model_teacher_education,base.group_user,1,1,1,1
-access_teacher_workshop,access.teacher.workshop,model_teacher_workshop,base.group_user,1,1,1,1
-access_education_class,access.education.class,model_education_class,base.group_user,1,1,1,1
-access_class_schedule,access.class.schedule,model_class_schedule,base.group_user,1,1,1,1

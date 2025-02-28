@@ -1,30 +1,34 @@
 <odoo>
     <data>
     
-        <record model="ir.ui.view" id="education_teacher_list_view">
-            <field name="name">Education Teacher List View</field>
-            <field name="model">education.teacher</field>
+        <record model="ir.ui.view" id="teacher_teacher_list_view">
+            <field name="name">Teacher List View</field>
+            <field name="model">teacher.teacher</field>
             <field name="arch" type="xml">
                 <list>
-                    <field name="name"/>
-                    <field name="teacher_image" />
-                    <field name="nik" />
-                    <field name="nip"/>
-                    <field name="gender"/>
+                    <field name="name" optional="show"/>
+                    <field name="teacher_image" widget="image" class="o_list_avatar" optional="show"/>
+                    <field name="nik" optional="show"/>
+                    <field name="gender" optional="show"/>
                     <field name="phone_number" optional="show"/>
                     <field name="email" optional="show"/>
+
+                    <!-- Optional hide -->
+                    <field name="birth_date" optional="hide"/>
+                    <field name="address" optional="hide"/>
+                    <field name="postcal_code" optional="hide"/>
                 </list>
             </field>
         </record>
     
-        <record model="ir.ui.view" id="education_teacher_form_view">
-            <field name="name">Education Teacher Form View</field>
-            <field name="model">education.teacher</field>
+        <record model="ir.ui.view" id="teacher_teacher_form_view">
+            <field name="name">Teacher Form View</field>
+            <field name="model">teacher.teacher</field>
             <field name="arch" type="xml">
                 <form string="Teacher Record">
                     <sheet>
                         <group>
-                            <group><h1><field name="name" placeholder="Nama Guru" nolabel="0"/></h1></group>
+                            <group><h1><field name="name" placeholder="Nama" nolabel="0"/></h1></group>
                             <group><field name="teacher_image" widget="image" class="oe_avatar" nolabel="1"/></group>
                         </group>
                         <notebook>
@@ -32,16 +36,14 @@
                                 <group>
                                     <group>
                                         <field name="nik"/>
-                                        <field name="nip"/>
                                         <field name="gender"/>
-                                        <field name="birth_date"/>
+                                        <field name="email"/>
                                         <field name="phone_number"/>
                                     </group>
                                     <group>
-                                        <field name="email"/>
+                                        <field name="birth_date"/>
                                         <field name="address"/>
                                         <field name="postcal_code"/>
-                                        <field name="employement_id"/>
                                     </group>
                                 </group>
                             </page>
@@ -49,20 +51,22 @@
                                 <field name="education_ids">
                                     <list>
                                         <field name="name"/>
+                                        <field name="grade"/>
                                         <field name="study_program"/>
-                                        <field name="university"/>
                                         <field name="graduation_year"/>
                                         <field name="sertification"/>
                                     </list>
                                 </field>
                             </page>
                             <page string="Riwayat Pelatihan">
-                                <field name="workshop_ids">
+                                <field name="training_ids">
                                     <list>
                                         <field name="name"/>
-                                        <field name="workshop_date"/>
-                                        <field name="workshop_institution"/>
-                                        <field name="workshop_file"/>
+                                        <field name="institution_name"/>
+                                        <field name="training_start_date"/>
+                                        <field name="training_end_date"/>
+                                        <field name="training_duration"/>
+                                        <field name="training_sertificate" />
                                     </list>
                                 </field>
                             </page>
@@ -72,10 +76,17 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="education_teacher_action">
+        <record model="ir.actions.act_window" id="teacher_teacher_action">
             <field name="name">Teacher</field>
-            <field name="res_model">education.teacher</field>
+            <field name="res_model">teacher.teacher</field>
             <field name="view_mode">list,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to Create New Teacher
+                </p>
+            </field>    
         </record>
 
     </data>

@@ -2,7 +2,7 @@
 {
     'name': "Education Management System",
 
-    'summary': "Education Management System (Manajemen Sekolah/Kursus)",
+    'summary': "Education Management System (Manajemen Sekolah/Kursus) untuk SMA/SMK Swasta",
 
     'description': """
     Fitur utama:
@@ -22,10 +22,19 @@
     
     'depends': ['base'],
     
+    'assets': {
+        'web.assets_backend': [
+            'education/static/src/css/style.css',
+        ],
+    },
+    
     'data': [
-        'views/education_class_views.xml',
-        'views/education_teacher_views.xml',
-        'views/education_student_views.xml',
+        'views/student_class_views.xml',
+        'views/teacher_teacher_views.xml',
+        'views/teacher_employement_views.xml',
+        'views/student_student_views.xml',
+        'views/student_department_views.xml',
+        'views/classroom_views.xml',
         'views/education_management_system_menu.xml',
         'security/ir.model.access.csv',
     ],
@@ -36,5 +45,6 @@
     
     'application': True,
     'installable': True,
+    'license': 'LGPL-3',
 }
 
