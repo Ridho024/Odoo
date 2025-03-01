@@ -33,6 +33,16 @@ class StudentStudent(models.Model):
     # Class
     class_id = fields.Many2one('student.class', string='Kelas', help='Kelas siswa.')
     
+    # Student class action
+    def action_student_detail(self):
+        return {
+            'name': 'Student Detail',
+            'view_mode': 'form',
+            'res_model': 'student.student',
+            'type': 'ir.actions.act_window',
+            'res_id': self.id,
+            'target': 'current',
+        }
     
 """
 LIST TODO
