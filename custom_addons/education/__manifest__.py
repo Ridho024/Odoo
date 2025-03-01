@@ -20,7 +20,7 @@
     
     'version': '0.1',
     
-    'depends': ['base'],
+    'depends': ['base', 'calendar'],
     
     'assets': {
         'web.assets_backend': [

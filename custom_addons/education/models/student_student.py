@@ -32,6 +32,7 @@ class StudentStudent(models.Model):
     
     # Class
     class_id = fields.Many2one('student.class', string='Kelas', help='Kelas siswa.')
+    report_ids = fields.One2many('student.report', 'student_id',string='Rapor', help='Rapor siswa.')
     
     # Student class action
     def action_student_detail(self):
@@ -43,6 +44,15 @@ class StudentStudent(models.Model):
             'res_id': self.id,
             'target': 'current',
         }
+        
+class StudentAssessment(models.Model):
+    _name = 'student.report'
+    _description = 'Student Report'
+    _rec_name = 'student_id'
+    
+    schedule_id = fields.Many2one('class.schedule', string='Pelajaran', help='Mata pelajaran.')
+    average_score = fields.Float(string='Rata-rata Nilai', help='Rata-rata nilai siswa.')
+    student_id = fields.Many2one('student.student', string='Siswa', help='Siswa yang mendapatkan nilai.')
     
 """
 LIST TODO

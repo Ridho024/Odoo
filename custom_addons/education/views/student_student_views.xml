@@ -68,6 +68,14 @@
                                     </group>
                                 </group>
                             </page>
+                            <page string="Nilai Rata - Rata">
+                                <field name="report_ids">
+                                    <list>
+                                        <field name="schedule_id" />
+                                        <field name="average_score" />
+                                    </list>
+                                </field>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
