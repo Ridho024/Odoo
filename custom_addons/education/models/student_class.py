@@ -16,6 +16,7 @@ class StudentClass(models.Model):
     total_student = fields.Integer(string='Total Siswa', help='Jumlah siswa di kelas', readonly=True)
     student_ids = fields.One2many('student.student', 'class_id', string='Siswa/Siswi', help='Siswa/siswi kelas.')    
     schedule_ids = fields.One2many('class.schedule', 'class_id', string='Jadwal Pelajaran', help='Jadwal pelajaran kelas.')
+    attendance_ids = fields.One2many('class.attendance', 'class_id', string='Absensi Siswa', help='Absensi siswa kelas.')
 
 class ClassSchedule(models.Model):
     _name = 'class.schedule'
@@ -36,3 +37,20 @@ class ClassSchedule(models.Model):
     duration = fields.Float(string='Durasi', required=True, help='Durasi pelajaran.')
     classroom = fields.Many2one('classroom.classroom', string='Ruang Kelas', help='Ruang kelas.')
     class_id = fields.Many2one('education.class', string='Kelas', help='Kelas.')
+
+class StudentAttendance(models.Model):
+    _name = 'class.attendance'
+    _description = 'Student Attendance'
+    _rec_name = 'schedule_id'
+    
+    schedule_id = fields.Many2one('class.schedule', string='Jadwal Pelajaran', help='Jadwal pelajaran.')
+    teacher_id = fields.Many2one('teacher.teacher', string='Guru Pengajar', help='Guru pengajar.')
+    student_id = fields.Many2one('student.student', string='Siswa', help='Siswa yang melakukan absen.')
+    date = fields.Date(string='Tanggal', help='Tanggal absen.')
+    status = fields.Selection([
+        ('hadir', 'Hadir'),
+        ('izin', 'Izin'),
+        ('sakit', 'Sakit'),
+        ('alpa', 'Alpa'),], string='Status', help='Status kehadiran siswa.')
+    note = fields.Text(string='Catatan', help='Catatan absen siswa.')
+    class_id = fields.Many2one('student.class', string='Kelas', help='Kelas.')

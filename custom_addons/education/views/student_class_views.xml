@@ -59,6 +59,18 @@
                                 </list>
                             </field>
                         </page>
+                        <page string="Absensi Siswa">
+                            <field name="attendance_ids">
+                                <list>
+                                    <field name="schedule_id" />
+                                    <field name="teacher_id" />
+                                    <field name="student_id" />
+                                    <field name="date" />
+                                    <field name="status" />
+                                    <field name="note" />
+                                </list>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
