@@ -33,6 +33,7 @@ class StudentStudent(models.Model):
     # Class
     class_id = fields.Many2one('student.class', string='Kelas', help='Kelas siswa.')
     report_ids = fields.One2many('student.report', 'student_id',string='Rapor', help='Rapor siswa.')
+    education_ids = fields.One2many('student.education', 'student_id', string='Riwayat Pendidikan', help='Riwayat pendidikan siswa.')
     
     # Student class action
     def action_student_detail(self):
@@ -53,6 +54,23 @@ class StudentAssessment(models.Model):
     schedule_id = fields.Many2one('class.schedule', string='Pelajaran', help='Mata pelajaran.')
     average_score = fields.Float(string='Rata-rata Nilai', help='Rata-rata nilai siswa.')
     student_id = fields.Many2one('student.student', string='Siswa', help='Siswa yang mendapatkan nilai.')
+    
+class StudentEducation(models.Model):
+    _name = 'student.education'
+    _description = 'Student Academic History'
+    
+    grade = fields.Selection([
+        ('sd', 'Sekolah Dasar'),
+        ('smp', 'Sekolah Menengah Pertama'),
+    ], string='Jenjang Pendidikan', help='Jenjang pendidikan sebelum Sekolah Menengah')
+    name = fields.Char(string='Nama Sekolah', help='Nama sekolah atau instansi')
+    school_type = fields.Selection([
+        ('negeri', 'Negeri'),
+        ('swasta', 'Swasta')
+    ], string='Tipe Sekolah', help='Tipe sekolah')
+    graduation_year = fields.Char(string='Tahun Lulus', help='Tahun lulus jenjang pendidikan')
+    sertification = fields.Binary(string='Sertifikat Kelulusan', help='Sertifikat kelulusan sekolah')
+    student_id = fields.Many2one('student.student', string='Siswa', help='Nama siswa')
     
 """
 LIST TODO

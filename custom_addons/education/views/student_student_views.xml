@@ -68,6 +68,17 @@
                                     </group>
                                 </group>
                             </page>
+                            <page string="Riwayat Pendidikan">
+                                <field name="education_ids">
+                                    <list>
+                                        <field name="grade" />
+                                        <field name="name" />
+                                        <field name="school_type" />
+                                        <field name="graduation_year" />
+                                        <field name="sertification" />
+                                    </list>
+                                </field>
+                            </page>
                             <page string="Nilai Rata - Rata">
                                 <field name="report_ids">
                                     <list>
