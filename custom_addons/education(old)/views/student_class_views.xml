@@ -43,7 +43,7 @@
                                     <field name="gender"/>
                                     <field name="phone_number"/>
                                     <field name="email"/>
-                                    <button name="action_student_detail" type="object" class="btn-primary" icon="fa-eye"/>
+                                    <button name="action_student_detail" title="Detail Murid" type="object" class="btn-primary" icon="fa-eye"/>
                                 </list>
                             </field>
                         </page>

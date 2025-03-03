@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Education Management System",
+    'name': "Online Course Managemesnt System",
 
-    'summary': "Education Management System (Manajemen Sekolah/Kursus) untuk SMA/SMK Swasta",
+    'summary': "Online course management system for web-based education.",
 
     'description': """
     Fitur utama:
         - Manajemen siswa, guru, dan kelas.
-        - Jadwal pelajaran & absensi.
+        - Jadwal pelajaran.
         - Manajemen ujian & nilai.
-        - Pembayaran biaya pendidikan & faktur otomatis.
+        - Pembayaran biaya pendidikan.
     """,
     
     'author': "Muhammad Ridho Ramadhan",
     
     'website': "https://github.com/Ridho024",
     
-    'category': 'Manage',
+    'category': 'Education',
     
     'version': '0.1',
     
