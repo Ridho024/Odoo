@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="education_management.list">
+      <field name="name">education_management list</field>
+      <field name="model">education_management.education_management</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </list>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="education_management.action_window">
+      <field name="name">education_management window</field>
+      <field name="res_model">education_management.education_management</field>
+      <field name="view_mode">list,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="education_management.action_server">
+      <field name="name">education_management server</field>
+      <field name="model_id" ref="model_education_management_education_management"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="education_management" id="education_management.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="education_management.menu_1" parent="education_management.menu_root"/>
+    <menuitem name="Menu 2" id="education_management.menu_2" parent="education_management.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="education_management.menu_1_list" parent="education_management.menu_1"
+              action="education_management.action_window"/>
+    <menuitem name="Server to list" id="education_management" parent="education_management.menu_2"
+              action="education_management.action_server"/>
+-->
+  </data>
+</odoo>
