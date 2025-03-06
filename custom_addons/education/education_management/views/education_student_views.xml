@@ -114,7 +114,7 @@
 
     <!-- Action -->
     <record id="education_student_action" model="ir.actions.act_window">
-        <field name="name">Dear God</field>
+        <field name="name">Education Student</field>
         <field name="res_model">education.student</field>
         <field name="view_mode">kanban,list,form</field>
         <field name="help" type="html">
