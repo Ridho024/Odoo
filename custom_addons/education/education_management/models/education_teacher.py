@@ -6,7 +6,7 @@ class EducationTeacher(models.Model):
 
     # Identitas guru
     name = fields.Char(string='Teacher Name', required=True)
-    teacher_id = fields.Char(string='Teacher ID', required=True, copy=False, readonly=True, default=lambda self: self.env['ir.sequence'].next_by_code('education.teacher') or 'New')
+    id_teacher = fields.Char(string='Teacher ID', required=True, copy=False, readonly=True, default=lambda self: self.env['ir.sequence'].next_by_code('education.teacher') or 'New')
     date_of_birth = fields.Date(string='Date of Birth')
     gender = fields.Selection([
         ('male', 'Male'),
@@ -21,8 +21,8 @@ class EducationTeacher(models.Model):
     class_ids = fields.Many2many('education.classroom', string='Assigned Classes')
     
     # Kehadiran dan Evaluasi
-    attendance_ids = fields.One2many('education.attendance', 'teacher_id', string='Attendances Records')
-    grade_ids = fields.One2many('education.grade', 'teacher_id', string='Assigned Grades')
+    attendance_ids = fields.One2many('education.teacher.attendance', 'teacher_id', string='Attendances Records')
+    # grade_ids = fields.One2many('education.grade', 'teacher_id', string='Assigned Grades')
     
     # Data Administrasi
     employment_date = fields.Date(string='Employement Date')

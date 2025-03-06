@@ -17,12 +17,14 @@
     'depends': ['base'],
 
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'views/education_student_views.xml',
+        'views/education_student_menu_views.xml',
     ],
     'demo': [
         'demo/demo.xml',
     ],
+    'application': True,
+    'installable': True,
 }
 

@@ -1,5 +1,5 @@
 from . import education_teacher
-from . import education_studen
+from . import education_student
 from . import education_classroom
 from . import education_course
 from . import education_course_category

@@ -12,6 +12,8 @@ class EducationStudent(models.Model):
         ('male', 'Male'),
         ('female', 'Female'),
     ], string='Gender')
+    email = fields.Char(string='Student Email')
+    phone = fields.Char(string='Student Phone')
     photo = fields.Image(string='Photo')
     
     # Informasi Orang Tua / Wali
@@ -24,12 +26,12 @@ class EducationStudent(models.Model):
     
     # Informasi Akademik
     academic_year = fields.Char(string='Academic Year')
-    class_id = fields.Many2one('education.classroom', string='Class')
+    classroom_id = fields.Many2one('education.classroom', string='Class')
     
     # Administrasi Keuangan
-    fee_ids = fields.One2many('education.fee', 'student_id', string='Fee Payments')
-    total_fees_due = fields.Monetary(string='Total Fees Due', compute='_compute_total_fees_due', store=True)
-    currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.user.company_id.currency_id)
+    # fee_ids = fields.One2many('education.fee', 'student_id', string='Fee Payments')
+    # total_fees_due = fields.Monetary(string='Total Fees Due', compute='_compute_total_fees_due', store=True)
+    # currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.user.company_id.currency_id)
     
     # Status Siswa
     status = fields.Selection([
