@@ -27,6 +27,13 @@
                 <field name="name" />
                 <field name="id_student" />
                 <field name="email" />
+                <group expand="1" string="Group By">
+                    <filter name="group_by_gender" string="Male" domain="[('gender', '=', 'male')]" context="{'group_by': 'gender'}" />
+                    <filter name="group_by_gender" string="Female" domain="[('gender', '=', 'female')]" context="{'group_by': 'gender'}" />
+                </group>
+                <searchpanel>
+                    <field name="gender" string="Gender" enable_counter="1" />
+                </searchpanel>
             </search>
         </field>
     </record>
@@ -111,7 +118,7 @@
         <field name="res_model">education.student</field>
         <field name="view_mode">kanban,list,form</field>
         <field name="help" type="html">
-            <p>Udeh banyak contohnya</p>
+            <p>Click new to create a new student record</p>
         </field>
     </record>
 
