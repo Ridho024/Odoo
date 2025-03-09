@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="student_attendance_view_list" model="ir.ui.view">
+        <field name="name">student.attendance.view.list</field>
+        <field name="model">education.student.attendance</field>
+        <field name="arch" type="xml">
+            <list string="Students Attendance" editable="bottom">
+                <field name="date" />
+                <field name="student_id" />
+                <field name="classroom_id" />
+                <field name="teacher_id" />
+                <field name="state" />
+            </list>
+        </field>
+    </record>
+
+    <record id="student_attendance_action" model="ir.actions.act_window">
+        <field name="name">Student Attendance</field>
+        <field name="res_model">education.student.attendance</field>
+        <field name="view_mode">list</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>Astagfirullahaladzim</p>
+        </field>
+    </record>
+
+</odoo>

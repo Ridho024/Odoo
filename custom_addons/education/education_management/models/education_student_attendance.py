@@ -4,20 +4,20 @@ class EducationStudentAttendance(models.Model):
     _name = 'education.student.attendance'
     _description = 'Student Attendance'
 
-    date = fields.Date(string='Date', required=True, default=fields.Date.today)
-    classroom_id = fields.Many2one('education.classroom', string='Classroom', required=True)
-    course_id = fields.Many2one('education.course', string='Course', required=True)
-    student_id = fields.Many2one('education.student', string='Student', required=True)
-    teacher_id = fields.Many2one('education.teacher', string='Teacher', required=True)
+    date = fields.Date(string='Date', default=fields.Date.today)
+    student_id = fields.Many2one('education.student', string='Student')
+    classroom_id = fields.Many2one('education.classroom', string='Classroom')
+    teacher_id = fields.Many2one('education.teacher', string='Teacher')
     state = fields.Selection([
         ('present', 'Present'),
         ('absent', 'Absent'),
         ('late', 'Late'),
         ('excused', 'Excused'),
-    ], string='Attendance Status', required=True, default='present')
-    note = fields.Text(string='Note')
-    check_in = fields.Datetime(string='Check-in Time')
-    check_out = fields.Datetime(string='Check-out Time')
+    ], string='Status', default='present')
+    # course_id = fields.Many2one('education.course', string='Course')
+    # note = fields.Text(string='Note')
+    # check_in = fields.Datetime(string='Check-in Time')
+    # check_out = fields.Datetime(string='Check-out Time')
     
     # Metode untuk Menandai Siswa Hadir
     def mark_present(self):
