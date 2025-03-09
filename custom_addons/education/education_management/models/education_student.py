@@ -46,5 +46,20 @@ class EducationStudent(models.Model):
     def _compute_total_fees_due(self):
         for student in self:
             student.total_fees_due = sum(student.fee_ids.mapped('amount_due'))
+            
+    @api.model
+    def create(self, vals):
+        student = super(EducationStudent, self).create(vals)
+        student.create_student_attendance()
+        return student
+    
+    def create_student_attendance(self):
+        """Membuat record attendance otomatis saat siswa ditambahkan"""
+        attendance_obj = self.env['education.student.attendance']
+        for student in self:
+            attendance_obj.create({
+                'student_id': student.id,
+                'classroom_id': student.classroom_id.id,
+            })
 
     
