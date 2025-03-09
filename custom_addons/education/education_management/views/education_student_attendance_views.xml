@@ -15,6 +15,19 @@
         </field>
     </record>
 
+    <record id="student_attendance_view_search" model="ir.ui.view">
+        <field name="name">student.attendance.view.search</field>
+        <field name="model">education.student.attendance</field>
+        <field name="arch" type="xml">
+            <search string="Student Class">
+                <searchpanel>
+                    <field name="classroom_id" string="Classroom" enable_counter="1" />
+                    <field name="teacher_id" string="Teacher" enable_counter="1" />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
     <record id="student_attendance_action" model="ir.actions.act_window">
         <field name="name">Student Attendance</field>
         <field name="res_model">education.student.attendance</field>
