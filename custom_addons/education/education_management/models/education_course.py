@@ -5,7 +5,7 @@ class EducationCourse(models.Model):
     _description = 'Course Information'
     
     name = fields.Char(string='Course Name', required=True)
-    code = fields.Char(string='Course Code', required=True, copy=True, readonly=True, default=lambda self: self.env['ir.sequence'].next_by_code('education.course'))
+    code = fields.Char(string='Course Code', required=True, copy=True, readonly=True, default=lambda self: self.env['ir.sequence'].next_by_code('education.course') or 'New')
     description = fields.Text(string='Description')
     duration = fields.Integer(string='Duration (hours)', help='Total hours required for this course')
     schedule_ids = fields.One2many('education.schedule', 'course_id', string='Schedules')
@@ -15,3 +15,4 @@ class EducationCourse(models.Model):
     exam_ids = fields.One2many('education.exam', 'course_id', string='Exams')
     category_id = fields.Many2one('education.course.category', string='Category')
     active = fields.Boolean(string='Active', default=True)
+    color = fields.Integer(string='Color')

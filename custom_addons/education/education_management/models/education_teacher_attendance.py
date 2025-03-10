@@ -3,6 +3,7 @@ from odoo import models, fields
 class EducationTeacherAttendance(models.Model):
     _name = 'education.teacher.attendance'
     _description = 'Teacher Attendance'
+    _rec_name = "teacher_id"
     
     date = fields.Date(string="Date", required=True, default=fields.Date.today)
     teacher_id = fields.Many2one('education.teacher', string="Teacher", required=True)
@@ -14,7 +15,6 @@ class EducationTeacherAttendance(models.Model):
         ('late', 'Late'),
         ('excused', 'Excused')
     ], string="Attendance Status", required=True, default="present")
-    note = fields.Text(string="Note")
     check_in = fields.Datetime(string="Check-in Time")
     check_out = fields.Datetime(string="Check-out Time")
 

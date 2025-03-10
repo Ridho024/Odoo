@@ -25,7 +25,7 @@ class EducationTeacher(models.Model):
     # grade_ids = fields.One2many('education.grade', 'teacher_id', string='Assigned Grades')
     
     # Data Administrasi
-    employment_date = fields.Date(string='Employement Date')
+    employement_date = fields.Date(string='Employement Date')
     salary = fields.Monetary(string='Salary')
     currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.user.company_id.currency_id)
     

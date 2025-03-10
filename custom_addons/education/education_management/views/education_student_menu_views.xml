@@ -3,6 +3,7 @@
 
     <menuitem id="menu_education_student_root" name="Education"/>
 
+    <!-- Students -->
     <menuitem
         id="menu_students_root"
         name="Students"
@@ -23,5 +24,19 @@
         sequence="3"
         action="student_attendance_action"
         />
+
+    <!-- Teachers -->
+    <menuitem
+        id="menu_teachers_root"
+        name="Teachers"
+        parent="menu_education_student_root"
+        sequence="4"/>
+
+    <menuitem
+        id="education_teacher"
+        name="Teachers List"
+        action="education_teacher_action"
+        parent="menu_teachers_root"
+        sequence="5"/>
 
 </odoo>
