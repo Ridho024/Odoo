@@ -6,7 +6,7 @@ class EducationStudent(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     # Identitas Siswa
-    name = fields.Char(string='Student Name', required=True, tracking=True)
+    name = fields.Char(string='Student Name', required=True, tracking=True, default="Rusdi")
     id_student = fields.Char(string='Student ID', required=True, copy=False, readonly=True, index=True, default=lambda self: self.env['ir.sequence'].next_by_code('education.student') or 'New', tracking=True)
     date_of_birth = fields.Date(string='Date of Birth', tracking=True)
     gender = fields.Selection([
@@ -15,7 +15,7 @@ class EducationStudent(models.Model):
     ], string='Gender', tracking=True)
     email = fields.Char(string='Student Email', tracking=True)
     phone = fields.Char(string='Student Phone', tracking=True)
-    photo = fields.Image(string='Photo', tracking=True)
+    photo = fields.Image(string='Photo')
     
     # Informasi Orang Tua / Wali
     father_name = fields.Char(string='Father Name', tracking=True)
@@ -50,16 +50,11 @@ class EducationStudent(models.Model):
     @api.model
     def create(self, vals):
         student = super(EducationStudent, self).create(vals)
-        student.create_student_attendance()
+        student_attendance = {
+            'student_id': student.id,
+            'classroom_id': student.classroom_id.id,
+        }
+        self.env['education.student.attendance'].create(student_attendance)
         return student
-    
-    def create_student_attendance(self):
-        """Membuat record attendance otomatis saat siswa ditambahkan"""
-        attendance_obj = self.env['education.student.attendance']
-        for student in self:
-            attendance_obj.create({
-                'student_id': student.id,
-                'classroom_id': student.classroom_id.id,
-            })
 
     

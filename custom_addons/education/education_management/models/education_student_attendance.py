@@ -2,7 +2,7 @@ from odoo import models, fields, api
 
 class EducationStudentAttendance(models.Model):
     _name = 'education.student.attendance'
-    _description = 'Student Attendance'
+    _description = 'Student Attendance'    
 
     date = fields.Date(string='Date', default=fields.Date.today)
     student_id = fields.Many2one('education.student', string='Student')
@@ -19,6 +19,10 @@ class EducationStudentAttendance(models.Model):
     # check_in = fields.Datetime(string='Check-in Time')
     # check_out = fields.Datetime(string='Check-out Time')
     
+    _sql_constraints = [
+        ('unique_attendance', 'UNIQUE(student_id)', 'Attendance for this student already exists!')
+        ]
+    
     # Metode untuk Menandai Siswa Hadir
     def mark_present(self):
         self.write({'status': 'present'})
@@ -34,3 +38,5 @@ class EducationStudentAttendance(models.Model):
     # Metode untuk Menandai Siswa Izin
     def mark_excused(self):
         self.write({'status': 'excused'})
+        
+    

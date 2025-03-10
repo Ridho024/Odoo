@@ -18,26 +18,6 @@
         </field>
     </record>
 
-    <!-- Sidebar group by -->
-    <record id="education_student_view_search" model="ir.ui.view">
-        <field name="name">education.student.search</field>
-        <field name="model">education.student</field>
-        <field name="arch" type="xml">
-            <search string="Search Students">
-                <field name="name" />
-                <field name="id_student" />
-                <field name="email" />
-                <group expand="1" string="Group By">
-                    <filter name="group_by_gender" string="Male" domain="[('gender', '=', 'male')]" context="{'group_by': 'gender'}" />
-                    <filter name="group_by_gender" string="Female" domain="[('gender', '=', 'female')]" context="{'group_by': 'gender'}" />
-                </group>
-                <searchpanel>
-                    <field name="gender" string="Gender" enable_counter="1" />
-                </searchpanel>
-            </search>
-        </field>
-    </record>
-
     <!-- Form View -->
     <record id="education_student_view_form" model="ir.ui.view">
         <field name="name">education.student.view.form</field>
@@ -88,36 +68,12 @@
     </record>
 
     <!-- Kanban -->
-    <record id="education_student_view_kanban" model="ir.ui.view">
-        <field name="name">education.student.view.kanban</field>
-        <field name="model">education.student</field>
-        <field name="arch" type="xml">
-            <kanban>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_card">
-                            <div class="o_kanban_image">
-                                <img t-att-src="'/web/image/%s/%s/image_128' % (record.id.model, record.id.value)" alt="Student Image"/>
-                            </div>
-                            <div class="oe_kanban_details">
-                                <strong><t t-esc="record.name.value"/></strong>
-                                <br/>
-                                <small><t t-esc="record.id_student.value"/></small>
-                                <br/>
-                                <small><t t-esc="record.classroom_id.value"/></small>
-                            </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
 
     <!-- Action -->
     <record id="education_student_action" model="ir.actions.act_window">
         <field name="name">Education Student</field>
         <field name="res_model">education.student</field>
-        <field name="view_mode">kanban,list,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p>Click new to create a new student record</p>
         </field>
