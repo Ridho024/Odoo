@@ -3,6 +3,7 @@ from odoo import models, fields, api
 class EducationExamResult(models.Model):
     _name = "education.exam.result"
     _description = "Exam Result"
+    _rec_name = "student_id"
 
     student_id = fields.Many2one("education.student", string="Student", required=True)
     exam_id = fields.Many2one("education.exam", string="Exam", required=True)
@@ -29,7 +30,7 @@ class EducationExamResult(models.Model):
         compute="_compute_status",
         store=True
     )
-    remark = fields.Text(string="Remarks")
+    # remark = fields.Text(string="Remarks")
 
     @api.depends("marks_obtained", "total_marks")
     def _compute_percentage(self):

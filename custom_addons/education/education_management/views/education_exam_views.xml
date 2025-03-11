@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="education_exam_view_list" model="ir.ui.view">
+        <field name="name">education.exam.view.list</field>
+        <field name="model">education.exam</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="course_id" />
+                <field name="classroom_id" />
+                <field name="exam_date" />
+                <field name="duration" />
+                <field name="exam_type" />
+                <field name="state" />
+            </list>
+        </field>
+    </record>
+
+    <record id="education_exam_view_form" model="ir.ui.view">
+        <field name="name">education.exam.view.form</field>
+        <field name="model">education.exam</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" options="{'statusbar_visible': ['draft', 'schedule', 'completed', 'graded']}" />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="course_id" />
+                            <field name="classroom_id" />
+                        </group>
+                        <group>
+                            <field name="exam_date" />
+                            <field name="duration" />
+                            <field name="exam_type" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" />
+                        </page>
+                        <page string="Results">
+                            <field name="exam_results_ids">
+                                <list>
+                                    <field name="student_id" />
+                                    <field name="exam_id" />
+                                    <field name="course_id" />
+                                    <field name="marks_obtained" />
+                                    <field name="total_marks" />
+                                    <field name="percentage" />
+                                    <field name="grade" />
+                                    <field name="status" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_exam_action" model="ir.actions.act_window">
+        <field name="name">Exams List</field>
+        <field name="res_model">education.exam</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>Add new exam</p>
+        </field>
+    </record>
+
+</odoo>

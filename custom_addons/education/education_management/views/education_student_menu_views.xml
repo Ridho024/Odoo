@@ -60,4 +60,11 @@
         parent="menu_courses_root"
         sequence="8"/>
 
+    <menuitem
+        id="education_exam_menu"
+        name="Exams"
+        action="education_exam_action"
+        parent="menu_courses_root"
+        sequence="9"/>
+
 </odoo>
