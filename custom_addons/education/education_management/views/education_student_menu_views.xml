@@ -46,4 +46,18 @@
         parent="menu_teachers_root"
         sequence="6"/>
 
+    <!-- Courses -->
+    <menuitem
+        id="menu_courses_root"
+        name="Courses"
+        parent="menu_education_student_root"
+        sequence="7"/>
+
+    <menuitem
+        id="education_schedule_menu"
+        name="Course List"
+        action="education_course_action"
+        parent="menu_courses_root"
+        sequence="8"/>
+
 </odoo>

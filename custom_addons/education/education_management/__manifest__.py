@@ -22,6 +22,7 @@
         'views/education_student_attendance_views.xml',
         'views/education_teacher_views.xml',
         'views/education_teacher_schedule_views.xml',
+        'views/education_course_views.xml',
         'views/education_student_menu_views.xml',
     ],
     'demo': [
