@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 class EducationStudent(models.Model):
     _name = 'education.student'
@@ -7,6 +7,7 @@ class EducationStudent(models.Model):
 
     # Identitas Siswa
     name = fields.Char(string='Student Name', required=True, tracking=True, default="Rusdi")
+    nisn = fields.Char(string='NISN', required=True, tracking=True)
     id_student = fields.Char(string='Student ID', required=True, copy=False, readonly=True, index=True, default=lambda self: self.env['ir.sequence'].next_by_code('education.student') or 'New', tracking=True)
     date_of_birth = fields.Date(string='Date of Birth', tracking=True)
     gender = fields.Selection([
@@ -56,5 +57,15 @@ class EducationStudent(models.Model):
         }
         self.env['education.student.attendance'].create(student_attendance)
         return student
+    
+    @api.model_create_multi
+    def create(self,vals_list):
+        """ Create a sequence for the student model """
+        for vals in vals_list:
+            if vals.get('id_student', _('New')) == _('New'):
+                vals['id_student'] = (self.env['ir.sequence'].next_by_code('education.student'))
+        return super().create(vals_list)
+    
+    
 
     

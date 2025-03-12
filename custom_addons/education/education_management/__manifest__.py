@@ -17,6 +17,7 @@
     'depends': ['base', 'mail'],
 
     'data': [
+        'data/education_student_sequence.xml',
         'security/ir.model.access.csv',
         'views/education_student_views.xml',
         'views/education_student_attendance_views.xml',
