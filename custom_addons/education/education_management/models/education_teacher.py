@@ -36,14 +36,14 @@ class EducationTeacher(models.Model):
         ('resigned', 'Resigned'),
     ], string='Status', default='active')
     
-    # @api.model
-    # def create(self, vals):
-    #     teacher = super(EducationTeacher, self).create(vals)
-    #     teacher_attendance = {
-    #         'teacher_id': teacher.id,
-    #         'classroom_id': teacher.classroom_id.id,
-    #     }
-    #     self.env['education.teacher.attendance'].create(teacher_attendance)
-    #     return teacher
+    @api.model
+    def create(self, vals):
+        teacher = super(EducationTeacher, self).create(vals)
+        teacher_attendance = {
+            'teacher_id': teacher.id,
+            'classroom_id': teacher.classroom_id.id,
+        }
+        self.env['education.teacher.attendance'].create(teacher_attendance)
+        return teacher
     
     
