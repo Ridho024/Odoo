@@ -7,7 +7,7 @@ class EducationTeacherAttendance(models.Model):
     
     date = fields.Date(string="Date", required=True, default=fields.Date.today)
     teacher_id = fields.Many2one('education.teacher', string="Teacher", required=True)
-    course_id = fields.Many2one('education.course', string="Course", required=True)
+    course_id = fields.Many2one('education.course', string="Course")
     classroom_id = fields.Many2one('education.classroom', string="Classroom", required=True)
     status = fields.Selection([
         ('present', 'Present'),
@@ -15,8 +15,6 @@ class EducationTeacherAttendance(models.Model):
         ('late', 'Late'),
         ('excused', 'Excused')
     ], string="Attendance Status", required=True, default="present")
-    check_in = fields.Datetime(string="Check-in Time")
-    check_out = fields.Datetime(string="Check-out Time")
 
     # Metode untuk Menandai Guru Hadir
     def mark_present(self):

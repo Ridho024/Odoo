@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class EducationTeacher(models.Model):
     _name = 'education.teacher'
@@ -35,5 +35,15 @@ class EducationTeacher(models.Model):
         ('retired', 'Retired'),
         ('resigned', 'Resigned'),
     ], string='Status', default='active')
+    
+    @api.model
+    def create(self, vals):
+        teacher = super(EducationTeacher, self).create(vals)
+        teacher_attendance = {
+            'teacher_id': teacher.id,
+            'classroom_id': teacher.classroom_id.id,
+        }
+        self.env['education.teacher.attendance'].create(teacher_attendance)
+        return teacher
     
     

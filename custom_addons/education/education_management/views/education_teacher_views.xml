@@ -55,8 +55,6 @@
                                     <field name="teacher_id" />
                                     <field name="course_id" />
                                     <field name="classroom_id" />
-                                    <field name="check_in" />
-                                    <field name="check_out" />
                                     <field name="status" />
                                 </list>
                             </field>
