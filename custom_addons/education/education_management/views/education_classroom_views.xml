@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="education_classroom_view_list" model="ir.ui.view">
+        <field name="name">education.classroom.view.list</field>
+        <field name="model">education.classroom</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />  
+                <field name="code" />  
+                <field name="capacity" />  
+                <field name="teacher_id" />  
+                <field name="location" />
+            </list>
+        </field>
+    </record>
+
+    <record id="education_classroom_view_form" model="ir.ui.view">
+        <field name="name">education.classroom.view.form</field>
+        <field name="model">education.classroom</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="capacity" />
+                            <field name="teacher_id" />
+                        </group>
+                        <group>
+                            <field name="active" />
+                            <field name="subject_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Students">
+                            <field name="student_ids">
+                                <list>
+                                    <field name="name" />
+                                    <field name="id_student" />
+                                    <field name="gender" />
+                                    <field name="email" />
+                                    <field name="phone" />
+                                    <field name="photo" widget="image" />
+                                    <field name="date_of_birth" optional="hide" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Schedules">
+                            <field name="schedule_ids">
+                                <list>
+                                    <field name="course_id" />
+                                    <field name="teacher_id" />
+                                    <field name="day_of_week" />
+                                    <field name="start_time" />
+                                    <field name="end_time" />
+                                    <field name="duration" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_classroom_action" model="ir.actions.act_window">
+        <field name="name">Classroom</field>
+        <field name="res_model">education.classroom</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>Add new classroom record</p>
+        </field>
+    </record>
+
+</odoo>

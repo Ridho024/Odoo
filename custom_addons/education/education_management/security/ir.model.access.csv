@@ -5,3 +5,4 @@ access_education_teacher,access_education_teacher,model_education_teacher,base.g
 access_education_schedule,access_education_schedule,model_education_schedule,base.group_user,1,1,1,1
 access_education_course,access_education_course,model_education_course,base.group_user,1,1,1,1
 access_education_exam,access_education_exam,model_education_exam,base.group_user,1,1,1,1
+access_education_classroom,access_education_classroom,model_education_classroom,base.group_user,1,1,1,1

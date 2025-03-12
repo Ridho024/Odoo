@@ -3,6 +3,14 @@
 
     <menuitem id="menu_education_student_root" name="Education"/>
 
+    <!-- Classroom -->
+    <menuitem
+        id="education_classroom_menu"
+        name="Classroom"
+        action="education_classroom_action"
+        parent="menu_education_student_root"
+        sequence="10"/>
+
     <!-- Students -->
     <menuitem
         id="menu_students_root"
