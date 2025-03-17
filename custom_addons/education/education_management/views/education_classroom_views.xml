@@ -29,6 +29,7 @@
                             <field name="teacher_id" />
                         </group>
                         <group>
+                            <field name="academic_year" />
                             <field name="active" />
                             <field name="subject_ids" widget="many2many_tags"/>
                         </group>

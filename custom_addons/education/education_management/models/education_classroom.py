@@ -13,5 +13,6 @@ class EducationClassroom(models.Model):
     schedule_ids = fields.One2many('education.schedule', 'classroom_id', string='Class Schedule')
     location = fields.Char(string='Location', help='Classroom location in the school building')
     active = fields.Boolean(string='Active', default=True)
+    academic_year = fields.Char(string='Academic Year')
     color = fields.Integer(string='Color')
     

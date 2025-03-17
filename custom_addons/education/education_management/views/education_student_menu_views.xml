@@ -20,7 +20,7 @@
         
     <menuitem 
         id="menu_education_list" 
-        name="Students List" 
+        name="Student List" 
         parent="menu_students_root" 
         sequence="2" 
         action="education_student_action"/>

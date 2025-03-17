@@ -15,6 +15,12 @@
     'version': '0.1',
 
     'depends': ['base', 'mail'],
+    
+    'assets': {
+        'web.assets_backend': [
+            'education_management/static/src/css/style.css',
+        ],
+    },
 
     'data': [
         'data/education_student_sequence.xml',
