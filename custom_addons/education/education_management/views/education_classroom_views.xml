@@ -6,11 +6,11 @@
         <field name="model">education.classroom</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name" />  
-                <field name="code" />  
-                <field name="capacity" />  
+                <field name="name" />
+                <field name="code" /> 
+                <field name="grade" />
                 <field name="teacher_id" />  
-                <field name="location" />
+                <field name="capacity" />
             </list>
         </field>
     </record>
@@ -26,9 +26,10 @@
                             <field name="name" />
                             <field name="code" />
                             <field name="capacity" />
-                            <field name="teacher_id" />
+                            <field name="teacher_id" widget="many2one_avatar"/>
                         </group>
                         <group>
+                            <field name="grade" />
                             <field name="academic_year" />
                             <field name="active" />
                             <field name="subject_ids" widget="many2many_tags"/>
