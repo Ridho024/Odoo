@@ -4,8 +4,9 @@ class EducationStudent(models.Model):
     _name = 'education.student'
     _description = 'Education Student'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _rec_name = 'name'
+    _order = 'sequence'
 
+    sequence = fields.Integer(string='Sequence')
     # Identitas Siswa
     name = fields.Char(string='Student Name', required=True, tracking=True, default="Rusdi")
     nisn = fields.Char(string='NISN', required=True, tracking=True)
@@ -28,13 +29,7 @@ class EducationStudent(models.Model):
     mother_email = fields.Char(string='Mother Email', tracking=True)
     
     # Informasi Akademik
-    academic_year = fields.Char(string='Academic Year', tracking=True, compute='_compute_academic_year', store=True)
-    classroom_id = fields.Many2one('education.classroom', string='Class', tracking=True)
-    
-    # Administrasi Keuangan
-    # fee_ids = fields.One2many('education.fee', 'student_id', string='Fee Payments')
-    # total_fees_due = fields.Monetary(string='Total Fees Due', compute='_compute_total_fees_due', store=True)
-    # currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.user.company_id.currency_id)
+    classroom_id = fields.Many2one('education.classroom', string='Class', tracking=True, readonly=True)
     
     # Status Siswa
     status = fields.Selection([
@@ -42,12 +37,17 @@ class EducationStudent(models.Model):
         ('active', 'Active'),
         ('graduated', 'Graduated'),
         ('dropout', 'Dropout'),
-    ], string='Status', default='draft', tracking=True)
+    ], string='Status', tracking=True, compute='_compute_status', store=True)
+    
+    achievement_ids = fields.One2many('education.student.achievement', 'student_id', string='Academic Achievement', tracking=True)
     
     @api.depends('classroom_id')
-    def _compute_academic_year(self):
+    def _compute_status(self):
         for student in self:
-            student.academic_year = student.classroom_id.academic_year
+            if student.classroom_id:
+                student.status = 'active'
+            else:
+                student.status = 'draft'
     
     @api.depends('fee_ids.amount_due')
     def _compute_total_fees_due(self):
@@ -60,7 +60,6 @@ class EducationStudent(models.Model):
         for vals in vals_list:
             if vals.get('id_student', _('New')) == _('New'):
                 vals['id_student'] = (self.env['ir.sequence'].next_by_code('education.student'))
-                vals['status'] = 'active'
         return super().create(vals_list)
     
     

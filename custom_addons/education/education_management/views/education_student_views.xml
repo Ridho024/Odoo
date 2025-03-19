@@ -7,12 +7,13 @@
         <field name="model">education.student</field>
         <field name="arch" type="xml">
             <list>
+                <field name='sequence' widget='handle'/>
                 <field name="id_student" class="fw-bolder" />
                 <field name="nisn" />
                 <field name="name" />
                 <field name="email" />
-                <field name="classroom_id" />
-                <field name="status" widget="badge" options="{'green': 'active', 'red': 'dropout', 'blue': 'graduated', 'grey': 'draft'}"/>
+                <field name="classroom_id" class="fw-bolder" />
+                <field name="status" widget="badge" decoration-success="status == 'active'" decoration-danger="status == 'dropout'" decoration-primary="status == 'graduated'"/>
             </list>
         </field>
     </record>
@@ -41,7 +42,6 @@
                         <group>
                             <field name="date_of_birth"/>
                             <field name="classroom_id" options="{'no_create': true}"/>
-                            <field name="academic_year" />
                             <field name="nisn" />
                         </group>
                     </group>
@@ -59,6 +59,16 @@
                                     <field name="mother_email" />
                                 </group>
                             </group>
+                        </page>
+                        <page name="student_achievement" string="Achievements">
+                            <field name="achievement_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                    <field name="description"/>
+                                    <field name="sertificate"/>
+                                </list>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -84,16 +94,20 @@
                             <div class="row">
                                <div class="col-3">
                                     <aside class="o_kanban_aside_full">
-                                        <div class="o_kanban_image_fill position-relative w-100">
-                                            <field name="photo" class="h-100" widget="image" option="{'img_class':'object-fit-cover'}" />
+                                        <div class="o_kanban_image_fill position-relative">
+                                            <field name="photo" widget="image" option="{'img_class':'object-fit-cover'}" />
                                         </div>
                                     </aside>
                                </div>
                                <div class="col-9">
-                                    <div><h5><field name="name"/></h5></div>
+                                    <h5 class="mb-0"><field name="name"/></h5>
                                     <div>
                                         <field name="email"/>
                                         <i class="fa fa-envelope-o ms-2" title="email"></i>
+                                    </div>
+                                    <div>
+                                        <span class="fw-bolder">Status: </span>
+                                        <span><field name="status"/></span>
                                     </div>
                                </div>
                             </div>
@@ -111,13 +125,19 @@
         <field name="arch" type="xml">
             <search string="Search Students">
                 <field name="name"/>
+                <field name="nisn"/>
+                <field name="phone"/>
                 <field name="email"/>
+                <filter name="filter_gender_male" string="Male" domain="[('gender', '=', 'male')]" />
+                <filter name="filter_gender_female" string="Female" domain="[('gender', '=', 'female')]" />
                 <field name="classroom_id"/>
                 <group expand="1" string="Group By">
                     <filter string="Classroom" name="group_by_classroom" context="{'group_by':'classroom_id'}"/>
                 </group>
                 <searchpanel>
                     <field name="classroom_id" icon="fa-filter" string="Classroom" select="multi"/>
+                    <field name="status" icon="fa-dot-circle-o" string="Status" select="multi" />
+                    <field name="gender" icon="fa-user" string="Gender" select="multi" />
                 </searchpanel>
             </search>
         </field>
@@ -127,9 +147,9 @@
     <record id="education_student_action" model="ir.actions.act_window">
         <field name="name">Student</field>
         <field name="res_model">education.student</field>
-        <field name="view_mode">kanban,list,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">
-            {}
+            {'search_default_group_by_classroom': 1}
         </field>
         <field name="help" type="html">
             <p>Click new to create a new student record</p>
