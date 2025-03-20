@@ -13,7 +13,6 @@ class EducationClassroom(models.Model):
     major_id = fields.Many2one('education.major', string='Class Major')
     schedule_ids = fields.One2many('education.schedule', 'classroom_id', string='Class Schedule')
     active = fields.Boolean(string='Active', default=True)
-    academic_year = fields.Char(string='Academic Year')
     color = fields.Integer(string='Color')
     
     def write(self, vals):

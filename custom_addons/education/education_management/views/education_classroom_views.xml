@@ -31,7 +31,6 @@
                         </group>
                         <group>
                             <field name="grade" />
-                            <field name="academic_year" />
                             <field name="active" />
                             <field name="major_id"/>
                         </group>
