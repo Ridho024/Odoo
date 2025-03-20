@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="education_major_view_list" model="ir.ui.view">
+        <field name="name">education.major.view.list</field>
+        <field name="model">education.major</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" /> 
+                <field name="code" /> 
+                <field name="teacher_id" widget="many2one_avatar"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="education_major_view_form" model="ir.ui.view">
+        <field name="name">education.major.view.form</field>
+        <field name="model">education.major</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" /> 
+                        <field name="code" /> 
+                        <field name="teacher_id" />
+                        <field name="academic_year" />
+                    </group>
+                    <notebook>
+                        <page string='Teachers'>
+                            <field name="teacher_ids">
+                                <list>
+                                    <field name="name" />
+                                    <field name="gender" />
+                                    <field name="phone" />
+                                    <field name="email" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Curriculum">
+                            <field name="curriculum_ids">
+                                <list>
+                                    <field name="core_competency" />
+                                    <field name="basic_competency" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_major_action" model="ir.actions.act_window">
+        <field name="name">Major</field>
+        <field name="res_model">education.major</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p>Education Major</p>
+        </field>
+    </record>
+
+</odoo>

@@ -9,6 +9,7 @@
                 <field name="name" />
                 <field name="code" /> 
                 <field name="grade" />
+                <field name="major_id" />
                 <field name="teacher_id" />  
                 <field name="capacity" />
             </list>
@@ -32,7 +33,7 @@
                             <field name="grade" />
                             <field name="academic_year" />
                             <field name="active" />
-                            <field name="subject_ids" widget="many2many_tags"/>
+                            <field name="major_id"/>
                         </group>
                     </group>
                     <notebook>

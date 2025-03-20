@@ -10,7 +10,7 @@ class EducationClassroom(models.Model):
     capacity = fields.Integer(string='Capacity', required=True, help='Maximum number of students allowed in the class')
     teacher_id = fields.Many2one('education.teacher', string='Teacher', help='Main teacher responsible for class')
     student_ids = fields.Many2many('education.student', string='Enrolled Student', domain="[('classroom_id', '=', False)]")
-    subject_ids = fields.Many2many('education.course', string='Subjects Taught')
+    major_id = fields.Many2one('education.major', string='Class Major')
     schedule_ids = fields.One2many('education.schedule', 'classroom_id', string='Class Schedule')
     active = fields.Boolean(string='Active', default=True)
     academic_year = fields.Char(string='Academic Year')

@@ -9,3 +9,5 @@ access_education_course,access_education_course,model_education_course,base.grou
 access_education_course_category,access_education_course_category,model_education_course_category,base.group_user,1,1,1,1
 access_education_exam,access_education_exam,model_education_exam,base.group_user,1,1,1,1
 access_education_classroom,access_education_classroom,model_education_classroom,base.group_user,1,1,1,1
+access_education_major,access_education_major,model_education_major,base.group_user,1,1,1,1
+access_education_major_curriculum,access_education_major_curriculum,model_education_major_curriculum,base.group_user,1,1,1,1
