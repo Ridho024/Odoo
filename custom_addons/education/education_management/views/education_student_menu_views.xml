@@ -76,6 +76,13 @@
         sequence="8"/>
 
     <menuitem
+        id="education_subject_menu"
+        name="Subject List"
+        action="education_subject_action"
+        parent="menu_studies_root"
+        sequence="9"/>
+
+    <menuitem
         id="education_course_category_menu"
         name="Course Category"
         action="education_course_category_action"

@@ -26,6 +26,7 @@
         'data/education_student_sequence.xml',
         'data/education_classroom_sequence.xml',
         'data/education_major_sequence.xml',
+        'data/education_subject_sequence.xml',
         'security/ir.model.access.csv',
         'views/education_student_views.xml',
         'views/education_student_attendance_views.xml',
@@ -38,6 +39,7 @@
         'views/education_course_category_views.xml',
         'views/education_major_views.xml',
         'views/res_partner_views.xml',
+        'views/education_subject_views.xml',
         'views/education_student_menu_views.xml',
     ],
     'demo': [
