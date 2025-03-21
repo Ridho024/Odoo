@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_partner_view_form_inherit_education" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit.education</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">17</field>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="before">
+                <group string="Education">
+                    <group>
+                        <field name="gender"/>
+                        <field name="is_teacher"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//notebook//page[@name='sales_purchases']" position="attributes">
+                <attribute name="invisible">is_teacher</attribute>
+            </xpath>
+            <xpath expr="//notebook//page[@name='accounting']" position="attributes">
+                <attribute name="invisible">is_teacher</attribute>
+            </xpath>
+            <xpath expr="//notebook//page[@name='internal_notes']" position="after">
+                <page string="Education" name="education" invisible="not is_teacher">
+                    <group>
+                        <group string='Studies'>
+                            <field name="major_ids" widget="many2many_tags"/>
+                            <field name="class_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

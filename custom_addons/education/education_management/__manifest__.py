@@ -14,7 +14,7 @@
     'category': 'Education',
     'version': '0.1',
 
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail', 'l10n_id_efaktur'],
     
     'assets': {
         'web.assets_backend': [
@@ -37,6 +37,7 @@
         'views/education_classroom_views.xml',
         'views/education_course_category_views.xml',
         'views/education_major_views.xml',
+        'views/res_partner_views.xml',
         'views/education_student_menu_views.xml',
     ],
     'demo': [

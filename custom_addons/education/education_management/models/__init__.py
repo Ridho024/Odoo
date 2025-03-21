@@ -12,3 +12,4 @@ from . import education_exam_result
 from . import education_student_attendance
 from . import education_teacher_attendance
 from . import education_student_achievement
+from . import res_partner
