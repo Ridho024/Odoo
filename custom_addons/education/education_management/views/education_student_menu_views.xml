@@ -46,13 +46,6 @@
         action="education_teacher_action"
         parent="menu_teachers_root"
         sequence="5"/>
-    
-    <menuitem
-        id="education_teacher_schedule_menu"
-        name="Schedules"
-        action="education_teacher_schedules_action"
-        parent="menu_teachers_root"
-        sequence="6"/>
 
     <menuitem
         id="education_teacher_attendance_menu"

@@ -5,7 +5,7 @@ class EducationSchedule(models.Model):
     _description = 'Class Schedule'
     _rec_name = "course_id"     
     
-    course_id = fields.Many2one('education.course', string='Course', required=True)
+    course_id = fields.Many2one('education.subject', string='Subject Name', required=True)
     classroom_id = fields.Many2one('education.classroom', string='Classroom', required=True)
     teacher_id = fields.Many2one('res.partner', string='Teacher', required=True, domain="[('is_teacher', '=', True)]")
     day_of_week = fields.Selection([
