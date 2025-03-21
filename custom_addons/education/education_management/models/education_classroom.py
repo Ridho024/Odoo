@@ -8,7 +8,7 @@ class EducationClassroom(models.Model):
     code = fields.Char(string='Code', required=True, copy=False, readonly=True, index=True, default=lambda self: self.env['ir.sequence'].next_by_code('education.classroom') or 'New')
     grade = fields.Selection([('1', 'X'), ('2', 'XI'), ('3', 'XII'), ('4', 'XIII')], string='Grade', required=True)
     capacity = fields.Integer(string='Capacity', required=True, help='Maximum number of students allowed in the class')
-    teacher_id = fields.Many2one('education.teacher', string='Teacher', help='Main teacher responsible for class')
+    teacher_id = fields.Many2one('res.partner', string='Teacher', help='Main teacher responsible for class', domain="[('is_teacher', '=', True)]")
     student_ids = fields.Many2many('education.student', string='Enrolled Student', domain="[('classroom_id', '=', False)]")
     major_id = fields.Many2one('education.major', string='Class Major')
     schedule_ids = fields.One2many('education.schedule', 'classroom_id', string='Class Schedule')

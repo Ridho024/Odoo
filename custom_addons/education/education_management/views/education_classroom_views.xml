@@ -10,7 +10,7 @@
                 <field name="code" /> 
                 <field name="grade" />
                 <field name="major_id" />
-                <field name="teacher_id" />  
+                <field name="teacher_id" widget="many2one_avatar"/>  
                 <field name="capacity" />
             </list>
         </field>
