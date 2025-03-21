@@ -42,7 +42,7 @@
 
     <menuitem
         id="education_teacher_menu"
-        name="Teachers List"
+        name="Teacher List"
         action="education_teacher_action"
         parent="menu_teachers_root"
         sequence="5"/>
@@ -63,30 +63,16 @@
 
     <menuitem
         id="education_major_menu"
-        name="Major List"
+        name="Majors"
         action="education_major_action"
         parent="menu_studies_root"
         sequence="8"/>
 
     <menuitem
         id="education_subject_menu"
-        name="Subject List"
+        name="Subjects"
         action="education_subject_action"
         parent="menu_studies_root"
         sequence="9"/>
-
-    <menuitem
-        id="education_course_category_menu"
-        name="Course Category"
-        action="education_course_category_action"
-        parent="menu_studies_root"
-        sequence="9"/>
-
-    <menuitem
-        id="education_exam_menu"
-        name="Exams"
-        action="education_exam_action"
-        parent="menu_studies_root"
-        sequence="10"/>
 
 </odoo>

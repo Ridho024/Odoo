@@ -3,12 +3,8 @@ from . import education_student
 from . import education_classroom
 from . import education_major
 from . import education_major_curriculum
-from . import education_course
-from . import education_course_category
 from . import education_schedule
 from . import education_assignment
-from . import education_exam
-from . import education_exam_result
 from . import education_student_attendance
 from . import education_teacher_attendance
 from . import education_student_achievement
