@@ -27,6 +27,7 @@
         'data/education_classroom_sequence.xml',
         'data/education_major_sequence.xml',
         'data/education_subject_sequence.xml',
+        'data/ir_cron_data.xml',
         'security/ir.model.access.csv',
         'views/education_student_views.xml',
         'views/education_student_attendance_views.xml',

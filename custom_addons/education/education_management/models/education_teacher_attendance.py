@@ -39,4 +39,31 @@ class EducationTeacherAttendance(models.Model):
                 ]).mapped('subject_id')
             else:
                 record.available_subjects = []
-    
+                
+    @api.model
+    def write(self, vals):
+        teacher_attendance = super(EducationTeacherAttendance, self).write(vals)
+        
+        if 'attendance_status' in vals:
+            attendance_record = self.env['attendance.record']
+            for record in self:
+                attendance = attendance_record.search([
+                    ('date', '=', record.date),
+                    ('teacher_id', '=', record.teacher_id.id),
+                ], limit=1)
+                
+                if attendance:
+                    if vals['attendance_status'] == 'absent' and 'absent_reason' in vals:
+                        attendance.absent += 1
+                        if vals['absent_reason'] == 'alpha':
+                            attendance.absent_alpha += 1
+                        elif vals['absent_reason'] == 'sick':
+                            attendance.absent_sick += 1
+                        elif vals['absent_reason'] == 'permit':
+                            attendance.absent_permit += 1
+                            
+                    elif vals['attendance_status'] == 'present':
+                        attendance.present += 1
+                        
+        return teacher_attendance
+                
