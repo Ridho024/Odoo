@@ -13,7 +13,7 @@
                 <field name="subject_id" />
                 <field name="teacher_id" />
                 <field name="attendance_status" />
-                <field name="absent_reason" invisible="attendance_status == 'absent'"/>
+                <field name="absent_reason" invisible="attendance_status != 'absent'"/>
             </list>
         </field>
     </record>

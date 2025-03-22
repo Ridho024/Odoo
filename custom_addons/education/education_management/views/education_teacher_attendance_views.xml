@@ -5,12 +5,14 @@
         <field name="name">teacher.attendance.view.tree</field>
         <field name="model">education.teacher.attendance</field>
         <field name="arch" type="xml">
-            <list editable="bottom">
+            <list string="Teachers Attendance" editable="bottom">
                 <field name="date" />
                 <field name="teacher_id" />
-                <field name="course_id" />
+                <field name="nip" />
                 <field name="classroom_id" />
-                <field name="status" />
+                <field name="subject_id" />
+                <field name="attendance_status" />
+                <field name="absent_reason" invisible="attendance_status != 'absent'" />
             </list>
         </field>
     </record>
@@ -21,7 +23,8 @@
         <field name="arch" type="xml">
             <search string="Teacher Class">
                 <searchpanel>
-                    <field name="classroom_id" string="Classroom" enable_counter="1" />
+                    <field name="classroom_id" string="Classroom" icon="fa-filter" select="multi" />
+                    <field name="subject_id" string="Subject" icon="fa-book" select="multi" />
                 </searchpanel>
             </search>
         </field>

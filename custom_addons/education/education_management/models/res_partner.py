@@ -13,3 +13,6 @@ class ResPartner(models.Model):
     # Education Management
     major_ids = fields.Many2many('education.major', string='Major Assigned')
     class_ids = fields.Many2many('education.classroom', string='Class Assigned')
+    
+    #Administration
+    nip = fields.Char(string='NIP')

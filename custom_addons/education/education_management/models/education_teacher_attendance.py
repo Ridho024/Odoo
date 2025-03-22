@@ -1,33 +1,42 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class EducationTeacherAttendance(models.Model):
     _name = 'education.teacher.attendance'
     _description = 'Teacher Attendance'
     _rec_name = "teacher_id"
+    _sql_constraints = [
+        ('unique_attendance', 'UNIQUE(teacher_id)', 'Attendance for this teacher already exists!')
+        ]
     
-    date = fields.Date(string="Date", required=True, default=fields.Date.today)
-    teacher_id = fields.Many2one('education.teacher', string="Teacher", required=True)
-    course_id = fields.Many2one('education.course', string="Course")
-    classroom_id = fields.Many2one('education.classroom', string="Classroom", required=True)
-    status = fields.Selection([
-        ('present', 'Present'),
+    teacher_id = fields.Many2one('res.partner', string="Teacher", required=True, domain="[('is_teacher', '=', True)]")
+    nip = fields.Char(string="NIP", related='teacher_id.nip', required=True, store=True)
+    date = fields.Date(string="Date", required=True, default=fields.Date.today, readonly=True)
+    classroom_id = fields.Many2one('education.classroom', string="Classroom")
+    subject_id = fields.Many2one('education.subject', string="Subject", domain="[('id', 'in', available_subjects)]")
+    attendance_status = fields.Selection([  
         ('absent', 'Absent'),
-        ('late', 'Late'),
-        ('excused', 'Excused')
-    ], string="Attendance Status", required=True, default="present")
+        ('present', 'Present'),
+    ], string='Status', default='absent')
+    absent_reason = fields.Selection([
+        ('alpha', 'Alpha'),  
+        ('sick', 'Sick'),
+        ('permit', 'Permit'),
+    ], string='Reason')
 
-    # Metode untuk Menandai Guru Hadir
-    def mark_present(self):
-        self.write({'status': 'present'})
-
-    # Metode untuk Menandai Guru Tidak Hadir
-    def mark_absent(self):
-        self.write({'status': 'absent'})
-
-    # Metode untuk Menandai Guru Terlambat
-    def mark_late(self):
-        self.write({'status': 'late'})
-
-    # Metode untuk Menandai Guru Izin
-    def mark_excused(self):
-        self.write({'status': 'excused'})
+    # Hanya menampilkan subject yang diajar oleh guru
+    available_subjects = fields.Many2many('education.subject',
+                                          compute='_compute_available_subjects',
+                                          store=False)
+    
+    @api.depends('teacher_id', 'classroom_id')
+    def _compute_available_subjects(self):
+        Schedule = self.env['education.schedule']
+        for record in self:
+            if record.teacher_id and record.classroom_id:
+                record.available_subjects = Schedule.search([
+                    ('teacher_id', '=', record.teacher_id.id),
+                    ('classroom_id', '=', record.classroom_id.id)
+                ]).mapped('subject_id')
+            else:
+                record.available_subjects = []
+    

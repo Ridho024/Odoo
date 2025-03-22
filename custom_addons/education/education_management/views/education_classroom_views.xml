@@ -52,7 +52,7 @@
                         <page string="Schedules">
                             <field name="schedule_ids">
                                 <list>
-                                    <field name="course_id" />
+                                    <field name="subject_id" />
                                     <field name="teacher_id" />
                                     <field name="day_of_week" />
                                     <field name="start_time" />
