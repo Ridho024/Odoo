@@ -8,9 +8,12 @@
             <list string="Students Attendance" editable="bottom">
                 <field name="date" />
                 <field name="student_id" />
-                <field name="classroom_id" />
+                <field name="nisn" />
+                <field name="classroom_id" optional="hide"/>
+                <field name="subject_id" />
                 <field name="teacher_id" />
-                <field name="state" />
+                <field name="attendance_status" />
+                <field name="absent_reason" invisible="attendance_status == 'absent'"/>
             </list>
         </field>
     </record>
@@ -21,8 +24,8 @@
         <field name="arch" type="xml">
             <search string="Student Class">
                 <searchpanel>
-                    <field name="classroom_id" string="Classroom" enable_counter="1" />
-                    <field name="teacher_id" string="Teacher" enable_counter="1" />
+                    <field name="classroom_id" string="Classroom" icon="fa-filter" select="multi" />
+                    <field name="subject_id" string="Subject" icon="fa-book" select="multi"/>
                 </searchpanel>
             </search>
         </field>

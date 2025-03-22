@@ -57,11 +57,24 @@ class EducationStudent(models.Model):
     @api.model_create_multi
     def create(self,vals_list):
         """ Create a sequence for the student model """
+        """Optimized create method for students"""
+        # Update only records that need an ID
         for vals in vals_list:
             if vals.get('id_student', _('New')) == _('New'):
-                vals['id_student'] = (self.env['ir.sequence'].next_by_code('education.student'))
-        return super().create(vals_list)
-    
-    
+                vals['id_student'] = self.env['ir.sequence'].next_by_code('education.student')
 
-    
+        # Call super to create records
+        students = super(EducationStudent, self).create(vals_list)
+
+        # Bulk create attendance records to optimize performance
+        attendance_data = [{
+            'student_id': student.id,
+            'classroom_id': student.classroom_id.id,
+        } for student in students]
+        
+        if attendance_data:
+            self.env['education.student.attendance'].create(attendance_data)
+
+        return students
+        
+   
