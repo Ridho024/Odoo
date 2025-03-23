@@ -20,7 +20,7 @@
             <xpath expr="//notebook//page[@name='internal_notes']" position="before">
                 <page string="Education Management" name="education" invisible="not is_teacher">
                     <group>
-                        <group string='Studies'>
+                        <group string='Classes'>
                             <field name="major_ids" widget="many2many_tags"/>
                             <field name="class_ids" widget="many2many_tags"/>
                         </group>
