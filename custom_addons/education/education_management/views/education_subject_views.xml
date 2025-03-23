@@ -6,8 +6,8 @@
         <field name="model">education.subject</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name" />
-                <field name="code" />
+                <field name="name" class="fw-bolder"/>
+                <field name="code" class="fw-bolder"/>
                 <field name="teacher_id" widget="many2one_avatar"/>
             </list>
         </field>
@@ -47,9 +47,7 @@
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                <strong>No education subject records found.</strong>
-            </p>
+            <p class="o_view_nocontent_smiling_face">Create a subject</p>
             <p>Click "Create" to add new subject.</p>
         </field>
     </record>

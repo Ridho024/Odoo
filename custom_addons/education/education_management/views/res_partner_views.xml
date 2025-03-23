@@ -7,13 +7,9 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="priority">17</field>
         <field name="arch" type="xml">
-            <xpath expr="//notebook" position="before">
-                <group string="Education" invisible="is_company">
-                    <group>
-                        <field name="gender"/>
-                        <field name="is_teacher"/>
-                    </group>
-                </group>
+            <xpath expr="//field[@name='l10n_id_pkp']" position="after">
+                <field name="gender"/>
+                <field name="is_teacher"/>
             </xpath>
             <xpath expr="//notebook//page[@name='sales_purchases']" position="attributes">
                 <attribute name="invisible">is_teacher</attribute>
@@ -57,6 +53,15 @@
                     </footer>
                 </page>
             </xpath>
+            <xpath expr="//button[@name='action_view_sale_order']" position="attributes">
+                <attribute name="invisible">is_teacher</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_view_partner_invoices']" position="attributes">
+                <attribute name="invisible">is_teacher</attribute>
+            </xpath>
+            <xpath expr="//div[@class='o_row']" position="attributes">
+                <attribute name="invisible">is_teacher</attribute>
+            </xpath>
         </field>
     </record>
 
@@ -67,6 +72,5 @@
         <field name="domain">[('is_teacher', '=', True)]</field>
         <field name="context">{'default_is_teacher': True}</field>
     </record>
-
 
 </odoo>

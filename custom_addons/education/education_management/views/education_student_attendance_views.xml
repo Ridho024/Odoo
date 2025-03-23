@@ -23,6 +23,8 @@
         <field name="model">education.student.attendance</field>
         <field name="arch" type="xml">
             <search string="Student Class">
+                <field name="classroom_id" />
+                <field name="nisn" />
                 <searchpanel>
                     <field name="classroom_id" string="Classroom" icon="fa-filter" select="multi" />
                     <field name="subject_id" string="Subject" icon="fa-book" select="multi"/>
@@ -38,9 +40,7 @@
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                <strong>No student attendance records found.</strong>
-            </p>
+            <p class="o_view_nocontent_smiling_face">Create a student attendance</p>
             <p>Click "Create" to add new student attendance.</p>
         </field>
     </record>

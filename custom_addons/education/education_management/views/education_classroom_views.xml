@@ -6,12 +6,12 @@
         <field name="model">education.classroom</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name" />
+                <field name="name" class="fw-bolder" />
                 <field name="code" /> 
-                <field name="grade" />
-                <field name="major_id" />
-                <field name="teacher_id" widget="many2one_avatar"/>  
-                <field name="capacity" />
+                <field name="grade" widget="badge" decoration-success="grade == '3' or grade == '4'" decoration-danger="grade == '1'" decoration-warning="grade == '2'"/>
+                <field name="major_id" class="fw-bolder" />
+                <field name="teacher_id" widget="many2one_avatar" />  
+                <field name="capacity" widget="badge" optional="hide" />
             </list>
         </field>
     </record>
@@ -39,12 +39,12 @@
                         <page string="Students">
                             <field name="student_ids">
                                 <list>
-                                    <field name="name" />
-                                    <field name="id_student" />
+                                    <field name="name" class="fw-bolder" />
+                                    <field name="id_student" class="fw-bolder" />
                                     <field name="gender" />
                                     <field name="email" />
                                     <field name="phone" />
-                                    <field name="photo" widget="image" />
+                                    <field name="photo" widget="image" class="o_list_avatar" />
                                     <field name="date_of_birth" optional="hide" />
                                 </list>
                             </field>
@@ -67,16 +67,41 @@
         </field>
     </record>
 
+    <record id="education_classroom_view_search" model="ir.ui.view">
+        <field name="name">education.classroom.view.search</field>
+        <field name="model">education.classroom</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="code" />
+                <field name="teacher_id" />
+                <field name="major_id" />
+            </search>
+        </field>
+    </record>
+
+    <record id="education_classroom_view_search" model="ir.ui.view">
+        <field name="name">education.classroom.view.search</field>
+        <field name="model">education.classroom</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="1" string="Group By">
+                    <filter string="Grade" name="group_by_grade" context="{'group_by':'grade'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="education_classroom_action" model="ir.actions.act_window">
         <field name="name">Classroom</field>
         <field name="res_model">education.classroom</field>
         <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
-        <field name="context">{}</field>
+        <field name="context">
+            {'search_default_group_by_grade': 1}
+        </field>
         <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                <strong>No classroom records found.</strong>
-            </p>
+            <p class="o_view_nocontent_smiling_face">Create a classroom</p>
             <p>Click "Create" to add new classroom.</p>
         </field>
     </record>

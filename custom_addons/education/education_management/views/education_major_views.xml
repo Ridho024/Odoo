@@ -6,8 +6,8 @@
         <field name="model">education.major</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name" /> 
-                <field name="code" /> 
+                <field name="name" class="fw-bolder" /> 
+                <field name="code" class="fw-bolder" /> 
                 <field name="teacher_id" widget="many2one_avatar"/>
             </list>
         </field>
@@ -50,14 +50,24 @@
         </field>
     </record>
 
+    <record id="education_major_view_search" model="ir.ui.view">
+        <field name="name">education.major.view.search</field>
+        <field name="model">education.major</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="code" />
+                <field name="teacher_id" />
+            </search>
+        </field>
+    </record>
+
     <record id="education_major_action" model="ir.actions.act_window">
         <field name="name">Major</field>
         <field name="res_model">education.major</field>
         <field name="view_mode">list,form</field>
         <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                <strong>No major records found.</strong>
-            </p>
+            <p class="o_view_nocontent_smiling_face">Create a major</p>
             <p>Click "Create" to add new school major.</p>
         </field>
     </record>
