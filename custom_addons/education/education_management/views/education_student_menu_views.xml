@@ -47,12 +47,12 @@
         parent="menu_teachers_root"
         sequence="5"/>
 
-    <menuitem
+    <!-- <menuitem
         id="education_teacher_attendance_menu"
         name="Attendance"
         action="teacher_attendance_action"
         parent="menu_teachers_root"
-        sequence="7"/>
+        sequence="7"/> -->
 
     <!-- Courses -->
     <menuitem

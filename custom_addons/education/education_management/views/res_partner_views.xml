@@ -29,29 +29,6 @@
                         </group>
                     </group>
                 </page>
-                <page string="Attendance Record" name="attendance_record" invisible="not is_teacher">
-                    <field name="attendance_ids">
-                        <list create="false">
-                            <field name="date" class="fw bolder" />
-                            <field name="classroom_id" />
-                            <field name="subject_id" />
-                            <field name="absent" sum="Absent"/>
-                            <field name="present" sum="Present" />
-                            <field name="absent_alpha" sum="Alpha" />
-                            <field name="absent_sick" sum="Sick" />
-                            <field name="absent_permit" sum="Permit" />
-                        </list>
-                    </field>
-                    <footer>
-                        <div>
-                            <strong>Total absent per month:</strong><field name="total_absent" /><br/>
-                            <strong>Total present per month</strong><field name="total_present" /><br/>
-                            <strong>Total alpha per month:</strong><field name="total_absent_alpha" /><br/>
-                            <strong>Total sick per month:</strong><field name="total_absent_sick" /><br/>
-                            <strong>Total permit per month:</strong><field name="total_absent_permit" /><br/>
-                        </div>
-                    </footer>
-                </page>
             </xpath>
             <xpath expr="//button[@name='action_view_sale_order']" position="attributes">
                 <attribute name="invisible">is_teacher</attribute>
