@@ -1,6 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_education_student,access_education_student,model_education_student,base.group_user,1,1,1,1
 access_education_student_attendance,access_education_student_attendance,model_education_student_attendance,base.group_user,1,1,1,1
+access_student_attendance_record,access_student_attendance_record,model_student_attendance_record,base.group_user,1,1,1,1
 access_education_student_achievement,access_education_student_achievement,model_education_student_achievement,base.group_user,1,1,1,1
 access_education_teacher,access_education_teacher,model_education_teacher,base.group_user,1,1,1,1
 access_education_teacher_attendance,access_education_teacher_attendance,model_education_teacher_attendance,base.group_user,1,1,1,1

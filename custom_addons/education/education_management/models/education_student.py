@@ -41,6 +41,15 @@ class EducationStudent(models.Model):
     
     achievement_ids = fields.One2many('education.student.achievement', 'student_id', string='Academic Achievement', tracking=True)
     
+    attendance_ids = fields.One2many('student.attendance.record', 'student_id', string='Attendance Records', tracking=True)
+    
+    # Attendance Student
+    total_absent = fields.Integer(string='Total Absent', help='Total absent for month')
+    total_present = fields.Integer(string='Total Present', help='Total present for month')
+    total_absent_alpha = fields.Integer(string='Total Alpha', help='Total alpha for month')
+    total_absent_sick = fields.Integer(string='Total Sick', help='Total sick for month')
+    total_absent_permit = fields.Integer(string='Total Permit', help='Total permit for month')
+
     @api.depends('classroom_id')
     def _compute_status(self):
         for student in self:
@@ -77,4 +86,18 @@ class EducationStudent(models.Model):
 
         return students
         
-   
+class StudentAttendanceRecord(models.Model):
+    _name = 'student.attendance.record'
+    _description = 'Student Attendance Record'
+    
+    student_id = fields.Many2one('education.student', string='Student', readonly=True)
+    date = fields.Date(string='Date', default=fields.Date.today)
+    classroom_id = fields.Many2one('education.classroom', string='Classroom')
+    subject_id = fields.Many2one('education.subject', string='Subject')
+    
+    absent = fields.Integer(string='Absent')
+    present = fields.Integer(string='Present')
+    
+    absent_alpha = fields.Integer(string='Alpha')
+    absent_sick = fields.Integer(string='Sick')
+    absent_permit = fields.Integer(string='Permit')

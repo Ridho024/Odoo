@@ -39,7 +39,10 @@ class EducationTeacherAttendance(models.Model):
                 ]).mapped('subject_id')
             else:
                 record.available_subjects = []
-                
+    
+    """
+    Menghitung jumlah kehadiran dan absensi guru di attendance.record.
+    """            
     @api.model
     def write(self, vals):
         teacher_attendance = super(EducationTeacherAttendance, self).write(vals)

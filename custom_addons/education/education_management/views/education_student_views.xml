@@ -70,6 +70,20 @@
                                 </list>
                             </field>
                         </page>
+                        <page name="attendance_records" string="Attendances">
+                            <field name="attendance_ids">
+                                <list create="false">
+                                    <field name="date" class="fw-bolder"/>
+                                    <field name="classroom_id" />
+                                    <field name="subject_id" class="fw-bolder"/>
+                                    <field name="absent" sum="Absent" />
+                                    <field name="present" sum="Present" />
+                                    <field name="absent_alpha" sum="Alpha" />
+                                    <field name="absent_sick" sum="Sick" />
+                                    <field name="absent_permit" sum="Permit" />
+                                </list>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
                 <chatter/>
