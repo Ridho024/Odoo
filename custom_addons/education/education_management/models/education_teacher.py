@@ -6,7 +6,7 @@ class EducationTeacher(models.Model):
 
     # Identitas guru
     name = fields.Char(string='Teacher Name', required=True)
-    id_teacher = fields.Char(string='Teacher ID', required=True, copy=False, readonly=True, default=lambda self: self.env['ir.sequence'].next_by_code('education.teacher') or 'New')
+    id_teacher = fields.Char(string='Teacher ID', required=True, copy=False, readonly=True, default='New')
     date_of_birth = fields.Date(string='Date of Birth')
     gender = fields.Selection([
         ('male', 'Male'),

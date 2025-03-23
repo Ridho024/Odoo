@@ -10,7 +10,7 @@ class EducationStudent(models.Model):
     # Identitas Siswa
     name = fields.Char(string='Student Name', required=True, tracking=True, default="Rusdi")
     nisn = fields.Char(string='NISN', required=True, tracking=True)
-    id_student = fields.Char(string='Student ID', required=True, copy=False, readonly=True, index=True, default=lambda self: self.env['ir.sequence'].next_by_code('education.student') or 'New', tracking=True)
+    id_student = fields.Char(string='Student ID', required=True, copy=False, readonly=True, index=True, default='New', tracking=True)
     date_of_birth = fields.Date(string='Date of Birth', tracking=True)
     gender = fields.Selection([
         ('male', 'Male'),
