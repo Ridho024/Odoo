@@ -25,13 +25,13 @@
         sequence="2" 
         action="education_student_action"/>
 
-    <menuitem
+    <!-- <menuitem
         id="menu_student_attendance"
         name="Attendance"
         parent="menu_students_root"
         sequence="3"
         action="student_attendance_action"
-        />
+        /> -->
 
     <!-- Teachers -->
     <menuitem

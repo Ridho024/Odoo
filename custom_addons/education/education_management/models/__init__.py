@@ -1,11 +1,10 @@
-from . import education_teacher
 from . import education_student
 from . import education_classroom
 from . import education_major
 from . import education_major_curriculum
 from . import education_schedule
 from . import education_assignment
-from . import education_student_attendance
+# from . import education_student_attendance
 from . import education_teacher_attendance
 from . import education_student_achievement
 from . import res_partner
