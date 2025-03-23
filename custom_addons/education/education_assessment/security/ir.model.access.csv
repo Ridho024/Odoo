@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_education_assessment_education_assessment,education_assessment.education_assessment,model_education_assessment_education_assessment,base.group_user,1,1,1,1
