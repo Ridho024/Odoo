@@ -166,7 +166,10 @@
             {'search_default_group_by_classroom': 1}
         </field>
         <field name="help" type="html">
-            <p>Click new to create a new student record</p>
+            <p class="oe_view_nocontent_create">
+                <strong>No student records found.</strong>
+            </p>
+            <p>Click "Create" to add new student.</p>
         </field>
     </record>
 

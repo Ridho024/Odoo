@@ -14,7 +14,7 @@
     'category': 'Education',
     'version': '0.1',
 
-    'depends': ['base', 'mail', 'l10n_id_efaktur'],
+    'depends': ['base', 'mail', 'l10n_id_efaktur','web'],
     
     'assets': {
         'web.assets_backend': [
