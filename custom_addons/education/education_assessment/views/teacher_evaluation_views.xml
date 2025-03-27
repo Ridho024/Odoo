@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    
+        <record id="teacher_evaluation_view_list" model="ir.ui.view">
+            <field name="name">teacher.evaluation.view.list</field>
+            <field name="model">teacher.evaluation</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name" class="fw-bolder" />
+                    <field name="teacher_id" widget="many2one_avatar" />
+                    <field name="evaluator_id" widget="many2one_avatar" />
+                    <field name="date" />
+                    <field name="total_score" widget="badge" decoration-success="total_score >= 80" decoration-warning="total_score >= 70 and total_score &lt; 80" decoration-danger="total_score &lt; 70 or total_score is False" />
+                </list>
+            </field>
+        </record>
+
+        <record id="teacher_evaluation_view_form" model="ir.ui.view">
+            <field name="name">teacher.evaluation.view.form</field>
+            <field name="model">teacher.evaluation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="teacher_id" />
+                                <field name="evaluator_id" />
+                                <field name="date" />
+                            </group>
+                            <group>
+                                <field name="total_score" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Results">
+                                <field name="evaluation_result_ids">
+                                    <list editable="bottom">
+                                        <field name="criteria_id" />
+                                        <field name="score" />
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Feedback">
+                                <field name="feedback_ids">
+                                    <list editable="bottom">
+                                        <field name="feedback_text" />
+                                        <field name="improvement_text" />
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="teacher_evaluation_view_search" model="ir.ui.view">
+            <field name="name">teacher.evaluation.view.search</field>
+            <field name="model">teacher.evaluation</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="teacher_id" />
+                    <field name="evaluator_id" />
+                    <group expand="1" string="Group By">
+                        <filter string="Evaluator" name="group_by_evaluator" context="{'group_by':'evaluator_id'}"/>
+                        <filter string="Date" name="group_by_date" context="{'group_by': 'date'}" />
+                    </group>
+                    <searchpanel>
+                        <field name="evaluator_id" icon="fa-user" string="Evaluator" select="multi" />
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
+        <record id="teacher_evaluation_action" model="ir.actions.act_window">
+            <field name="name">Teacher Evaluation</field>
+            <field name="res_model">teacher.evaluation</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[]</field>
+            <field name="context">
+                {'search_default_group_by_evaluator': 1}
+            </field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create an Evaluation</p>
+                <p>Click "Create" to add new teacher evaluation.</p>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

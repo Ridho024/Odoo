@@ -41,15 +41,6 @@ class EducationStudent(models.Model):
     
     achievement_ids = fields.One2many('education.student.achievement', 'student_id', string='Academic Achievement', tracking=True)
     
-    attendance_ids = fields.One2many('student.attendance.record', 'student_id', string='Attendance Records', tracking=True)
-    
-    # Attendance Student
-    total_absent = fields.Integer(string='Total Absent', help='Total absent for month')
-    total_present = fields.Integer(string='Total Present', help='Total present for month')
-    total_absent_alpha = fields.Integer(string='Total Alpha', help='Total alpha for month')
-    total_absent_sick = fields.Integer(string='Total Sick', help='Total sick for month')
-    total_absent_permit = fields.Integer(string='Total Permit', help='Total permit for month')
-
     @api.depends('classroom_id')
     def _compute_status(self):
         for student in self:
@@ -73,31 +64,56 @@ class EducationStudent(models.Model):
                 vals['id_student'] = self.env['ir.sequence'].next_by_code('education.student')
 
         # Call super to create records
-        students = super(EducationStudent, self).create(vals_list)
-
-        # Bulk create attendance records to optimize performance
-        attendance_data = [{
-            'student_id': student.id,
-            'classroom_id': student.classroom_id.id,
-        } for student in students]
-        
-        if attendance_data:
-            self.env['education.student.attendance'].create(attendance_data)
-
-        return students
-        
-class StudentAttendanceRecord(models.Model):
-    _name = 'student.attendance.record'
-    _description = 'Student Attendance Record'
+        return super(EducationStudent, self).create(vals_list)
     
-    student_id = fields.Many2one('education.student', string='Student', readonly=True)
-    date = fields.Date(string='Date', default=fields.Date.today)
+    def action_create_attendance(self):
+        """This function is called when the user clicks the
+            'Create Attendance' button on a student's list view. It opens a
+            new wizard to compose and create and attendance message."""
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Student Attendance'),
+            'res_model': 'wizard.student.attendance',
+            'target': 'new',
+            'view_mode': 'form',
+            'view_type': 'form',
+            'context': {
+                'default_student_id': self.id,
+                'default_classroom_id': self.classroom_id.id,
+                },
+        }
+    
+class WizardStudentAttendance(models.TransientModel):
+    _name = 'wizard.student.attendance'
+    _description = 'Wizard student attendance'
+    
+    student_id = fields.Many2one('education.student', string='Student', required=True)
     classroom_id = fields.Many2one('education.classroom', string='Classroom')
+    date = fields.Date(string='Date', default=fields.Date.today())
     subject_id = fields.Many2one('education.subject', string='Subject')
+    teacher_id = fields.Many2one('res.partner', string='Teacher', domain="[('id', 'in', teacher_ids)]")
+    status = fields.Selection([('present', 'Present'),
+                               ('absent', 'Absent')], string='Status', default='absent')
+    absent_reason = fields.Selection([('permit', 'Izin'),
+                                      ('sick', 'Sick'),
+                                      ('alpha', 'Alpha')], string='Absent', default='permit')
+    teacher_ids = fields.Many2many('res.partner', string='List Subject Teacher', related='subject_id.teacher_ids', readonly=True)
     
-    absent = fields.Integer(string='Absent')
-    present = fields.Integer(string='Present')
-    
-    absent_alpha = fields.Integer(string='Alpha')
-    absent_sick = fields.Integer(string='Sick')
-    absent_permit = fields.Integer(string='Permit')
+    @api.model
+    def create(self, vals):
+        """Menyimpan absensi ke model `education.student.attendance`."""
+        res = super(WizardStudentAttendance,self).create(vals)
+        
+        attendance_date = {
+            'student_id': res.student_id.id,
+            'classroom_id': res.classroom_id.id,
+            'date': res.date,
+            'subject_id': res.subject_id.id,
+            'teacher_id': res.teacher_id.id,
+            'status': res.status,
+            'absent_reason': res.absent_reason,
+        }
+        
+        self.env['education.student.attendance'].create(attendance_date)
+        
+        return res

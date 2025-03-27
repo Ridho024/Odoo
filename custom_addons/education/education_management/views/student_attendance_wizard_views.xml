@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="student_create_attendance_view_form" model="ir.ui.view">
+        <field name="name">student.create.attendance.view.form</field>
+        <field name="model">wizard.student.attendance</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="student_id" />
+                        <field name="date" />
+                        <field name="subject_id" />
+                        <field name="teacher_id" />
+                    </group>
+                    <group>
+                        <field name="status" />
+                        <field name="absent_reason" invisible="status == 'present' or status == ''"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_student_attendance" model="ir.actions.act_window">
+        <field name="name">Create Student Attendance</field>
+        <field name="res_model">wizard.student.attendance</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

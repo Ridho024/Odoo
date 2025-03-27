@@ -29,14 +29,19 @@
         'data/education_subject_sequence.xml',
         'data/ir_cron_data.xml',
         'security/ir.model.access.csv',
+        'views/student_attendance_wizard_views.xml',
         'views/education_student_views.xml',
         # 'views/education_teacher_attendance_views.xml',
         'views/education_classroom_views.xml',
         'views/education_major_views.xml',
         'views/res_partner_views.xml',
         'views/education_subject_views.xml',
+        'views/student_attendance_views.xml',
         'views/education_student_menu_views.xml',
     ],
+    
+    'images': ['education_management/static/description/icon.png'],
+    
     'demo': [
         'demo/demo.xml',
     ],

@@ -25,6 +25,20 @@
         sequence="2" 
         action="education_student_action"/>
 
+    <menuitem
+        id="assessment_record_menu"
+        name="Assessment"
+        action="education_assessment.assessment_record_action"
+        parent="menu_students_root"
+        sequence="3"/>
+
+    <menuitem
+        id="student_attendance_menu"
+        name="Attendances"
+        action="student_attendance_action"
+        parent="menu_students_root"
+        sequence="4"/>
+
     <!-- Teachers -->
     <menuitem
         id="menu_teachers_root"
@@ -39,12 +53,12 @@
         parent="menu_teachers_root"
         sequence="5"/>
 
-    <!-- <menuitem
+    <menuitem
         id="education_teacher_attendance_menu"
-        name="Attendance"
-        action="teacher_attendance_action"
+        name="Evaluation"
+        action="education_assessment.teacher_evaluation_action"
         parent="menu_teachers_root"
-        sequence="7"/> -->
+        sequence="6"/>
 
     <!-- Courses -->
     <menuitem
