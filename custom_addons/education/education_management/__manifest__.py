@@ -31,7 +31,6 @@
         'security/ir.model.access.csv',
         'views/student_attendance_wizard_views.xml',
         'views/education_student_views.xml',
-        # 'views/education_teacher_attendance_views.xml',
         'views/education_classroom_views.xml',
         'views/education_major_views.xml',
         'views/res_partner_views.xml',

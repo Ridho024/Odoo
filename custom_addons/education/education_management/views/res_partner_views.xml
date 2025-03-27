@@ -39,6 +39,11 @@
             <xpath expr="//div[@class='o_row']" position="attributes">
                 <attribute name="invisible">is_teacher</attribute>
             </xpath>
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button string="Create Teacher User" name="action_create_teacher_user" type="object" class="oe_stat_button" invisble="not is_teacher and teacher_login_id" />
+                </header>
+            </xpath>
         </field>
     </record>
 
