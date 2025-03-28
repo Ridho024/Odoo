@@ -62,3 +62,6 @@ class ResPartner(models.Model):
                 }
             else:
                 raise ValidationError(_("User login for this id is already exist."))
+            
+    def action_create_teacher_card(self):
+        return (self.env.ref('education_management.action_teacher_id_card_report').report_action(self))
