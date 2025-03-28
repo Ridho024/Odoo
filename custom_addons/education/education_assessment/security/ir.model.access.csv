@@ -1,7 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_assessment_record,access_assessment_record,model_assessment_record,base.group_user,1,1,1,1
 access_assessment_result,access_assessment_result,model_assessment_result,base.group_user,1,1,1,1
-access_assessment_category,access_assessment_category,model_assessment_category,base.group_user,1,1,1,1
 access_assessment_criteria,access_assessment_criteria,model_assessment_criteria,base.group_user,1,1,1,1
 access_teacher_evaluation,access_teacher_evaluation,model_teacher_evaluation,base.group_user,1,1,1,1
 access_teacher_evaluation_result,access_teacher_evaluation_result,model_teacher_evaluation_result,base.group_user,1,1,1,1

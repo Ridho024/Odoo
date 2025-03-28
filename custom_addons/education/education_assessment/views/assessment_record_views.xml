@@ -8,11 +8,12 @@
             <field name="arch" type="xml">
                 <list>
                     <field name="name" class="fw-bolder"/>
-                    <field name="teacher_id"/>
-                    <field name="category_id"/>
+                    <field name="date" optional="hide" />
                     <field name="subject_id"/>
-                    <field name="classroom_id"/>
-                    <field name="date"/>
+                    <field name="category"/>
+                    <field name="semester"/>
+                    <field name="classroom_id" class="fw-bolder" />
+                    <field name="teacher_id" widget="many2one_avatar" />
                 </list>
             </field>
         </record>
@@ -26,30 +27,33 @@
                         <group>
                             <group>
                                 <field name="name" />
-                                <field name="category_id" />
                                 <field name="subject_id" />
+                                <field name="category" />
+                                <field name="semester" />
                             </group>
                             <group>
                                 <field name="classroom_id" />
                                 <field name="teacher_id" />
                                 <field name="date" />
+                                <field name="total_question" />
                             </group>
                         </group>
                         <notebook>
                             <page string="Criteria Assessment">
-                                <field name="asessment_criteria_ids">
-                                    <list>
+                                <field name="assessment_criteria_ids">
+                                    <list editable="bottom">
                                         <field name="name"/>
-                                        <field name="weight"/>
+                                        <field name="weight" class="fw-bolder"/>
                                     </list>
                                 </field>
                             </page>
-                            <page string="Assessment Result">
+                            <page string="Results">
                                 <field name="assessment_result_ids">
-                                    <list>
+                                    <list editable="bottom">
                                         <field name="student_id" />
-                                        <field name="score" />
-                                        <field name="remarks" />
+                                        <field name="correct_answer" />
+                                        <field name="incorrect_answer" />
+                                        <field name="score" class="fw bolder" />
                                     </list>
                                 </field>
                             </page>
@@ -66,7 +70,7 @@
             <field name="arch" type="xml">
                 <search string="Search Students">
                     <field name="name"/>
-                    <field name="category_id"/>
+                    <field name="category"/>
                     <field name="subject_id"/>
                     <field name="classroom_id"/>
                     <group expand="1" string="Group By">
@@ -74,7 +78,7 @@
                     </group>
                     <searchpanel>
                         <field name="classroom_id" icon="fa-filter" string="Classroom" select="multi"/>
-                        <field name="category_id" icon="fa-list-ul" string="Gender" select="multi" />
+                        <field name="category" icon="fa-list-ul" string="Category" select="multi" />
                         <field name="subject_id" icon="fa-book" string="Subject" select="multi" />
                     </searchpanel>
                 </search>

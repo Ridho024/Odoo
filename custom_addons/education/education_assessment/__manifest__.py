@@ -12,6 +12,8 @@
         - Final Semester Test
         Teacher:
         - Teacher evaluation metrics
+        
+        "There are no stupid students, they just haven't met the right teacher yet." - Anonimus 2025.
     """,
 
     'author': "Ridho024",
