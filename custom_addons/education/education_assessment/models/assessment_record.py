@@ -3,8 +3,8 @@ from odoo import models, fields
 class AssessmentRecord(models.Model):
     _name = 'assessment.record'
     _description = 'Student Assessment Record'
+    _rec_name = 'subject_id'
     
-    name = fields.Char(name='Name', required=True)
     subject_id = fields.Many2one('education.subject', string='Subject')
     category = fields.Selection([('daily_task', 'Daily Task'),
                                    ('daily_exam', 'Daily Exam'),
@@ -16,6 +16,7 @@ class AssessmentRecord(models.Model):
     classroom_id = fields.Many2one('education.classroom', string='Classroom')
     teacher_id = fields.Many2one('res.partner', string='Teacher', domain=[('is_teacher', '=', True)], help='Teacher who give the assessment or supervisor')
     date = fields.Date(string='Date', default= fields.Date.today())
+    assessment_file = fields.Binary(string='Assessment File')
     total_question = fields.Integer(string='Total Question')
     assessment_criteria_ids = fields.One2many('assessment.criteria', 'assessment_id', string='Assessment Criteria')
     assessment_result_ids = fields.One2many('assessment.result', 'assessment_id', string='Assessment Results')

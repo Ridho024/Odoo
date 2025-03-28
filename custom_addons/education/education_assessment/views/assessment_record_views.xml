@@ -7,13 +7,12 @@
             <field name="model">assessment.record</field>
             <field name="arch" type="xml">
                 <list>
-                    <field name="name" class="fw-bolder"/>
-                    <field name="date" optional="hide" />
-                    <field name="subject_id"/>
+                    <field name="subject_id" class="fw-bolder"/>
                     <field name="category" widget="badge" />
                     <field name="semester"/>
-                    <field name="classroom_id" class="fw-bolder" />
                     <field name="teacher_id" widget="many2one_avatar" />
+                    <field name="date" optional="show" />
+                    <field name="classroom_id" class="fw-bolder" optional="hide"/>
                 </list>
             </field>
         </record>
@@ -26,16 +25,16 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="name" />
+                                <field name="classroom_id" />
                                 <field name="subject_id" />
                                 <field name="category" />
                                 <field name="semester" />
                             </group>
                             <group>
-                                <field name="classroom_id" />
                                 <field name="teacher_id" />
                                 <field name="date" />
                                 <field name="total_question" />
+                                <field name="assessment_file" widget="attachment" />
                             </group>
                         </group>
                         <notebook>
@@ -68,8 +67,7 @@
             <field name="name">assessment.record.view.search</field>
             <field name="model">assessment.record</field>
             <field name="arch" type="xml">
-                <search string="Search Students">
-                    <field name="name"/>
+                <search>
                     <field name="category"/>
                     <field name="subject_id"/>
                     <field name="classroom_id"/>
@@ -89,8 +87,9 @@
             <field name="name">Assessment Record</field>
             <field name="res_model">assessment.record</field>
             <field name="view_mode">list,form</field>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
+            <field name="context">
+                {'search_default_group_by_classroom': 1}
+            </field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create an Assessment</p>
                 <p>Click "Create" to add new assessment.</p>
