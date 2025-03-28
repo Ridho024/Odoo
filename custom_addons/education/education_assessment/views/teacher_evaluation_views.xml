@@ -69,6 +69,7 @@
                         <filter string="Date" name="group_by_date" context="{'group_by': 'date'}" />
                     </group>
                     <searchpanel>
+                        <field name="teacher_id" icon="fa-smile-o" string="Teacher Evaluated" select="multi" />
                         <field name="evaluator_id" icon="fa-user" string="Evaluator" select="multi" />
                     </searchpanel>
                 </search>

@@ -69,7 +69,7 @@
 
     <menuitem
         id="education_major_menu"
-        name="Majors"
+        name="Education Major"
         action="education_major_action"
         parent="menu_studies_root"
         sequence="8"/>
