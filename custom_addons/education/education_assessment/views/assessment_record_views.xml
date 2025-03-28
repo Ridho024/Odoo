@@ -10,7 +10,7 @@
                     <field name="name" class="fw-bolder"/>
                     <field name="date" optional="hide" />
                     <field name="subject_id"/>
-                    <field name="category"/>
+                    <field name="category" widget="badge" />
                     <field name="semester"/>
                     <field name="classroom_id" class="fw-bolder" />
                     <field name="teacher_id" widget="many2one_avatar" />
@@ -78,7 +78,7 @@
                     </group>
                     <searchpanel>
                         <field name="classroom_id" icon="fa-filter" string="Classroom" select="multi"/>
-                        <field name="category" icon="fa-list-ul" string="Category" select="multi" />
+                        <field name="category" icon="fa-list-ul" t-att-class="text-secondary-emphasis" string="Category" select="multi" />
                         <field name="subject_id" icon="fa-book" string="Subject" select="multi" />
                     </searchpanel>
                 </search>

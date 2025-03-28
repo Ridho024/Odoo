@@ -21,6 +21,10 @@
 
     'category': 'Education',
     'version': '0.1',
+    
+    'web.assets_backend': [
+        'education_assessment/static/src/css/style.css',
+    ],
 
     'depends': ['base', 'education_management'],
 
