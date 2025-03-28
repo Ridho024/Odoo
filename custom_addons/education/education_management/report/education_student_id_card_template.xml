@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_student_id_card_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="student">
+                <div class="page">
+                    <div style="border:2px solid #000; padding:20px; text-align:center;">
+                        <h2 style="color:purple;">Student ID Card</h2>
+                        <img t-att-src="image_data_uri(student.photo)" alt="Studen Photo" style="max-width:100px;"/>
+                        <p><strong>Name:</strong> <t t-esc="student.name"/></p>
+                        <p><strong>Student Number:</strong> <t t-esc="student.nisn"/></p>
+                        <p><strong>Issued By:</strong> My School</p>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

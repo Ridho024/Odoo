@@ -82,6 +82,10 @@ class EducationStudent(models.Model):
                 'default_classroom_id': self.classroom_id.id,
                 },
         }
+        
+    
+    def action_create_student_card(self):
+        return (self.env.ref('education_management.action_student_id_card_report').report_action(self))
     
 class WizardStudentAttendance(models.TransientModel):
     _name = 'wizard.student.attendance'

@@ -28,6 +28,7 @@
             <form string="Student Form">
                 <header>
                     <field name="status" widget="statusbar" options="{'statusbar_visible': ['draft', 'active', 'graduated', 'dropout']}"/>
+                    <button string="Create ID Card" name="action_create_student_card" type="object" class="oe_highlight"/>
                 </header>
                 <sheet>
                     <group>
