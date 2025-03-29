@@ -44,10 +44,6 @@ class ResPartner(models.Model):
                 new_user = self.env['res.users'].create(user_vals)
                 partner.teacher_login_id = new_user.id
                 
-                print('==============================================')
-                print('Hello World')
-                print('==============================================')
-                
                 # Opsional: Menampilkan password ke user (bisa disimpan di log atau dikirim ke email)
                 message_id = self.env['message.wizard'].create({'message': _(f'User berhasil dibuat!\nLogin: {new_user.login}\nPassword: {password}')})
                 
@@ -65,3 +61,50 @@ class ResPartner(models.Model):
             
     def action_create_teacher_card(self):
         return (self.env.ref('education_management.action_teacher_id_card_report').report_action(self))
+    
+    def action_create_attendance(self):
+        """This function is called when the user clicks the
+            'Create Attendance' button on a student's list view. It opens a
+            new wizard to compose and create and attendance message."""
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Teacher Attendance'),
+            'res_model': 'wizard.teacher.attendance',
+            'target': 'new',
+            'view_mode': 'form',
+            'view_type': 'form',
+            'context': {
+                'default_teacher_id': self.id,
+                },
+        }
+    
+class WizardTeacherAttendance(models.TransientModel):
+    _name = 'wizard.teacher.attendance'
+    _description = 'Wizard Teacher Attendance'
+    
+    teacher_id = fields.Many2one('res.partner', string='Teacher')
+    classroom_id = fields.Many2one('education.classroom', string='Classroom')
+    date = fields.Date(string='Date', default=fields.Date.today())
+    subject_id = fields.Many2one('education.subject', string='Subject')
+    status = fields.Selection([('present', 'Present'),
+                               ('absent', 'Absent')], string='Status', default='absent')
+    absent_reason = fields.Selection([('permit', 'Izin'),
+                                      ('sick', 'Sick'),
+                                      ('alpha', 'Alpha')], string='Absent Reason', default='permit')
+    
+    @api.model
+    def create(self, vals):
+        res = super(WizardTeacherAttendance, self).create(vals)
+        
+        attendance = {
+            'teacher_id': res.teacher_id,
+            'classroom_id': res.classroom_id,
+            'date': res.date,
+            'subject_id': res.subject_id,
+            'status': res.status,
+            'absent_reason': res.absent_reason,
+        }
+        
+        self.env['education.teacher.attendance'].create(attendance)
+        
+        return res

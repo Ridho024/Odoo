@@ -9,3 +9,4 @@ from . import res_partner
 from . import education_subject
 from . import education_subject_detail
 from . import education_student_attendance
+from . import education_teacher_attendance

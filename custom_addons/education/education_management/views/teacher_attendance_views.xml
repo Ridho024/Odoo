@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="student_attendance_view_list" model="ir.ui.view">
+        <field name="name">student.attendance.view.list</field>
+        <field name="model">education.teacher.attendance</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="teacher_id" />
+                <field name="date" />
+                <field name="classroom_id" />
+                <field name="subject_id" />
+                <field name="status"/>
+                <field name="absent_reason" invisible="status == 'present'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="teacher_attendance_view_form" model="ir.ui.view">
+        <field name="name">teacher.attendance.view.form</field>
+        <field name="model">education.teacher.attendance</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="teacher_id" />
+                            <field name="date" />
+                            <field name="classroom_id" />
+                            <field name="subject_id" />
+                        </group>
+                        <group>
+                            <field name="status" />
+                            <field name="absent_reason" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="teacher_attendance_view_search" model="ir.ui.view">
+        <field name="name">teacher.attendance.view.search</field>
+        <field name="model">education.teacher.attendance</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="1" string="Group By">
+                    <filter string="Month" name="group_by_date_month" context="{'group_by':'date:month'}"/>
+                    <filter string="Classroom" name="group_by_classroom" context="{'group_by':'classroom_id'}"/>
+                    <filter string="Teacher" name="group_by_teacher" context="{'group_by':'teacher_id'}"/>
+                </group>
+                <searchpanel>
+                    <field name="subject_id" icon="fa-book" string="Subject" select="multi" />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="teacher_attendance_action" model="ir.actions.act_window">
+        <field name="name">Teacher Attendances</field>
+        <field name="res_model">education.teacher.attendance</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">
+            {
+                'search_default_group_by_date_month': 1,
+                'search_default_group_by_classroom': 1,
+                'search_default_group_by_teacher': 1,
+            }
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create an Attendance</p>
+            <p>Click "Create" to add new attendance.</p>
+        </field>
+    </record>
+
+</odoo>
