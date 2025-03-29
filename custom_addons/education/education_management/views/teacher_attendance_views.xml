@@ -24,10 +24,10 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="teacher_id" />
-                            <field name="date" />
                             <field name="classroom_id" />
                             <field name="subject_id" />
+                            <field name="teacher_id" />
+                            <field name="date" />
                         </group>
                         <group>
                             <field name="status" />

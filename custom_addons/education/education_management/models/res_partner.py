@@ -88,7 +88,7 @@ class WizardTeacherAttendance(models.TransientModel):
     subject_id = fields.Many2one('education.subject', string='Subject')
     status = fields.Selection([('present', 'Present'),
                                ('absent', 'Absent')], string='Status', default='absent')
-    absent_reason = fields.Selection([('permit', 'Izin'),
+    absent_reason = fields.Selection([('permit', 'permit'),
                                       ('sick', 'Sick'),
                                       ('alpha', 'Alpha')], string='Absent Reason', default='permit')
     
