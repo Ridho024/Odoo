@@ -26,7 +26,7 @@
         'education_assessment/static/src/css/style.css',
     ],
 
-    'depends': ['base', 'education_management'],
+    'depends': ['base'],
 
     'data': [
         'security/ir.model.access.csv',
