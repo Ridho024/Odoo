@@ -8,9 +8,8 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="student_id" />
-                        <field name="date" />
                         <field name="subject_id" />
+                        <field name="date" />
                         <field name="teacher_id" />
                     </group>
                     <group>

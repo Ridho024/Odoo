@@ -40,7 +40,7 @@ class EducationStudent(models.Model):
     ], string='Status', tracking=True, compute='_compute_status', store=True)
     
     achievement_ids = fields.One2many('education.student.achievement', 'student_id', string='Academic Achievement', tracking=True)
-    assessment_ids = fields.One2many('assessment.result', 'student_id', string='Assesments')
+    # assessment_ids = fields.One2many('assessment.result', 'student_id', string='Assesments')
     attendance_ids = fields.One2many('education.student.attendance', 'student_id', string='Attendances')
     
     @api.depends('classroom_id')

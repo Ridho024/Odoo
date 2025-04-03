@@ -74,7 +74,7 @@
                                 </list>
                             </field>
                         </page>
-                        <page name="assessments" string="Assessments">
+                        <!-- <page name="assessments" string="Assessments">
                             <field name="assessment_ids">
                                 <list>
                                     <field name="assessment_id" />
@@ -85,7 +85,7 @@
                                     <field name="score" />
                                 </list>
                             </field>
-                        </page>
+                        </page> -->
                         <page name="attendances" string="Attendances">
                             <field name="attendance_ids">
                                 <list>

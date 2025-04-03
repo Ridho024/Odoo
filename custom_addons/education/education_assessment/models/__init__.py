@@ -1,5 +1,4 @@
 from . import assessment_record
-# from . import assessment_category
 from . import assessment_result
 from . import assessment_criteria
 from . import teacher_evaluation
