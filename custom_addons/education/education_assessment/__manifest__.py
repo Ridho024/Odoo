@@ -29,6 +29,7 @@
     'depends': ['base', 'education_management'],
 
     'data': [
+        'report/assessment_record_report.xml',
         'security/ir.model.access.csv',
         'views/assessment_record_views.xml',
         'views/teacher_evaluation_views.xml',
