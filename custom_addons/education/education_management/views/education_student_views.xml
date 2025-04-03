@@ -74,18 +74,6 @@
                                 </list>
                             </field>
                         </page>
-                        <!-- <page name="assessments" string="Assessments">
-                            <field name="assessment_ids">
-                                <list>
-                                    <field name="assessment_id" />
-                                    <field name="total_question" />
-                                    <field name="student_id" />
-                                    <field name="correct_answer" />
-                                    <field name="incorrect_answer" />
-                                    <field name="score" />
-                                </list>
-                            </field>
-                        </page> -->
                         <page name="attendances" string="Attendances">
                             <field name="attendance_ids">
                                 <list>

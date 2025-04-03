@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_student_assessment_report_f4" model="report.paperformat">
+        <field name="name">Student Assessment Report (F4)</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">330</field>
+        <field name="page_width">216</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">20</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">5</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <template id="report_assessment_student">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Student Assessment Report</h2>
+                        <p class="mb-1">Student Name: <span t-field="o.name"/></p>
+                        <p class="mb-1">Teacher Name: <span t-field="o.classroom_id.teacher_id.name"/></p>
+                        <p class="mb-3">
+                            Class: 
+                            <t t-if="o.classroom_id.grade == '1'">
+                                X
+                            </t>
+                            <t t-elif="o.classroom_id.grade == '2'">
+                                XI 
+                            </t>
+                            <t t-elif="o.classroom_id.grade == '3'">
+                                XII
+                            </t>
+                            <t t-elif="o.classroom_id.grade == '4'">
+                                XIII
+                            </t>
+                            <t t-else="">
+                                Class not identified
+                            </t>
+                        </p>
+                        <t t-foreach="assessment_data.items()" t-as="semester">
+                            <h3>Semester <t t-esc="semester[0]"/></h3>
+                            
+                            <t t-foreach="semester[1].items()" t-as="category">
+                                <h4>
+                                    Category: 
+                                    <t t-if="category[0] == 'daily_task'">
+                                        Daily Task
+                                    </t>
+                                    <t t-elif="category[0] == 'daily_exam'">
+                                        Daily Exam
+                                    </t>
+                                    <t t-elif="category[0] == 'midterm_exam'">
+                                        Midterm Exam
+                                    </t>
+                                    <t t-elif="category[0] == 'final_exam'">
+                                        Final Exam
+                                    </t>
+                                    <t t-elif="category[0] == 'practical_exam'">
+                                        Practical Exam
+                                    </t>
+                                    <t t-else="">
+                                        Category not identified
+                                    </t>
+                                </h4>
+                                
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Average</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="category[1].items()" t-as="subject">
+                                            <tr>
+                                                <td><t t-esc="subject[0]"/></td>
+                                                <td><t t-esc="round(subject[1]['average'], 2)"/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_assessment_student" model="ir.actions.report">
+        <field name="name">Student Assessment Report</field>
+        <field name="model">education.student</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">education_management.report_assessment_student</field>
+        <field name="report_file">education_management.report_assessment_student</field>
+        <field name="print_report_name">'Assessment Report - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_education_student"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>
