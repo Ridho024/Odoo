@@ -41,7 +41,6 @@
             </xpath>
             <xpath expr="//sheet" position="before">
                 <header>
-                    <button string="Create ID Card" name="action_create_teacher_card" type="object" class="oe_highlight" invisible="not is_teacher"/>
                     <button string="Create Teacher User" name="action_create_teacher_user" type="object" class="oe_stat_button" invisible="not is_teacher and teacher_login_id" />
                 </header>
             </xpath>

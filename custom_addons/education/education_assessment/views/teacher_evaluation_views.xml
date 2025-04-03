@@ -61,16 +61,12 @@
             <field name="model">teacher.evaluation</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="name" />
-                    <field name="teacher_id" />
-                    <field name="evaluator_id" />
                     <group expand="1" string="Group By">
-                        <filter string="Evaluator" name="group_by_evaluator" context="{'group_by':'evaluator_id'}"/>
-                        <filter string="Date" name="group_by_date" context="{'group_by': 'date'}" />
+                        <filter string="Teacher" name="group_by_teacher" context="{'group_by':'teacher_id'}"/>
+                        <filter string="Month" name="group_by_date_month" context="{'group_by':'date:month'}" />
                     </group>
                     <searchpanel>
-                        <field name="teacher_id" icon="fa-smile-o" string="Teacher Evaluated" select="multi" />
-                        <field name="evaluator_id" icon="fa-user" string="Evaluator" select="multi" />
+                        <field name="teacher_id" icon="fa-user" string="Teacher" select="multi" />
                     </searchpanel>
                 </search>
             </field>
@@ -82,13 +78,15 @@
             <field name="view_mode">list,form</field>
             <field name="domain">[]</field>
             <field name="context">
-                {'search_default_group_by_evaluator': 1}
+                {
+                    'search_default_group_by_teacher': 1,
+                    'search_default_group_by_date_month': 1
+                }
             </field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">Create an Evaluation</p>
                 <p>Click "Create" to add new teacher evaluation.</p>
             </field>
         </record>
-    
     </data>
 </odoo>

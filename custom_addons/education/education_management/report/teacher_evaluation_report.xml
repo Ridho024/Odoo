@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_evaluation_teacher">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Teacher Evaluation Report</h2>
+                        <p class="mb-1">Name: <span t-field="o.name"/></p>
+                        <p class="mb-1">NIP: <span t-field="o.nip"/></p>
+                        <t t-foreach="evaluation_data.items()" t-as="month_group">
+                            <h2><t t-esc="month_group[0]"/></h2> <!-- Menampilkan Bulan -->
+
+                            <t t-foreach="month_group[1].items()" t-as="evaluation">
+                                <h3>Evaluation: <t t-esc="evaluation[0]"/></h3>
+
+                                <h4>Results:</h4>
+                                <ul>
+                                    <t t-foreach="evaluation[1]['results']" t-as="result">
+                                        <li><t t-esc="result.criteria_id.name"/> - Score: <t t-esc="result.score"/></li>
+                                    </t>
+                                </ul>
+
+                                <h4>Feedback &amp; Improvement:</h4>
+                                <ul>
+                                    <t t-foreach="evaluation[1]['feedback']" t-as="feedback">
+                                        <li><t t-esc="feedback.feedback_text"/></li>
+                                        <li><t t-esc="feedback.improvement_text"/></li>
+                                    </t>
+                                </ul>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_evaluation_teacher" model="ir.actions.report">
+        <field name="name">Teacher Evaluation Report</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">education_management.report_evaluation_teacher</field>
+        <field name="report_file">education_management.report_evaluation_teacher</field>
+        <field name="print_report_name">'Evaluation Report - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_res_partner"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

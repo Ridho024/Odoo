@@ -12,12 +12,6 @@ class TeacherEvaluation(models.Model):
     evaluation_result_ids = fields.One2many('teacher.evaluation.result', 'evaluation_id', string='Evaluation Result')
     feedback_ids = fields.One2many('teacher.feedback', 'evaluation_id', string='Feedback')
     total_score = fields.Float(string='Total Score')
-    
-    # @api.depends("evaluation_result_ids.score", "evaluation_result_ids.criteria_id.weight")
-    # def _compute_total_score(self):
-    #     for record in self:
-    #         total_weighted_score = sum(result.score * (result.criteria_id.weight / 100) for result in record.evaluation_result_ids)
-    #         record.total_score = total_weighted_score
 
     @api.constrains("total_score")
     def _check_total_score(self):
