@@ -6,14 +6,14 @@ class CreateStudentAttendance(models.TransientModel):
     
     student_id = fields.Many2one('education.student', string='Student', required=True)
     classroom_id = fields.Many2one('education.classroom', string='Classroom')
-    date = fields.Date(string='Date', default=fields.Date.today(), readonly=True)
+    date = fields.Date(string='Date', default=fields.Date.today())
     subject_id = fields.Many2one('education.subject', string='Subject')
     teacher_id = fields.Many2one('res.partner', string='Teacher', domain="[('id', 'in', teacher_ids)]")
     status = fields.Selection([('present', 'Present'),
                                ('absent', 'Absent')], string='Status', default='absent')
     absent_reason = fields.Selection([('permit', 'Permit'),
                                       ('sick', 'Sick'),
-                                      ('alpha', 'Alpha')], string='Absent', default='permit')
+                                      ('alpha', 'Alpha')], string='Absent')
     teacher_ids = fields.Many2many('res.partner', string='List Subject Teacher', related='subject_id.teacher_ids', readonly=True)
     
     @api.model

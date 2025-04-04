@@ -32,6 +32,7 @@
         'report/education_teacher_id_card.xml',
         'report/assessment_student_report.xml',
         'report/teacher_evaluation_report.xml',
+        'report/student_attendance_report.xml',
         'security/ir.model.access.csv', 
         # 'views/teacher_attendance_wizard_views.xml',
         'views/education_student_views.xml',

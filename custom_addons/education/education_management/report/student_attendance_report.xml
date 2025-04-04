@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_student_attendance">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Student Attendance Report</h2>
+                        <p>Name: <span t-field="o.name"/></p>
+                        <p>Classroom: <span t-field="o.classroom_id.name"/></p>
+                        <p>Teacher: <span t-field="o.classroom_id.teacher_id.name"/></p>
+                        
+                        <t t-foreach="attendance_data.items()" t-as="year_data">
+                            <div>
+                                <h3>Year: <t t-esc="year_data[0]"/></h3>
+                                <t t-foreach="year_data[1].items()" t-as="month_data">
+                                    <div style="margin-left: 20px;">
+                                        <h4>Month: <t t-esc="month_data[0]"/></h4>
+                                        <table class="table table-sm" style="margin-left: 20px; width: 90%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Subject</th>
+                                                    <th>Present</th>
+                                                    <th>Absent</th>
+                                                    <th>Permit</th>
+                                                    <th>Sick</th>
+                                                    <th>Alpha</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="month_data[1].items()" t-as="subject_data">
+                                                    <tr>
+                                                        <td><t t-esc="subject_data[0]"/></td>
+                                                        <td><t t-esc="subject_data[1]['present']"/></td>
+                                                        <td><t t-esc="subject_data[1]['absent']"/></td>
+                                                        <td><t t-esc="subject_data[1]['reasons']['permit']"/></td>
+                                                        <td><t t-esc="subject_data[1]['reasons']['sick']"/></td>
+                                                        <td><t t-esc="subject_data[1]['reasons']['alpha']"/></td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </t>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_student_attendance" model="ir.actions.report">
+        <field name="name">Student Attendances Report</field>
+        <field name="model">education.student</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">education_management.report_student_attendance</field>
+        <field name="report_file">education_management.report_student_attendance</field>
+        <field name="print_report_name">'Attendances Report - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_education_student"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>
