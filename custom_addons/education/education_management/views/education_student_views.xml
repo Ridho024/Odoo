@@ -73,18 +73,6 @@
                                 </list>
                             </field>
                         </page>
-                        <page name="attendances" string="Attendances">
-                            <field name="attendance_ids">
-                                <list>
-                                    <field name="classroom_id" />
-                                    <field name="date" />
-                                    <field name="subject_id" />
-                                    <field name="teacher_id" />
-                                    <field name="status" />
-                                    <field name="absent_reason" />
-                                </list>
-                            </field>
-                        </page>
                     </notebook>
                 </sheet>
                 <chatter/>
