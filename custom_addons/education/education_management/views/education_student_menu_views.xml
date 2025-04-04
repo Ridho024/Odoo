@@ -35,7 +35,7 @@
     <menuitem
         id="student_attendance_menu"
         name="Attendances"
-        action="student_attendance_action"
+        action="education_student_attendance_action"
         parent="menu_students_root"
         sequence="4"/>
 
@@ -56,7 +56,7 @@
     <menuitem
         id="teacher_evaluation_menu"
         name="Evaluation"
-        action="education_assessment.teacher_evaluation_action"
+        action="education_assessment.education_teacher_evaluation_action"
         parent="menu_teachers_root"
         sequence="6"/>
 

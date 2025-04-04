@@ -67,60 +67,23 @@ class EducationStudent(models.Model):
         # Call super to create records
         return super(EducationStudent, self).create(vals_list)
     
-    def action_create_attendance(self):
-        """This function is called when the user clicks the
-            'Create Attendance' button on a student's list view. It opens a
-            new wizard to compose and create and attendance message."""
-        return {
-            'type': 'ir.actions.act_window',
-            'name': _('Student Attendance'),
-            'res_model': 'wizard.student.attendance',
-            'target': 'new',
-            'view_mode': 'form',
-            'view_type': 'form',
-            'context': {
-                'default_student_id': self.id,
-                'default_classroom_id': self.classroom_id.id,
-                },
-        }
+    # def action_create_attendance(self):
+    #     return {
+    #         'name': _('Student Attendance'),
+    #         'type': 'ir.actions.act_window',
+    #         'view_type': 'form',
+    #         'view_mode': 'form',
+    #         'res_model': 'wizard.student.attendance',
+    #         'view_id': self.env.ref('education_management.student_create_attendance_view_form').id,
+    #         'target': 'new',
+    #         'context': {
+    #             'default_student_id': self.id,
+    #             'default_classroom_id': self.classroom_id.id,
+    #             },
+    #     }
     
     def action_create_student_card(self):
         return (self.env.ref('education_management.action_student_id_card_report').report_action(self))
     
     def action_set_to_dropout(self):
         self.status = 'dropout'
-    
-class WizardStudentAttendance(models.TransientModel):
-    _name = 'wizard.student.attendance'
-    _description = 'Wizard student attendance'
-    
-    student_id = fields.Many2one('education.student', string='Student', required=True)
-    classroom_id = fields.Many2one('education.classroom', string='Classroom')
-    date = fields.Date(string='Date', default=fields.Date.today())
-    subject_id = fields.Many2one('education.subject', string='Subject')
-    teacher_id = fields.Many2one('res.partner', string='Teacher', domain="[('id', 'in', teacher_ids)]")
-    status = fields.Selection([('present', 'Present'),
-                               ('absent', 'Absent')], string='Status', default='absent')
-    absent_reason = fields.Selection([('permit', 'Permit'),
-                                      ('sick', 'Sick'),
-                                      ('alpha', 'Alpha')], string='Absent', default='permit')
-    teacher_ids = fields.Many2many('res.partner', string='List Subject Teacher', related='subject_id.teacher_ids', readonly=True)
-    
-    @api.model
-    def create(self, vals):
-        """Menyimpan absensi ke model `education.student.attendance`."""
-        res = super(WizardStudentAttendance,self).create(vals)
-        
-        attendance_date = {
-            'student_id': res.student_id.id,
-            'classroom_id': res.classroom_id.id,
-            'date': res.date,
-            'subject_id': res.subject_id.id,
-            'teacher_id': res.teacher_id.id,
-            'status': res.status,
-            'absent_reason': res.absent_reason,
-        }
-        
-        self.env['education.student.attendance'].create(attendance_date)
-        
-        return res
