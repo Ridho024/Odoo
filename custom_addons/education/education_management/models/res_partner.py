@@ -9,12 +9,10 @@ class ResPartner(models.Model):
     gender = fields.Selection([('male', 'Male'),
                                ('female', 'Female')
                                ], string='Gender')
-    # subject_ids = fields.Many2many('education.subject', string='Subjects')
-    class_ids = fields.Many2many('education.classroom', string='Assigned Classes')
     
     # Education Management
     major_ids = fields.Many2many('education.major', string='Major Assigned')
-    class_ids = fields.Many2many('education.classroom', string='Class Assigned')
+    subject_ids = fields.Many2many('education.subject', string='Subject Taught')
     
     # Administration
     nip = fields.Char(string='NIP')
@@ -77,34 +75,3 @@ class ResPartner(models.Model):
                 'default_teacher_id': self.id,
                 },
         }
-    
-class WizardTeacherAttendance(models.TransientModel):
-    _name = 'wizard.teacher.attendance'
-    _description = 'Wizard Teacher Attendance'
-    
-    teacher_id = fields.Many2one('res.partner', string='Teacher')
-    classroom_id = fields.Many2one('education.classroom', string='Classroom')
-    date = fields.Date(string='Date', default=fields.Date.today())
-    subject_id = fields.Many2one('education.subject', string='Subject')
-    status = fields.Selection([('present', 'Present'),
-                               ('absent', 'Absent')], string='Status', default='absent')
-    absent_reason = fields.Selection([('permit', 'permit'),
-                                      ('sick', 'Sick'),
-                                      ('alpha', 'Alpha')], string='Absent Reason', default='permit')
-    
-    @api.model
-    def create(self, vals):
-        res = super(WizardTeacherAttendance, self).create(vals)
-        
-        attendance = {
-            'teacher_id': res.teacher_id,
-            'classroom_id': res.classroom_id,
-            'date': res.date,
-            'subject_id': res.subject_id,
-            'status': res.status,
-            'absent_reason': res.absent_reason,
-        }
-        
-        self.env['education.teacher.attendance'].create(attendance)
-        
-        return res
