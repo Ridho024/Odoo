@@ -11,7 +11,7 @@
                     <field name="category" widget="badge" />
                     <field name="semester"/>
                     <field name="teacher_id" widget="many2one_avatar" />
-                    <field name="date" optional="show" />
+                    <field name="date" class="fw-bolder" optional="show" />
                     <field name="classroom_id" class="fw-bolder" optional="hide"/>
                 </list>
             </field>
@@ -25,8 +25,8 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="classroom_id" />
                                 <field name="subject_id" />
+                                <field name="classroom_id" />
                                 <field name="category" />
                                 <field name="semester" />
                             </group>
@@ -51,7 +51,6 @@
                                     <list editable="bottom">
                                         <field name="student_id" />
                                         <field name="correct_answer" />
-                                        <field name="incorrect_answer" />
                                         <field name="score" class="fw bolder" />
                                     </list>
                                 </field>
