@@ -6,12 +6,12 @@
         <field name="model">education.student.attendance</field>
         <field name="arch" type="xml">
             <list>
+                <field name="date" class="fw-bolder"/>
                 <field name="student_id" />
-                <field name="date" />
                 <field name="subject_id" />
-                <field name="teacher_id" />
-                <field name="status" />
-                <field name="absent_reason" />
+                <field name="teacher_id" widget="many2one_avatar" />
+                <field name="status" widget="badge" decoration-danger="status == 'absent'" decoration-success="status == 'present'" />
+                <field name="absent_reason" class="fw-bolder" />
             </list>
         </field>
     </record>
@@ -52,6 +52,7 @@
                 </group>
                 <searchpanel>
                     <field name="subject_id" icon="fa-book" string="Subject" select="multi" />
+                    <field name="teacher_id" icon="fa-user" string="Teacher" select="multi" />
                 </searchpanel>
             </search>
         </field>

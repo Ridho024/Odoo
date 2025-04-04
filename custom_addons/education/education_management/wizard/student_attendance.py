@@ -4,16 +4,16 @@ class CreateStudentAttendance(models.TransientModel):
     _name = 'create.student.attendance'
     _description = 'Create student attendance'
     
-    student_id = fields.Many2one('education.student', string='Student', required=True)
-    classroom_id = fields.Many2one('education.classroom', string='Classroom')
-    date = fields.Date(string='Date', default=fields.Date.today())
-    subject_id = fields.Many2one('education.subject', string='Subject')
-    teacher_id = fields.Many2one('res.partner', string='Teacher', domain="[('id', 'in', teacher_ids)]")
+    student_id = fields.Many2one('education.student', string='Student', required=True, help='Student name')
+    classroom_id = fields.Many2one('education.classroom', string='Classroom', required=True)
+    date = fields.Date(string='Date', default=fields.Date.today(), required=True)
+    subject_id = fields.Many2one('education.subject', string='Subject', required=True)
+    teacher_id = fields.Many2one('res.partner', string='Teacher', domain="[('id', 'in', teacher_ids)]", required=True)
     status = fields.Selection([('present', 'Present'),
-                               ('absent', 'Absent')], string='Status', default='absent')
+                               ('absent', 'Absent')], string='Status', default='absent', required=True)
     absent_reason = fields.Selection([('permit', 'Permit'),
                                       ('sick', 'Sick'),
-                                      ('alpha', 'Alpha')], string='Absent')
+                                      ('alpha', 'Alpha')], string='Absent Reason')
     teacher_ids = fields.Many2many('res.partner', string='List Subject Teacher', related='subject_id.teacher_ids', readonly=True)
     
     @api.model
