@@ -34,7 +34,6 @@
         'report/teacher_evaluation_report.xml',
         'report/student_attendance_report.xml',
         'security/ir.model.access.csv', 
-        # 'views/teacher_attendance_wizard_views.xml',
         'views/education_student_views.xml',
         'wizard/student_attendance_wizard_views.xml',
         'views/education_classroom_views.xml',
@@ -42,7 +41,6 @@
         'views/res_partner_views.xml',
         'views/education_subject_views.xml',
         'views/student_attendance_views.xml',
-        'views/teacher_attendance_views.xml',
         'views/education_student_menu_views.xml',
     ],
     

@@ -60,12 +60,6 @@
         parent="menu_teachers_root"
         sequence="6"/>
 
-    <menuitem
-        id="teacher_attendance_menu"
-        name="Attendances"
-        action="teacher_attendance_action"
-        parent="menu_teachers_root"
-        sequence="7"/>
 
     <!-- Courses -->
     <menuitem
