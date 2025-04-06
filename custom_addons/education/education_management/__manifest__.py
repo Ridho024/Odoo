@@ -27,7 +27,6 @@
         'data/education_classroom_sequence.xml',
         'data/education_major_sequence.xml',
         'data/education_subject_sequence.xml',
-        'data/ir_cron_data.xml',
         'report/education_student_id_card.xml',
         'report/education_teacher_id_card.xml',
         'report/assessment_student_report.xml',
