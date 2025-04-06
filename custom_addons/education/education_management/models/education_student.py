@@ -8,7 +8,7 @@ class EducationStudent(models.Model):
 
     sequence = fields.Integer(string='Sequence')
     # Identitas Siswa
-    name = fields.Char(string='Student Name', required=True, tracking=True, default="Rusdi")
+    name = fields.Char(string='Student Name', required=True, tracking=True, default="John Doe")
     nisn = fields.Char(string='NISN', required=True, tracking=True)
     id_student = fields.Char(string='Student ID', required=True, copy=False, readonly=True, index=True, default='New', tracking=True)
     date_of_birth = fields.Date(string='Date of Birth', tracking=True)

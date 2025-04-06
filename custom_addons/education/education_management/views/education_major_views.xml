@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name" class="fw-bolder" /> 
-                <field name="code" class="fw-bolder" /> 
+                <field name="code" widget="badge" /> 
                 <field name="teacher_id" widget="many2one_avatar"/>
             </list>
         </field>
