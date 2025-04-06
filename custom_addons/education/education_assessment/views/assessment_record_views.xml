@@ -51,7 +51,7 @@
                                     <list editable="bottom">
                                         <field name="student_id" />
                                         <field name="correct_answer" />
-                                        <field name="score" class="fw bolder" />
+                                        <field name="score" class="fw-bolder" />
                                     </list>
                                 </field>
                             </page>

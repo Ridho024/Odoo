@@ -14,7 +14,7 @@
     'category': 'Education',
     'version': '0.1',
 
-    'depends': ['base', 'mail', 'l10n_id_efaktur','web', 'sale'],
+    'depends': ['base', 'mail', 'l10n_id_efaktur','web', 'sale', 'education_assessment'],
     
     'assets': {
         'web.assets_backend': [
@@ -34,8 +34,8 @@
         'report/teacher_evaluation_report.xml',
         'report/student_attendance_report.xml',
         'security/ir.model.access.csv', 
-        'views/education_student_views.xml',
         'wizard/student_attendance_wizard_views.xml',
+        'views/education_student_views.xml',
         'views/education_classroom_views.xml',
         'views/education_major_views.xml',
         'views/res_partner_views.xml',

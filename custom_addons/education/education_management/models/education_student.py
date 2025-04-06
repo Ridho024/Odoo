@@ -66,21 +66,6 @@ class EducationStudent(models.Model):
         # Call super to create records
         return super(EducationStudent, self).create(vals_list)
     
-    # def action_create_attendance(self):
-    #     return {
-    #         'name': _('Student Attendance'),
-    #         'type': 'ir.actions.act_window',
-    #         'view_type': 'form',
-    #         'view_mode': 'form',
-    #         'res_model': 'wizard.student.attendance',
-    #         'view_id': self.env.ref('education_management.student_create_attendance_view_form').id,
-    #         'target': 'new',
-    #         'context': {
-    #             'default_student_id': self.id,
-    #             'default_classroom_id': self.classroom_id.id,
-    #             },
-    #     }
-    
     def action_create_student_card(self):
         return (self.env.ref('education_management.action_student_id_card_report').report_action(self))
     

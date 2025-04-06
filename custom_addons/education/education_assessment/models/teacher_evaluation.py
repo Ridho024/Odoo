@@ -11,10 +11,10 @@ class TeacherEvaluation(models.Model):
     date = fields.Date(string='Date', default=fields.Date.today())
     evaluation_result_ids = fields.One2many('teacher.evaluation.result', 'evaluation_id', string='Evaluation Result')
     feedback_ids = fields.One2many('teacher.feedback', 'evaluation_id', string='Feedback')
-    total_score = fields.Float(string='Total Score')
+    total_score = fields.Float(string='Total Score', compute='_compute_total_score', store=True)
 
-    @api.constrains("total_score")
-    def _check_total_score(self):
+    @api.depends('evaluation_result_ids.score')
+    def _compute_total_score(self):
         for record in self:
-            if record.total_score < 0 or record.total_score > 100:
-                raise ValidationError("Total nilai harus berada di antara 0 dan 100.")
+            total_score = sum(result.score for result in record.evaluation_result_ids)
+            record.total_score = total_score

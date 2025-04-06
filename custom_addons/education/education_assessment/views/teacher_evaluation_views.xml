@@ -11,7 +11,7 @@
                     <field name="teacher_id" widget="many2one_avatar" />
                     <field name="evaluator_id" widget="many2one_avatar" />
                     <field name="date" />
-                    <field name="total_score" widget="badge" decoration-success="total_score >= 80" decoration-warning="total_score >= 70 and total_score &lt; 80" decoration-danger="total_score &lt; 70 or total_score is False" />
+                    <field name="total_score" widget="badge" decoration-success="total_score >= 80" decoration-warning="total_score >= 70 and total_score &lt; 80" decoration-danger="total_score &lt; 70 or total_score == False" />
                 </list> 
             </field>
         </record>
