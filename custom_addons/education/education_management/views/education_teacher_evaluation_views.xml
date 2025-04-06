@@ -10,7 +10,7 @@
                     <field name="name" class="fw-bolder" />
                     <field name="teacher_id" widget="many2one_avatar" />
                     <field name="evaluator_id" widget="many2one_avatar" />
-                    <field name="date" />
+                    <field name="date" class="fw-bolder" />
                     <field name="total_score" widget="badge" decoration-success="total_score >= 80" decoration-warning="total_score >= 70 and total_score &lt; 80" decoration-danger="total_score &lt; 70 or total_score == False" />
                 </list> 
             </field>
@@ -61,9 +61,12 @@
             <field name="model">education.teacher.evaluation</field>
             <field name="arch" type="xml">
                 <search>
+                    <field name="name" string="Evaluation Name" />
+                    <field name="teacher_id" string="Teacher" />
+                    <field name="evaluator_id" string="Evaluator" />
                     <group expand="1" string="Group By">
-                        <filter string="Teacher" name="group_by_teacher_id" context="{'group_by':'teacher_id'}"/>
                         <filter string="Month" name="group_by_date_month" context="{'group_by':'date:month'}" />
+                        <filter string="Teacher" name="group_by_teacher_id" context="{'group_by':'teacher_id'}"/>
                     </group>
                     <searchpanel>
                         <field name="teacher_id" icon="fa-user" string="Teacher" select="multi" />
@@ -79,8 +82,8 @@
             <field name="domain">[]</field>
             <field name="context">
                 {
-                    'search_default_group_by_teacher_id': True,
                     'search_default_group_by_date_month': True
+                    'search_default_group_by_teacher_id': True,
                 }
             </field>
             <field name="help" type="html">

@@ -6,9 +6,9 @@ class TeacherEvaluation(models.Model):
     _description = 'Teacher Evaluation'
     
     name = fields.Char(string='Evaluation Name', required=True)
-    teacher_id = fields.Many2one('res.partner', string='Teacher')
+    teacher_id = fields.Many2one('res.partner', string='Teacher', domain=[('is_teacher', '=', True)], required=True, help='Teacher to be evaluated')
     evaluator_id = fields.Many2one('res.users', string='Evaluator', required=True, help='Teacher evaluator')
-    date = fields.Date(string='Date', default=fields.Date.today())
+    date = fields.Date(string='Date', default=fields.Date.today(), required=True)
     evaluation_result_ids = fields.One2many('teacher.evaluation.result', 'evaluation_id', string='Evaluation Result')
     feedback_ids = fields.One2many('teacher.evaluation.feedback', 'evaluation_id', string='Feedback')
     total_score = fields.Float(string='Total Score', compute='_compute_total_score', store=True)
@@ -16,8 +16,8 @@ class TeacherEvaluation(models.Model):
     @api.depends('evaluation_result_ids.score')
     def _compute_total_score(self):
         for record in self:
-            total_score = sum(result.score for result in record.evaluation_result_ids)
-            record.total_score = total_score
+            scores = [result.score for result in record.evaluation_result_ids if result.score is not None]
+            record.total_score = sum(scores) / len(scores) if scores else 0.0
             
 class TeacherEvaluationCriteria(models.Model):
     _name = 'teacher.evaluation.criteria'
