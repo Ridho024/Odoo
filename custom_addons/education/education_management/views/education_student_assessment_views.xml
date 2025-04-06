@@ -2,9 +2,9 @@
 <odoo>
     <data noupdate="1">
     
-        <record id="assessment_record_view_list" model="ir.ui.view">
+        <record id="education_student_assessment_view_list" model="ir.ui.view">
             <field name="name">assessment.view.list</field>
-            <field name="model">assessment.record</field>
+            <field name="model">education.student.assessment</field>
             <field name="arch" type="xml">
                 <list>
                     <field name="subject_id" class="fw-bolder"/>
@@ -17,9 +17,9 @@
             </field>
         </record>
 
-        <record id="assessment_record_view_form" model="ir.ui.view">
+        <record id="education_student_assessment_view_form" model="ir.ui.view">
             <field name="name">assessment.record.view.form</field>
-            <field name="model">assessment.record</field>
+            <field name="model">education.student.assessment</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -62,9 +62,9 @@
         </record>
 
         <!-- Search -->
-        <record id="assessment_record_view_search" model="ir.ui.view">
+        <record id="education_student_assessment_view_search" model="ir.ui.view">
             <field name="name">assessment.record.view.search</field>
-            <field name="model">assessment.record</field>
+            <field name="model">education.student.assessment</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="category"/>
@@ -82,9 +82,9 @@
             </field>
         </record>
 
-        <record id="assessment_record_action" model="ir.actions.act_window">
+        <record id="education_student_assessment_action" model="ir.actions.act_window">
             <field name="name">Assessment Record</field>
-            <field name="res_model">assessment.record</field>
+            <field name="res_model">education.student.assessment</field>
             <field name="view_mode">list,form</field>
             <field name="context">
                 {'search_default_group_by_classroom': 1}

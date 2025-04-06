@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="paperformat_assessment_record_report_f4" model="report.paperformat">
-        <field name="name">Assessment Record Report (F4)</field>
+    <record id="paperformat_student_assessment_record_report_f4" model="report.paperformat">
+        <field name="name">Student Assessment Record Report (F4)</field>
         <field name="default" eval="True"/>
         <field name="format">custom</field>
         <field name="page_height">330</field>
@@ -17,7 +17,7 @@
         <field name="dpi">90</field>
     </record>
 
-    <template id="report_assessment_record">
+    <template id="report_student_assessment_record">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
@@ -104,14 +104,14 @@
         </t>
     </template>
 
-    <record id="action_report_assessment_record" model="ir.actions.report">
-        <field name="name">Assessment Record Report</field>
-        <field name="model">assessment.record</field>
+    <record id="action_report_student_assessment_record" model="ir.actions.report">
+        <field name="name">Student Assessment Record Report</field>
+        <field name="model">education.student.assessment</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">education_assessment.report_assessment_record</field>
-        <field name="report_file">education_assessment.report_assessment_record</field>
+        <field name="report_name">education_management.report_student_assessment_record</field>
+        <field name="report_file">education_management.report_student_assessment_record</field>
         <field name="print_report_name">'Assessment Report - %s' % object.subject_id.name</field>
-        <field name="binding_model_id" ref="model_assessment_record"/>
+        <field name="binding_model_id" ref="model_education_student_assessment"/>
         <field name="binding_type">report</field>
     </record>
 

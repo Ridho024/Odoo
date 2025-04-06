@@ -28,7 +28,7 @@
     <menuitem
         id="assessment_record_menu"
         name="Assessment"
-        action="education_assessment.assessment_record_action"
+        action="education_student_assessment_action"
         parent="menu_students_root"
         sequence="3"/>
 
@@ -56,7 +56,7 @@
     <menuitem
         id="teacher_evaluation_menu"
         name="Evaluation"
-        action="education_assessment.education_teacher_evaluation_action"
+        action="education_teacher_evaluation_action"
         parent="menu_teachers_root"
         sequence="6"/>
 

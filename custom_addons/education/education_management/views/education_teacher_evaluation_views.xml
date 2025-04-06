@@ -4,7 +4,7 @@
     
         <record id="education_teacher_evaluation_view_list" model="ir.ui.view">
             <field name="name">teacher.evaluation.view.list</field>
-            <field name="model">teacher.evaluation</field>
+            <field name="model">education.teacher.evaluation</field>
             <field name="arch" type="xml">
                 <list> 
                     <field name="name" class="fw-bolder" />
@@ -18,7 +18,7 @@
 
         <record id="education_teacher_evaluation_view_form" model="ir.ui.view">
             <field name="name">teacher.evaluation.view.form</field>
-            <field name="model">teacher.evaluation</field>
+            <field name="model">education.teacher.evaluation</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -58,7 +58,7 @@
 
         <record id="education_teacher_evaluation_view_search" model="ir.ui.view">
             <field name="name">teacher.evaluation.view.search</field>
-            <field name="model">teacher.evaluation</field>
+            <field name="model">education.teacher.evaluation</field>
             <field name="arch" type="xml">
                 <search>
                     <group expand="1" string="Group By">
@@ -74,7 +74,7 @@
 
         <record id="education_teacher_evaluation_action" model="ir.actions.act_window">
             <field name="name">Teacher Evaluation</field>
-            <field name="res_model">teacher.evaluation</field>
+            <field name="res_model">education.teacher.evaluation</field>
             <field name="view_mode">list,form</field>
             <field name="domain">[]</field>
             <field name="context">
