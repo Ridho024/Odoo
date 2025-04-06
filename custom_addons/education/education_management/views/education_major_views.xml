@@ -20,10 +20,12 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name" /> 
-                        <field name="code" /> 
-                        <field name="teacher_id" widget="many2one_avatar"/>
-                        <field name="academic_year" />
+                        <group>
+                            <field name="name" /> 
+                            <field name="code" /> 
+                            <field name="teacher_id" widget="many2one_avatar"/>
+                            <field name="academic_year" />
+                        </group>
                     </group>
                     <notebook>
                         <page string='Teachers'>
