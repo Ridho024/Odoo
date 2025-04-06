@@ -15,6 +15,29 @@ class EducationClassroom(models.Model):
     active = fields.Boolean(string='Active', default=True)
     color = fields.Integer(string='Color')
     
+    @api.model
+    def create(self, vals):
+        # Ambil data student_ids sebelum create
+        student_operations = vals.get('student_ids', [])
+        res = super().create(vals)
+
+        if student_operations:
+            student_env = self.env['education.student']
+
+            # Tangani operasi 6 (replace all)
+            op_6 = next((op for op in student_operations if op[0] == 6), None)
+            if op_6:
+                students = student_env.browse(op_6[2])
+                students.write({'classroom_id': res.id})
+
+            # Tangani operasi 4 (link)
+            op_4_ids = [op[1] for op in student_operations if op[0] == 4]
+            if op_4_ids:
+                students = student_env.browse(op_4_ids)
+                students.write({'classroom_id': res.id})
+
+        return res
+    
     def write(self, vals):
         """Memastikan classroom_id diperbarui saat student_ids berubah"""
         for classroom in self:
