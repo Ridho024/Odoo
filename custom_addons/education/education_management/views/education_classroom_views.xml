@@ -7,8 +7,8 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name" class="fw-bolder" />
-                <field name="code" /> 
-                <field name="grade" widget="badge" decoration-success="grade == '3' or grade == '4'" decoration-danger="grade == '1'" decoration-warning="grade == '2'"/>
+                <field name="code" widget="badge" /> 
+                <field name="grade" widget="badge" decoration-danger="grade == '1'" decoration-warning="grade == '2'" decoration-success="grade == '3' or grade == '4'" />
                 <field name="major_id" class="fw-bolder" />
                 <field name="teacher_id" widget="many2one_avatar" />  
                 <field name="capacity" widget="badge" optional="hide" />
@@ -52,12 +52,12 @@
                         <page string="Schedules">
                             <field name="schedule_ids">
                                 <list>
-                                    <field name="subject_id" />
-                                    <field name="teacher_id" />
+                                    <field name="subject_id" class="fw-bolder" />
+                                    <field name="teacher_id" widget="many2one_avatar" />
                                     <field name="day_of_week" />
                                     <field name="start_time" />
                                     <field name="end_time" />
-                                    <field name="duration" />
+                                    <field name="duration" class="fw-bolder" />
                                 </list>
                             </field>
                         </page>
@@ -76,15 +76,6 @@
                 <field name="code" />
                 <field name="teacher_id" />
                 <field name="major_id" />
-            </search>
-        </field>
-    </record>
-
-    <record id="education_classroom_view_search" model="ir.ui.view">
-        <field name="name">education.classroom.view.search</field>
-        <field name="model">education.classroom</field>
-        <field name="arch" type="xml">
-            <search>
                 <group expand="1" string="Group By">
                     <filter string="Grade" name="group_by_grade" context="{'group_by':'grade'}"/>
                 </group>
