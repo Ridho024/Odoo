@@ -12,8 +12,8 @@ class EducationSubject(models.Model):
     
     @api.model_create_multi
     def create(self,vals_list):
-        """ Create a sequence for the student model """
-        """Optimized create method for students"""
+        """ Create a sequence for the education subject model """
+        """Optimized create method for education subject"""
         # Update only records that need an ID
         for vals in vals_list:
             if vals.get('code', _('New')) == _('New'):

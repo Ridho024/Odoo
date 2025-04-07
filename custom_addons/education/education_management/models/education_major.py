@@ -3,6 +3,9 @@ from odoo import models, fields, api, _
 class EducationMajor(models.Model):
     _name = 'education.major'
     _description = 'Education Major'
+    _sql_constraints = [
+        ('name', 'unique(name)', 'Major with this name already exists!'),
+    ]
     
     name = fields.Char(string='Name', required=True)
     code = fields.Char(string='Code', required=True, copy=False, readonly=True, index=True, default='New')
@@ -14,8 +17,8 @@ class EducationMajor(models.Model):
     
     @api.model_create_multi
     def create(self,vals_list):
-        """ Create a sequence for the major model """
-        """Optimized create method for students"""
+        """ Create a sequence for the education major model """
+        """Optimized create method for education major"""
         # Update only records that need an ID
         for vals in vals_list:
             if vals.get('code', _('New')) == _('New'):

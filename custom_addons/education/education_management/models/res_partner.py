@@ -4,6 +4,9 @@ import random, string
 
 class ResPartner(models.Model):
     _inherit ='res.partner'
+    _sql_constraints = [
+        ('nip', 'unique(nip)', 'NIP number must be unique for all teacher!'),
+    ]
     
     is_teacher = fields.Boolean(string='Is Teacher')
     gender = fields.Selection([('male', 'Male'),
