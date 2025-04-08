@@ -23,8 +23,7 @@
                 <t t-call="web.external_layout">
                     <div class="page">
 
-                        <h2 class="text-center">Student Assessment Report</h2>
-                        <hr style="margin-bottom: 10px;" />
+                        <h2 class="text-center" style="text-transform: uppercase; font-weight: bold; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 15px;">Student Assessment Report</h2>
 
                         <div class="row mb-2">
                             <div class="col-6">
@@ -67,15 +66,15 @@
                         <table class="table table-sm table-bordered" style="width: 100%; margin-bottom: 20px;">
                             <thead style="background-color: #f0f0f0;">
                                 <tr>
-                                    <th style="padding: 5px;">Criteria</th>
-                                    <th style="padding: 5px;">Weight (%)</th>
+                                    <th style="padding: 5px; width: 70%;">Criteria</th>
+                                    <th style="padding: 5px; width: 30%;">Weight (%)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-set="assessment_criteria" t-value="o.assessment_criteria_ids"/>
                                 <tr t-foreach="assessment_criteria" t-as="criteria">
-                                    <td style="padding: 5px;"><span t-field="criteria.name"/></td>
-                                    <td style="padding: 5px; text-align: right;"><span t-field="criteria.weight"/>%</td>
+                                    <td style="padding: 5px; width: 70%;"><span t-field="criteria.name"/></td>
+                                    <td style="padding: 5px; text-align: right; width: 30%;"><span t-field="criteria.weight"/>%</td>
                                 </tr>
                             </tbody>
                         </table>
