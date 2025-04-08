@@ -8,7 +8,7 @@ class AssessmentReport(models.AbstractModel):
         
         docs = self.env[report.model].browse(docids)
         
-        assessment_data = self.env['assessment.result'].search([('student_id', '=', docids)])
+        assessment_data = self.env['student.assessment.result'].search([('student_id', '=', docids)])
         
         # Struktur data untuk menyimpan hasil
         grouped_assessments = {}

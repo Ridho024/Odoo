@@ -1,6 +1,7 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
-class AssessmentRecord(models.Model):
+class EducationStudentAssessment(models.Model):
     _name = 'education.student.assessment'
     _description = 'Student Assessment Record'
     _rec_name = 'subject_id'
@@ -22,7 +23,7 @@ class AssessmentRecord(models.Model):
     assessment_criteria_ids = fields.One2many('student.assessment.criteria', 'assessment_id', string='Assessment Criteria')
     assessment_result_ids = fields.One2many('student.assessment.result', 'assessment_id', string='Assessment Results')
     
-class AssessmentCriteria(models.Model):
+class StudentAssessmentCriteria(models.Model):
     _name = 'student.assessment.criteria'
     _description = 'Assessment Criteria'
     
@@ -30,7 +31,14 @@ class AssessmentCriteria(models.Model):
     weight = fields.Float(string='Weight (%)')
     assessment_id = fields.Many2one('education.student.assessment', string='Assessment Record')
     
-class AssessmentResult(models.Model):
+    @api.depends('weight')
+    def _compute_maximum_weight(self):
+        for record in self:
+            total_weight = sum(record.mapped('weight'))
+            if total_weight > 100:
+                raise ValidationError("Total weight cannot exceed 100%.")
+    
+class StudentAssessmentResult(models.Model):
     _name = 'student.assessment.result'
     _description = 'Student Assessment Result'
     

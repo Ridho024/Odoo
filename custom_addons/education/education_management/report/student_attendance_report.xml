@@ -1,42 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="paperformat_student_attendance_report_a4" model="report.paperformat">
+        <field name="name">Student Attendance Report (A4)</field>
+        <field name="default" eval="False"/>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">5</field>
+        <field name="dpi">90</field>
+    </record>
+
     <template id="report_student_attendance">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <h2>Student Attendance Report</h2>
-                        <p>Name: <span t-field="o.name"/></p>
-                        <p>Classroom: <span t-field="o.classroom_id.name"/></p>
-                        <p>Teacher: <span t-field="o.classroom_id.teacher_id.name"/></p>
-                        
+                        <!-- Judul -->
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <h2 style="text-transform: uppercase; font-weight: bold; border-bottom: 2px solid #000; padding-bottom: 10px;">
+                                Student Attendance Report
+                            </h2>
+                        </div>
+
+                        <!-- Info Siswa -->
+                        <table class="table table-sm" style="width: 100%; margin-bottom: 30px;">
+                            <tr>
+                                <td><strong>Name:</strong></td>
+                                <td><t t-esc="o.name"/></td>
+                                <td><strong>Classroom:</strong></td>
+                                <td><t t-esc="o.classroom_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Teacher:</strong></td>
+                                <td><t t-esc="o.classroom_id.teacher_id.name"/></td>
+                                <td><strong>Printed on:</strong></td>
+                                <td>
+                                    <t t-if="o.create_date">
+                                        <t t-esc="o.create_date.strftime('%d %B %Y')"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Attendance Section -->
                         <t t-foreach="attendance_data.items()" t-as="year_data">
                             <div>
-                                <h3>Year: <t t-esc="year_data[0]"/></h3>
+                                <h3 style="border-top: 1px solid #ccc; padding-top: 10px; margin-top: 30px;">Year: <t t-esc="year_data[0]"/></h3>
                                 <t t-foreach="year_data[1].items()" t-as="month_data">
                                     <div style="margin-left: 20px;">
-                                        <h4>Month: <t t-esc="month_data[0]"/></h4>
-                                        <table class="table table-sm" style="margin-left: 20px; width: 90%;">
-                                            <thead>
+                                        <h4 style="margin-top: 20px;">Month: <t t-esc="month_data[0]"/></h4>
+
+                                        <table class="table table-bordered table-sm" style="width: 95%; border-collapse: collapse;">
+                                            <thead style="background-color: #f2f2f2;">
                                                 <tr>
-                                                    <th>Subject</th>
-                                                    <th>Present</th>
-                                                    <th>Absent</th>
-                                                    <th>Permit</th>
-                                                    <th>Sick</th>
-                                                    <th>Alpha</th>
+                                                    <th style="border: 1px solid #000; text-align: center;">Subject</th>
+                                                    <th style="border: 1px solid #000; text-align: center;">Present</th>
+                                                    <th style="border: 1px solid #000; text-align: center;">Absent</th>
+                                                    <th style="border: 1px solid #000; text-align: center;">Permit</th>
+                                                    <th style="border: 1px solid #000; text-align: center;">Sick</th>
+                                                    <th style="border: 1px solid #000; text-align: center;">Alpha</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <t t-foreach="month_data[1].items()" t-as="subject_data">
                                                     <tr>
-                                                        <td><t t-esc="subject_data[0]"/></td>
-                                                        <td><t t-esc="subject_data[1]['present']"/></td>
-                                                        <td><t t-esc="subject_data[1]['absent']"/></td>
-                                                        <td><t t-esc="subject_data[1]['reasons']['permit']"/></td>
-                                                        <td><t t-esc="subject_data[1]['reasons']['sick']"/></td>
-                                                        <td><t t-esc="subject_data[1]['reasons']['alpha']"/></td>
+                                                        <td style="border: 1px solid #000; text-align: center;"><t t-esc="subject_data[0]"/></td>
+                                                        <td style="border: 1px solid #000; text-align: center;"><t t-esc="subject_data[1]['present']"/></td>
+                                                        <td style="border: 1px solid #000; text-align: center;"><t t-esc="subject_data[1]['absent']"/></td>
+                                                        <td style="border: 1px solid #000; text-align: center;"><t t-esc="subject_data[1]['reasons']['permit']"/></td>
+                                                        <td style="border: 1px solid #000; text-align: center;"><t t-esc="subject_data[1]['reasons']['sick']"/></td>
+                                                        <td style="border: 1px solid #000; text-align: center;"><t t-esc="subject_data[1]['reasons']['alpha']"/></td>
                                                     </tr>
                                                 </t>
                                             </tbody>
@@ -45,6 +85,14 @@
                                 </t>
                             </div>
                         </t>
+
+                        <!-- Footer -->
+                        <div style="margin-top: 50px; text-align: right;">
+                            <p>Authorized by,</p>
+                            <p style="margin-top: 60px;"><strong><t t-esc="o.classroom_id.teacher_id.name"/></strong></p>
+                            <p>Teacher</p>
+                        </div>
+
                     </div>
                 </t>
             </t>
@@ -57,6 +105,7 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">education_management.report_student_attendance</field>
         <field name="report_file">education_management.report_student_attendance</field>
+        <field name="paperformat_id" ref="education_management.paperformat_student_attendance_report_a4"/>
         <field name="print_report_name">'Attendances Report - %s' % object.name</field>
         <field name="binding_model_id" ref="model_education_student"/>
         <field name="binding_type">report</field>
