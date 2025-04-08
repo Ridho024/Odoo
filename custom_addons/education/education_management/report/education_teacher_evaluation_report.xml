@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_education_evaluation_teacher_report_a4" model="report.paperformat">
+        <field name="name">Education Evaluation Teacher Report (A4)</field>
+        <field name="default" eval="False"/>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">5</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <template id="report_education_evaluation_teacher">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+                        <!-- HEADER -->
+                        <div class="text-center mb-3">
+                            <h2 style="margin-bottom: 0;">TEACHER EVALUATION REPORT</h2>
+                            <small style="color: #666;">Academic Performance Summary</small>
+                            <hr style="border: 1px solid #000; margin-top: 10px;"/>
+                        </div>
+
+                        <!-- TEACHER INFO -->
+                        <div class="mb-3">
+                            <p><strong>Name:</strong> <span t-field="o.name"/></p>
+                            <p><strong>NIP:</strong> <span t-field="o.nip"/></p>
+                        </div>
+
+                        <t t-foreach="evaluation_data.items()" t-as="month_group">
+                            <div class="mt-4">
+                                <h3 class="mt-3 text-primary">
+                                    <t t-esc="month_group[0]"/>
+                                </h3> <!-- Bulan -->
+
+                                <t t-foreach="month_group[1].items()" t-as="evaluation">
+                                    <div class="mb-3">
+                                        <h4>Evaluation Name: <t t-esc="evaluation[0]"/></h4>
+
+                                        <!-- Tabel Hasil Evaluasi -->
+                                        <h5 class="mt-2">Results</h5>
+                                        <table class="table table-bordered table-sm" style="border-collapse: collapse;">
+                                            <thead style="background-color: #f2f2f2;">
+                                                <tr>
+                                                    <th style="border: 1px solid #000; text-align: center; width: 70%;">Criteria</th>
+                                                    <th style="border: 1px solid #000; text-align: center; width: 30%;">Average Score</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="evaluation[1]['results']" t-as="result">
+                                                    <tr>
+                                                        <td style="border: 1px solid #000; text-align: left; width: 70%;"><t t-esc="result['criteria_id'].name"/></td>
+                                                        <td style="border: 1px solid #000; text-align: left; width: 30%;"><t t-esc="result['score']"/></td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+
+                                        <!-- Tabel Feedback -->
+                                        <h5 class="mt-2">Feedback &amp; Improvements</h5>
+                                        <table class="table table-sm table-hover" style="border-collapse: collapse;">
+                                            <thead style="background-color: #f2f2f2;">
+                                                <tr>
+                                                    <th style="border: 1px solid #000; text-align: center; width: 50%;">Feedback</th>
+                                                    <th style="border: 1px solid #000; text-align: center; width: 50%;">Improvement</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="evaluation[1]['feedback']" t-as="feedback">
+                                                    <tr>
+                                                        <td style="border: 1px solid #000; text-align: left; width: 50%;"><t t-esc="feedback.feedback_text"/></td>
+                                                        <td style="border: 1px solid #000; text-align: left; width: 50%;"><t t-esc="feedback.improvement_text"/></td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </t>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_evaluation_teacher" model="ir.actions.report">
+        <field name="name">Teacher Evaluation Report</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">education_management.report_education_evaluation_teacher</field>
+        <field name="report_file">education_management.report_education_evaluation_teacher</field>
+        <field name="paperformat_id" ref="education_management.paperformat_education_evaluation_teacher_report_a4" />
+        <field name="print_report_name">'Evaluation Report - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_res_partner"/>
+        <field name="binding_type">report</field>
+    </record>   
+
+</odoo>

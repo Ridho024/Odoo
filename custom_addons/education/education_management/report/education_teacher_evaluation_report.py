@@ -2,13 +2,13 @@ from odoo import models
 from collections import defaultdict
 
 class EvaluationReport(models.AbstractModel):
-    _name = 'report.education_management.report_evaluation_teacher'
+    _name = 'report.education_management.report_education_evaluation_teacher'
     
     def _get_report_values(self, docids, data=None):
-        report = self.env['ir.actions.report']._get_report_from_name('education_management.report_evaluation_teacher')
+        report = self.env['ir.actions.report']._get_report_from_name('education_management.report_education_evaluation_teacher')
         docs = self.env[report.model].browse(docids)
         
-        evaluation_data = self.env['teacher.evaluation'].search([('teacher_id', '=', docids)])
+        evaluation_data = self.env['education.teacher.evaluation'].search([('teacher_id', '=', docids)])
         grouped_evaluations = defaultdict(lambda: defaultdict(lambda: {'results': [], 'feedback': []}))
         
         for evaluation in evaluation_data:
