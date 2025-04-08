@@ -4,13 +4,51 @@
     <template id="report_teacher_id_card_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="teacher">
-                <div class="page">
+                <!-- <div class="page">
                     <div style="border:2px solid #000; padding:20px; text-align:center;">
                         <h2 style="color:purple;">Teacher ID Card</h2>
                         <img t-att-src="image_data_uri(teacher.image_1920)" alt="Teacher Photo" style="max-width:100px;"/>
                         <p><strong>Name:</strong> <t t-esc="teacher.name"/></p>
                         <p><strong>NIP:</strong> <t t-esc="teacher.nip"/></p>
                         <p><strong>Issued By:</strong> Ridho024</p>
+                    </div>
+                </div> -->
+                <div class="page">
+                    <div style="border:2px solid #000; padding:20px;">
+                        <h2 style="text-align:center; color:purple;">Teacher ID Card</h2>
+                        <hr style="margin:10px 0;" />
+                        <div style="display:flex; align-items:center;">
+                            <!-- Foto -->
+                            <div style="flex:1; text-align:center;">
+                                <img t-att-src="image_data_uri(teacher.image_1920)"
+                                     alt="Teacher Photo"
+                                     style="max-width:100px; height:auto; border:1px solid #ccc;"/>
+                            </div>
+                            <!-- Informasi Guru -->
+                            <div style="flex:2; padding-left:20px;">
+                                <p><strong>NIP:</strong> <t t-esc="teacher.nip or '-'"/></p>
+                                <p><strong>Name:</strong> <t t-esc="teacher.name or '-'"/></p>
+                                <p><strong>Gender:</strong> <t t-esc="dict({'male': 'Male', 'female': 'Female'}).get(teacher.gender, '-')"/></p>
+                                <p><strong>Email:</strong> <t t-esc="teacher.email or '-'"/></p>
+                                <p><strong>Phone:</strong> <t t-esc="teacher.phone or '-'"/></p>
+                                <p>
+                                    <strong>Major Assigned:</strong>
+                                    <t t-if="teacher.major_ids">
+                                        <t t-esc="', '.join(teacher.major_ids.mapped('name'))"/>
+                                    </t>
+                                    <t t-else="">-</t>
+                                </p>
+                                <p>
+                                    <strong>Subject Taught:</strong>
+                                    <t t-if="teacher.subject_ids">
+                                        <t t-esc="', '.join(teacher.subject_ids.mapped('name'))"/>
+                                    </t>
+                                    <t t-else="">-</t>
+                                </p>
+                            </div>
+                        </div>
+                        <hr style="margin-top:10px;" />
+                        <p style="text-align:right; font-size:12px;"><em>Issued by Ridho024</em></p>
                     </div>
                 </div>
             </t>
