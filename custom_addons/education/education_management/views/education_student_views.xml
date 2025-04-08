@@ -39,8 +39,8 @@
                         <group>
                             <field name="gender" />
                             <field name="id_student"/>
-                            <field name="email"/>
-                            <field name="phone"/>
+                            <field name="email" widget="email" />
+                            <field name="phone" widget="phone"/>
                         </group> 
                         <group>
                             <field name="date_of_birth"/>
@@ -53,13 +53,13 @@
                             <group>
                                 <group string="Student's Father">
                                     <field name="father_name" />
-                                    <field name="father_contact" />
-                                    <field name="father_email" />
+                                    <field name="father_contact" widget="phone" />
+                                    <field name="father_email" widget="email" />
                                 </group>
                                 <group string="Student's Mother">
                                     <field name="mother_name" />
-                                    <field name="mother_contact" />
-                                    <field name="mother_email" />
+                                    <field name="mother_contact" widget="phone" />
+                                    <field name="mother_email" widget="email" />
                                 </group>
                             </group>
                         </page>
