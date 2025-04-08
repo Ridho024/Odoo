@@ -29,7 +29,7 @@
         'data/education_subject_sequence.xml',
         'report/education_student_id_card.xml',
         'report/education_teacher_id_card.xml',
-        'report/assessment_student_report.xml',
+        'report/student_assessment_report.xml',
         'report/teacher_evaluation_report.xml',
         'report/student_attendance_report.xml',
         'report/student_assessment_record_report.xml',
