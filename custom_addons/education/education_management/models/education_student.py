@@ -29,7 +29,7 @@ class EducationStudent(models.Model):
     mother_email = fields.Char(string='Mother Email', tracking=True)
     
     # Informasi Akademik
-    classroom_id = fields.Many2one('education.classroom', string='Class', tracking=True, readonly=True)
+    classroom_id = fields.Many2one('education.classroom', string='Class', tracking=True, readonly=False)
     
     # Status Siswa
     status = fields.Selection([

@@ -35,6 +35,7 @@
         'report/student_assessment_record_report.xml',
         'security/ir.model.access.csv', 
         'wizard/student_attendance_wizard_views.xml',
+        'wizard/classroom_promotion_wizard_views.xml',
         'views/education_student_views.xml',
         'views/education_classroom_views.xml',
         'views/education_major_views.xml',

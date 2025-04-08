@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="classroom_promotion_wizard_view_form" model="ir.ui.view">
+        <field name="name">classroom.promotion.wizard.view.form</field>
+        <field name="model">classroom.promotion.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                   <group>
+                        <group>
+                            <field name="current_classroom_id" />
+                            <field name="new_classroom_id" />
+                            <field name="student_ids" widget="many2many_tags" />
+                        </group>
+                   </group>
+                   <footer>
+                        <button name="action_promote_students" type="object" string="Promote" class="btn-primary" />
+                        <button name="action_graduate_students" type="object" string="Graduate" class="btn-primary" invisible="not show_graduate_button"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                   </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="classroom_promotion_wizard_action" model="ir.actions.act_window">
+        <field name="name">Promotion Students Classsroom</field>
+        <field name="res_model">classroom.promotion.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="classroom_promotion_wizard_view_form"/>
+    </record>
+
+</odoo>
