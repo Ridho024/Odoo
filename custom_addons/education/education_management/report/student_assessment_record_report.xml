@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="paperformat_student_assessment_record_report_f4" model="report.paperformat">
-        <field name="name">Student Assessment Record Report (F4)</field>
-        <field name="default" eval="True"/>
+    <record id="paperformat_student_assessment_record_report_a4" model="report.paperformat">
+        <field name="name">Student Assessment Record Report (A4)</field>
+        <field name="default" eval="False"/>
         <field name="format">custom</field>
-        <field name="page_height">330</field>
-        <field name="page_width">216</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
         <field name="orientation">Portrait</field>
-        <field name="margin_top">15</field>
-        <field name="margin_bottom">15</field>
-        <field name="margin_left">20</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">15</field>
         <field name="margin_right">15</field>
         <field name="header_line" eval="False"/>
         <field name="header_spacing">5</field>
@@ -22,82 +22,84 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <h2>Report Assessment Record</h2>
-                        <p>Semester: <span t-field="o.semester"/></p>
-                        <p>Subject: <span t-field="o.subject_id.name"/></p>
-                        <p>Total Question: <span t-field="o.subject_id.name"/></p>
-                        <p class="mb-3">
-                            Category: 
-                            <t t-if="o.category == 'daily_task'">
-                                Daily Task
-                            </t>
-                            <t t-elif="o.category == 'daily_exam'">
-                                Daily Exam
-                            </t>
-                            <t t-elif="o.category == 'midterm_exam'">
-                                Midterm Exam
-                            </t>
-                            <t t-elif="o.category == 'final_exam'">
-                                Final Exam
-                            </t>
-                            <t t-elif="o.category == 'practical_exam'">
-                                Practical Exam
-                            </t>
-                            <t t-else="">
-                                Category not identified
-                            </t>
-                        </p>
 
-                        <h2>Criteria Assessment</h2>
-                        <table class="table">
-                            <thead>
+                        <h2 class="text-center">Student Assessment Report</h2>
+                        <hr style="margin-bottom: 10px;" />
+
+                        <div class="row mb-2">
+                            <div class="col-6">
+                                <strong>Semester:</strong> <span t-field="o.semester"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Date:</strong> <span t-field="o.date" t-options='{"widget": "date"}'/>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-6">
+                                <strong>Subject:</strong> <span t-field="o.subject_id.name"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Classroom:</strong> <span t-field="o.classroom_id.name"/>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-6">
+                                <strong>Teacher:</strong> <span t-field="o.teacher_id.name"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Total Questions:</strong> <span t-field="o.total_question"/>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <strong>Category:</strong>
+                            <t t-if="o.category == 'daily_task'">Daily Task</t>
+                            <t t-elif="o.category == 'daily_exam'">Daily Exam</t>
+                            <t t-elif="o.category == 'midterm_exam'">Midterm Exam</t>
+                            <t t-elif="o.category == 'final_exam'">Final Exam</t>
+                            <t t-elif="o.category == 'practical_exam'">Practical Exam</t>
+                            <t t-else="">Category not identified</t>
+                        </div>
+
+                        <h4 class="mt-3">Assessment Criteria</h4>
+                        <table class="table table-sm table-bordered" style="width: 100%; margin-bottom: 20px;">
+                            <thead style="background-color: #f0f0f0;">
                                 <tr>
-                                    <th>Criteria</th>
-                                    <th>Weight</th>
+                                    <th style="padding: 5px;">Criteria</th>
+                                    <th style="padding: 5px;">Weight (%)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-set="assessment_criteria" t-value="o.assessment_criteria_ids"/>
                                 <tr t-foreach="assessment_criteria" t-as="criteria">
-                                    <td>
-                                        <span t-field="criteria.name"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="criteria.weight"/> %
-                                    </td>
+                                    <td style="padding: 5px;"><span t-field="criteria.name"/></td>
+                                    <td style="padding: 5px; text-align: right;"><span t-field="criteria.weight"/>%</td>
                                 </tr>
                             </tbody>
                         </table>
 
-                        <h2>Student Results</h2>
-                        <table class="table">
-                            <thead>
+                        <h4 class="mt-3">Student Results</h4>
+                        <table class="table table-sm table-bordered" style="width: 100%;">
+                            <thead style="background-color: #f0f0f0;">
                                 <tr>
-                                    <th>Student</th>
-                                    <th>Correct Answer</th>
-                                    <th>Incorrect Answer</th>
-                                    <th>Total Score</th>
+                                    <th style="padding: 5px;">Student</th>
+                                    <th style="padding: 5px; text-align: center;">Correct Answer</th>
+                                    <th style="padding: 5px; text-align: center;">Incorrect Answer</th>
+                                    <th style="padding: 5px; text-align: center;">Total Score (%)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-set="student_results" t-value="o.assessment_result_ids"/>
                                 <tr t-foreach="student_results" t-as="result">
-                                    <td>
-                                        <span t-field="result.student_id.name"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="result.correct_answer"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="result.incorrect_answer"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="result.score"/> %
-                                    </td>
+                                    <td style="padding: 5px;"><span t-field="result.student_id.name"/></td>
+                                    <td style="padding: 5px; text-align: center;"><span t-field="result.correct_answer"/></td>
+                                    <td style="padding: 5px; text-align: center;"><t t-esc="result.assessment_id.total_question - result.correct_answer"/></td>
+                                    <td style="padding: 5px; text-align: center;"><t t-esc="'%.2f' % result.score"/>%</td>
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </t>
             </t>
@@ -112,6 +114,7 @@
         <field name="report_file">education_management.report_student_assessment_record</field>
         <field name="print_report_name">'Assessment Report - %s' % object.subject_id.name</field>
         <field name="binding_model_id" ref="model_education_student_assessment"/>
+        <field name="paperformat_id" ref="education_management.paperformat_student_assessment_record_report_a4"/>
         <field name="binding_type">report</field>
     </record>
 
