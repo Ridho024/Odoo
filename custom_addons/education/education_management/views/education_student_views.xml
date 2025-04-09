@@ -15,7 +15,7 @@
                 <field name="email" />
                 <field name="classroom_id" widget="badge" />
                 <field name="status" widget="badge" decoration-success="status == 'active'" decoration-danger="status == 'dropout'" decoration-primary="status == 'graduated'"/>
-                <button string="Attendance" name="%(education_management.action_create_student_attendance)d" type="action" class="oe_highlight" invisible="status != 'active'" context="{'default_student_id': id, 'default_classroom_id': classroom_id}"/>
+                <button string="Attendance" name="%(education_management.action_create_student_attendance)d" type="action" class="oe_highlight" invisible="status != 'active' or not classroom_id" context="{'default_student_id': id, 'default_classroom_id': classroom_id}"/>
             </list>
         </field>
     </record>
@@ -65,12 +65,12 @@
                             </group>
                         </page>
                         <page name="student_achievement" string="Achievements">
-                            <field name="achievement_ids">
-                                <list>
+                            <field name="achievement_ids" context="{'default_student_id': id}">
+                                <list editable="bottom">
                                     <field name="name"/>
                                     <field name="date"/>
                                     <field name="description"/>
-                                    <field name="sertificate"/>
+                                    <field name="certificate" filename="name"/>
                                 </list>
                             </field>
                         </page>

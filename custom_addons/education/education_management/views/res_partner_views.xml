@@ -1,58 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- FORM VIEW INHERITANCE -->
     <record id="res_partner_view_form_inherit_education" model="ir.ui.view">
         <field name="name">res.partner.view.form.inherit.education</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="priority">17</field>
         <field name="arch" type="xml">
+
+            <!-- Buat Email & Phone Required Jika is_teacher -->
             <xpath expr="//field[@name='phone']" position="attributes">
                 <attribute name="required">[('is_teacher', '=', True)]</attribute>
             </xpath>
+
             <xpath expr="//field[@name='email']" position="attributes">
                 <attribute name="required">[('is_teacher', '=', True)]</attribute>
             </xpath>
+
+            <!-- Tambahkan Gender & Is Teacher -->
             <xpath expr="//field[@name='l10n_id_pkp']" position="after">
                 <field name="gender"/>
                 <field name="is_teacher"/>
             </xpath>
-            <xpath expr="//notebook//page[@name='sales_purchases']" position="attributes">
+
+            <!-- Sembunyikan Tab yang tidak relevan -->
+            <xpath expr="//notebook/page[@name='sales_purchases']" position="attributes">
                 <attribute name="invisible">is_teacher</attribute>
             </xpath>
-            <xpath expr="//notebook//page[@name='accounting']" position="attributes">
+
+            <xpath expr="//notebook/page[@name='accounting']" position="attributes">
                 <attribute name="invisible">is_teacher</attribute>
             </xpath>
-            <xpath expr="//notebook//page[@name='internal_notes']" position="before">
+
+            <!-- Tambahkan Tab Education Management -->
+            <xpath expr="//notebook/page[@name='internal_notes']" position="before">
                 <page string="Education Management" name="education" invisible="not is_teacher">
                     <group>
-                        <group string='Classes'>
+                        <group string="Classes">
                             <field name="major_ids" widget="many2many_tags"/>
                             <field name="subject_ids" widget="many2many_tags"/>
                         </group>
                         <group string="Administration">
-                            <field name="nip" required="[(is_teacher, '=', True)]" />
+                            <field name="nip" required="[(is_teacher, '=', True)]"/>
+                            <field name="teacher_login_id" readonly="1"/>
                         </group>
                     </group>
                 </page>
             </xpath>
+
+            <!-- Sembunyikan Button Finance Jika Teacher -->
             <xpath expr="//button[@name='action_view_sale_order']" position="attributes">
                 <attribute name="invisible">is_teacher</attribute>
             </xpath>
+
             <xpath expr="//button[@name='action_view_partner_invoices']" position="attributes">
                 <attribute name="invisible">is_teacher</attribute>
             </xpath>
+
+            <!-- Sembunyikan Summary Row Jika Teacher -->
             <xpath expr="//div[@class='o_row']" position="attributes">
                 <attribute name="invisible">is_teacher</attribute>
             </xpath>
+
+            <!-- Tambahkan Header Action -->
             <xpath expr="//sheet" position="before">
                 <header>
-                    <button string="Create Teacher User" name="action_create_teacher_user" type="object" class="oe_highlight" invisible="not is_teacher and teacher_login_id" />
+                    <button name="action_create_teacher_user"
+                            type="object"
+                            string="Create Teacher User"
+                            class="oe_highlight"
+                            invisible="not is_teacher or teacher_login_id"/>
                 </header>
             </xpath>
         </field>
     </record>
 
+    <!-- ACTION WINDOW UNTUK TEACHERS -->
     <record id="education_teacher_action" model="ir.actions.act_window">
         <field name="name">Teachers List</field>
         <field name="res_model">res.partner</field>
