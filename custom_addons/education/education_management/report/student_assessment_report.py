@@ -15,11 +15,10 @@ class AssessmentReport(models.AbstractModel):
 
         # Mengelompokkan berdasarkan semester, kategori, dan subject
         for assessment in assessment_data:
-            semester = assessment.semester or 'Unknown'
-            category = assessment.category or 'Unknown'
-            subject = assessment.subject_id.name if assessment.subject_id else 'Unknown'
+            semester = assessment.assessment_id.semester or 'Unknown'
+            category = assessment.assessment_id.category or 'Unknown'
+            subject = assessment.assessment_id.subject_id.name if assessment.assessment_id.subject_id else 'Unknown'
 
-            # Membuat struktur dictionary bertingkat
             if semester not in grouped_assessments:
                 grouped_assessments[semester] = {}
 
@@ -29,9 +28,9 @@ class AssessmentReport(models.AbstractModel):
             if subject not in grouped_assessments[semester][category]:
                 grouped_assessments[semester][category][subject] = {'scores': [], 'average': 0.0}
 
-            # Menambahkan nilai ke daftar skor
             grouped_assessments[semester][category][subject]['scores'].append(assessment.score)
 
+        
         # Hitung rata-rata untuk setiap grup
         for semester, categories in grouped_assessments.items():
             for category, subjects in categories.items():

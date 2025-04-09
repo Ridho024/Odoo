@@ -28,7 +28,8 @@
             <form string="Student Form">
                 <header>
                     <field name="status" widget="statusbar" options="{'statusbar_visible': ['draft', 'active', 'graduated', 'dropout']}"/>
-                    <button string="Set to Dropout" name="action_set_to_dropout" type="object" class="oe_stat_button"/>
+                    <button string="Cancel Dropout" name="action_cancel_dropout" type="object" class="oe_highlight" invisible="status != 'dropout'"/>
+                    <button string="Set to Dropout" name="action_set_to_dropout" type="object" class="oe_stat_button" invisible="status == 'dropout'"/>
                 </header>
                 <sheet>
                     <group>

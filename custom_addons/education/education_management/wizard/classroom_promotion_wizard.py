@@ -6,7 +6,7 @@ class ClassroomPromotionWizard(models.TransientModel):
     _description = 'Classroom Promotion Wizard'
     
     current_classroom_id = fields.Many2one('education.classroom', string='Classroom', required=True)
-    new_classroom_id = fields.Many2one('education.classroom', string='New Classroom', required=True, domain="[('id', '!=', current_classroom_id)]")
+    new_classroom_id = fields.Many2one('education.classroom', string='New Classroom', domain="[('id', '!=', current_classroom_id)]")
     student_ids = fields.Many2many('education.student', string='Students to Promote', required=True, related='current_classroom_id.student_ids')
     show_graduate_button = fields.Boolean(string='Show Graduate Button', compute='_compute_show_graduate_button')
     
@@ -21,6 +21,7 @@ class ClassroomPromotionWizard(models.TransientModel):
         if not self.student_ids:
             raise UserError(_("No students to graduate."))
         
+        self.current_classroom_id.student_ids = [(3, student.id) for student in self.student_ids]
         self.student_ids.write({'status': 'graduated'})
         
         return {
@@ -46,6 +47,9 @@ class ClassroomPromotionWizard(models.TransientModel):
         
         if not self.student_ids:
             raise UserError(_("Please select at least one student to promote."))
+        
+        if not self.new_classroom_id:
+            raise UserError(_("Please select a new classroom for the promotion."))
         
         # Hapus siswa dari kelas saat ini
         self.current_classroom_id.student_ids = [(3, student.id) for student in self.student_ids]

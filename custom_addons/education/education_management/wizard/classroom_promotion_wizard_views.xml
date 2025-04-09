@@ -10,7 +10,7 @@
                    <group>
                         <group>
                             <field name="current_classroom_id" />
-                            <field name="new_classroom_id" />
+                            <field name="new_classroom_id" required="not show_graduate_button" />
                             <field name="student_ids" widget="many2many_tags" />
                         </group>
                    </group>
