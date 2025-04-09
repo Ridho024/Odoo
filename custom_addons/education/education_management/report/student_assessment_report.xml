@@ -20,7 +20,7 @@
     <template id="report_assessment_student">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.external_layout">
+                <t t-call="web.basic_layout">
                     <div class="page">
     
                         <!-- HEADER -->
@@ -44,37 +44,43 @@
                         </div>
     
                         <!-- ASSESSMENT TABLE -->
-                        <t t-foreach="assessment_data.items()" t-as="semester">
-                            <h4 style="margin-top: 20px; margin-bottom: 5px;">Semester: <t t-esc="semester[0]"/></h4>
-                            
-                            <t t-foreach="semester[1].items()" t-as="category">
-                                <h5 style="margin-bottom: 5px;">
-                                    <strong>Category:</strong> 
-                                    <t t-if="category[0] == 'daily_task'">Daily Task</t>
-                                    <t t-elif="category[0] == 'daily_exam'">Daily Exam</t>
-                                    <t t-elif="category[0] == 'midterm_exam'">Midterm Exam</t>
-                                    <t t-elif="category[0] == 'final_exam'">Final Exam</t>
-                                    <t t-elif="category[0] == 'practical_exam'">Practical Exam</t>
-                                    <t t-else="">Unknown</t>
-                                </h5>
-    
-                                <table class="table table-sm table-bordered" style="width: 100%; font-size: 14px; border-collapse: collapse; margin-bottom: 15px;">
-                                    <thead style="background-color: #f0f0f0;">
-                                        <tr>
-                                            <th style="border: 1px solid #000; padding: 4px; width: 70%;">Subject</th>
-                                            <th style="border: 1px solid #000; padding: 4px; width: 30%;">Average Score</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <t t-foreach="category[1].items()" t-as="subject">
+                        <t t-set="student_assessments" t-value="assessment_data.get(o.id, {})"/>
+                        <t t-if="student_assessments">
+                            <t t-foreach="student_assessments.items()" t-as="semester">
+                                <h4 style="margin-top: 20px; margin-bottom: 5px;">Semester: <t t-esc="semester[0]"/></h4>
+                                
+                                <t t-foreach="semester[1].items()" t-as="category">
+                                    <h5 style="margin-bottom: 5px;">
+                                        <strong>Category:</strong> 
+                                        <t t-if="category[0] == 'daily_task'">Daily Task</t>
+                                        <t t-elif="category[0] == 'daily_exam'">Daily Exam</t>
+                                        <t t-elif="category[0] == 'midterm_exam'">Midterm Exam</t>
+                                        <t t-elif="category[0] == 'final_exam'">Final Exam</t>
+                                        <t t-elif="category[0] == 'practical_exam'">Practical Exam</t>
+                                        <t t-else="">Unknown</t>
+                                    </h5>
+        
+                                    <table class="table table-sm table-bordered" style="width: 100%; font-size: 14px; border-collapse: collapse; margin-bottom: 15px;">
+                                        <thead style="background-color: #f0f0f0;">
                                             <tr>
-                                                <td style="border: 1px solid #000; padding: 4px;"><t t-esc="subject[0]"/></td>
-                                                <td style="border: 1px solid #000; padding: 4px;"><t t-esc="round(subject[1]['average'], 2)"/></td>
+                                                <th style="border: 1px solid #000; padding: 4px; width: 70%;">Subject</th>
+                                                <th style="border: 1px solid #000; padding: 4px; width: 30%;">Average Score</th>
                                             </tr>
-                                        </t>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="category[1].items()" t-as="subject">
+                                                <tr>
+                                                    <td style="border: 1px solid #000; padding: 4px;"><t t-esc="subject[0]"/></td>
+                                                    <td style="border: 1px solid #000; padding: 4px;"><t t-esc="round(subject[1].get('average', 0.0), 2)"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </t>
                             </t>
+                        </t>
+                        <t t-else="">
+                            <p>No assessment data available for this student.</p>
                         </t>
     
                         <!-- FOOTER -->
