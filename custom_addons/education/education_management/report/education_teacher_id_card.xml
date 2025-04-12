@@ -1,55 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="paperformat_teacher_id_card_a4" model="report.paperformat">
+        <field name="name">Teacher ID Card (A4)</field>
+        <field name="default" eval="False"/>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">5</field>
+        <field name="dpi">90</field>
+    </record>
+
+
     <template id="report_teacher_id_card_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="teacher">
-                <!-- <div class="page">
-                    <div style="border:2px solid #000; padding:20px; text-align:center;">
-                        <h2 style="color:purple;">Teacher ID Card</h2>
-                        <img t-att-src="image_data_uri(teacher.image_1920)" alt="Teacher Photo" style="max-width:100px;"/>
-                        <p><strong>Name:</strong> <t t-esc="teacher.name"/></p>
-                        <p><strong>NIP:</strong> <t t-esc="teacher.nip"/></p>
-                        <p><strong>Issued By:</strong> Ridho024</p>
-                    </div>
-                </div> -->
-                <div class="page">
-                    <div style="border:2px solid #000; padding:20px;">
-                        <h2 style="text-align:center; color:purple;">Teacher ID Card</h2>
-                        <hr style="margin:10px 0;" />
-                        <div style="display:flex; align-items:center;">
-                            <!-- Foto -->
-                            <div style="flex:1; text-align:center;">
-                                <img t-att-src="image_data_uri(teacher.image_1920)"
-                                     alt="Teacher Photo"
-                                     style="max-width:100px; height:auto; border:1px solid #ccc;"/>
-                            </div>
-                            <!-- Informasi Guru -->
-                            <div style="flex:2; padding-left:20px;">
-                                <p><strong>NIP:</strong> <t t-esc="teacher.nip or '-'"/></p>
-                                <p><strong>Name:</strong> <t t-esc="teacher.name or '-'"/></p>
-                                <p><strong>Gender:</strong> <t t-esc="dict({'male': 'Male', 'female': 'Female'}).get(teacher.gender, '-')"/></p>
-                                <p><strong>Email:</strong> <t t-esc="teacher.email or '-'"/></p>
-                                <p><strong>Phone:</strong> <t t-esc="teacher.phone or '-'"/></p>
-                                <p>
-                                    <strong>Major Assigned:</strong>
-                                    <t t-if="teacher.major_ids">
-                                        <t t-esc="', '.join(teacher.major_ids.mapped('name'))"/>
-                                    </t>
-                                    <t t-else="">-</t>
-                                </p>
-                                <p>
-                                    <strong>Subject Taught:</strong>
-                                    <t t-if="teacher.subject_ids">
-                                        <t t-esc="', '.join(teacher.subject_ids.mapped('name'))"/>
-                                    </t>
-                                    <t t-else="">-</t>
-                                </p>
-                            </div>
+                <div class="page" style="border: 1px solid #000; page-break-after: always; width: 70%; text-align: center; padding: 10px 0px 10px 0px; font-family: Arial, sans-serif;">
+
+                    <!-- Title -->
+                    <h2 style="text-transform: uppercase; text-align: center; color: #4B0082; margin-bottom: 5px;">Teacher ID Card</h2>
+                    <hr style="border: 1px solid #4B0082; margin-bottom: 20px; width: 100%;"/>
+
+                    <!-- Two Column Layout -->
+                    <div style="display: table; width: 100%;">
+                        <!-- Teacher Photo -->
+                        <div style="display: table-cell; width: 35%; text-align: center; vertical-align: top;">
+                            <t t-if="teacher.image_1920">
+                                <img t-att-src="image_data_uri(teacher.image_1920)" alt="Teacher Photo" style="width: 120px; height: 150px; border: 1px solid #999; margin: auto;" />
+                            </t>
+                            <t t-else="">
+                                <div style="width: 120px; height: 150px; border: 1px solid #999; margin: auto; display: flex; align-items: center; justify-content: center; color: #aaa;">
+                                    No Photo
+                                </div>
+                            </t>
                         </div>
-                        <hr style="margin-top:10px;" />
-                        <p style="text-align:right; font-size:12px;"><em>Issued by Ridho024</em></p>
+
+                        <!-- teacher Info -->
+                        <div style="display: table-cell; width: 65%; padding-left: 20px; text-align: left;">
+                            <p style="margin: 6px 0;"><strong>NIP:</strong> <t t-esc="teacher.nip or '-'" /></p>
+                            <p style="margin: 6px 0;"><strong>Name:</strong> <t t-esc="teacher.name or '-'" /></p>
+                            <p style="margin: 6px 0;"><strong>Gender:</strong> 
+                                <t t-if="teacher.gender == 'male'">Male</t>
+                                <t t-if="teacher.gender == 'female'">Female</t>
+                            </p>
+                            <p style="margin: 6px 0;"><strong>Email:</strong> <t t-esc="teacher.email or '-'" /></p>
+                            <p style="margin: 6px 0;"><strong>Phone:</strong> <t t-esc="teacher.phone or '-'" /></p>
+                        </div>
                     </div>
+
+                    <!-- Footer -->
+                    <div style="text-align: right; margin-top: 25px; margin-right: 10px; font-size: 10px; color: #666;">
+                        <em>Generated by Odoo - Your School Management System</em>
+                    </div>
+                    
                 </div>
             </t>
         </t>
@@ -63,6 +72,7 @@
        <field name="report_file">education_management.report_teacher_id_card_template</field>
        <field name="print_report_name">'Teacher ID Card - %s' % (object.name)</field>
        <field name="binding_model_id" ref="model_res_partner"/>
+       <field name="paperformat_id" ref="education_management.paperformat_teacher_id_card_a4" />
        <field name="binding_type">report</field>
    </record>
 

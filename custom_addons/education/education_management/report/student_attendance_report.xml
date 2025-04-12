@@ -20,34 +20,27 @@
     <template id="report_student_attendance">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.external_layout">
+                <t t-call="web.basic_layout">
                     <div class="page">
                         <!-- Judul -->
                         <div style="text-align: center; margin-bottom: 20px;">
                             <h2 style="text-transform: uppercase; font-weight: bold; border-bottom: 2px solid #000; padding-bottom: 10px;">
-                                Student Attendance Report
+                                STUDENT ATTENDANCE REPORT
                             </h2>
                         </div>
 
-                        <!-- Info Siswa -->
-                        <table class="table table-sm" style="width: 100%; margin-bottom: 30px;">
-                            <tr>
-                                <td><strong>Name:</strong></td>
-                                <td><t t-esc="o.name"/></td>
-                                <td><strong>Classroom:</strong></td>
-                                <td><t t-esc="o.classroom_id.name"/></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Teacher:</strong></td>
-                                <td><t t-esc="o.classroom_id.teacher_id.name"/></td>
-                                <td><strong>Printed on:</strong></td>
-                                <td>
-                                    <t t-if="o.create_date">
-                                        <t t-esc="o.create_date.strftime('%d %B %Y')"/>
-                                    </t>
-                                </td>
-                            </tr>
-                        </table>
+                        <!-- STUDENT INFO -->
+                        <div class="mb-3">
+                            <p><strong>Student Name:</strong> <span t-field="o.name"/></p>
+                            <p><strong>Classroom Name:</strong> <span t-field="o.classroom_id.name"/></p>
+                            <p><strong>Teacher Name:</strong> <span t-field="o.classroom_id.teacher_id.name"/></p>
+                            <p>
+                                <strong>Print on: </strong>
+                                <t t-if="o.create_date">
+                                    <t t-esc="o.create_date.strftime('%d %B %Y')"/>
+                                </t>
+                            </p>
+                        </div>
 
                         <!-- Attendance Section -->
                         <t t-foreach="attendance_data.items()" t-as="year_data">
@@ -102,7 +95,7 @@
     <record id="action_report_student_attendance" model="ir.actions.report">
         <field name="name">Student Attendances Report</field>
         <field name="model">education.student</field>
-        <field name="report_type">qweb-pdf</field>
+        <field name="report_type">qweb-html</field>
         <field name="report_name">education_management.report_student_attendance</field>
         <field name="report_file">education_management.report_student_attendance</field>
         <field name="paperformat_id" ref="education_management.paperformat_student_attendance_report_a4"/>
