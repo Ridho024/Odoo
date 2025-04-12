@@ -29,7 +29,7 @@
                         <page string="Subject Details">
                             <field name="subject_ids">
                                 <list editable="bottom">
-                                    <field name="curriculum_id"/>
+                                    <field name="curriculum_id" domain="[('major_id', '!=', False)]" options="{'no_create':True, 'no_quick_create': True}" />
                                     <field name="studies"/>
                                 </list>
                             </field>
