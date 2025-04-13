@@ -9,7 +9,7 @@ class EducationMajor(models.Model):
     
     name = fields.Char(string='Name', required=True)
     code = fields.Char(string='Code', required=True, copy=False, readonly=True, index=True, default='New')
-    teacher_id = fields.Many2one('res.partner', string='Instructor', required=True, help="Main instructor for this course", domain="[('is_teacher', '=', True)]")
+    teacher_id = fields.Many2one('res.partner', string='Instructor', required=True, help="Main instructor for this major", domain="[('is_teacher', '=', True)]")
     teacher_ids = fields.Many2many('res.partner', string='Teachers', help='List teachers for this major', domain="[('is_teacher', '=', True)]")
     curriculum_ids = fields.One2many('education.major.curriculum', 'major_id', string='Curriculum', help='Curriculum Details')
     academic_year = fields.Char(string='Academic Year', required=True, help='Academic year for this major')
