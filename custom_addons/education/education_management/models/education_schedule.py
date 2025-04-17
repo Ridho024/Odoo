@@ -10,7 +10,7 @@ class EducationSchedule(models.Model):
         'education.subject', string='Subject Name', required=True
     )
     classroom_id = fields.Many2one(
-        'education.classroom', string='Classroom', required=True
+        'education.classroom', string='Classroom', readonly=True
     )
     teacher_id = fields.Many2one(
         'res.partner', string='Teacher', required=True,

@@ -19,6 +19,7 @@ access_teacher_evaluation_result_teacher,access.teacher.evaluation.result.teache
 access_teacher_evaluation_feedback_teacher,access.teacher.evaluation.feedback.teacher,model_teacher_evaluation_feedback,education_management.group_education_teacher,1,1,1,1
 access_message_wizard,access.message.wizard,model_message_wizard,education_management.group_education_teacher,1,1,1,1
 access_res_partner_teacher,access.res.partner.teacher,model_res_partner,education_management.group_education_teacher,1,0,0,0
+access_create_student_attendance_teacher,access.create.student.attendance.teacher,model_create_student_attendance,education_management.group_education_teacher,1,1,1,1
 
 access_education_student,access.education.student,model_education_student,education_management.group_education_manager,1,1,1,1
 access_education_student_achievement,access.education.student.achievement,model_education_student_achievement,education_management.group_education_manager,1,1,1,1
@@ -39,3 +40,4 @@ access_teacher_evaluation_result,access.teacher.evaluation.result,model_teacher_
 access_teacher_evaluation_feedback,access.teacher.evaluation.feedback,model_teacher_evaluation_feedback,education_management.group_education_manager,1,1,1,1
 access_message_wizard,access.message.wizard,model_message_wizard,education_management.group_education_manager,1,1,1,1
 access_res_partner_manager,access.res.partner.manager,model_res_partner,education_management.group_education_manager,1,1,1,1
+access_create_student_attendance_manager,access.create.student.attendance.teacher,model_create_student_attendance,education_management.group_education_manager,1,1,1,1

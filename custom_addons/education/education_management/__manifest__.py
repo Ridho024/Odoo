@@ -52,7 +52,7 @@
     'images': ['education_management/static/description/icon.png'],
     
     'demo': [
-        'demo/demo.xml',
+        # 'demo/demo.xml',
     ],
     'application': True,
     'installable': True,

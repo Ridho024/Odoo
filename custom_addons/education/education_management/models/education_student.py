@@ -35,10 +35,10 @@ class EducationStudent(models.Model):
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
-    ], string='Gender', tracking=True)
-    email = fields.Char(string='Student Email', tracking=True)
-    phone = fields.Char(string='Student Phone', tracking=True)
-    photo = fields.Image(string='Photo')
+    ], string='Gender', tracking=True, required=True)
+    email = fields.Char(string='Student Email', tracking=True, required=True)
+    phone = fields.Char(string='Student Phone', tracking=True, required=True)
+    photo = fields.Image(string='Photo', required=True)
 
     # === Parent Information ===
     father_name = fields.Char(string='Father Name', tracking=True)
