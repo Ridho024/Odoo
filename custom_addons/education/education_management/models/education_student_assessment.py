@@ -32,7 +32,7 @@ class EducationStudentAssessment(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('done', 'Done')
-    ], string='Status', default='draft', tracking=True)
+    ], string='Status', default='draft')
 
     assessment_criteria_ids = fields.One2many(
         'student.assessment.criteria', 'assessment_id', string='Assessment Criteria'
