@@ -28,6 +28,7 @@
             <form string="Student Form">
                 <header>
                     <field name="status" widget="statusbar" options="{'statusbar_visible': ['draft', 'active', 'graduated', 'dropout']}"/>
+                    <button string="Create Student User" name="action_create_student_user" type="object" class="oe_highlight" invisible="student_login_id" />
                     <button string="Cancel Dropout" name="action_cancel_dropout" type="object" class="oe_highlight" invisible="status != 'dropout'"/>
                     <button string="Set to Dropout" name="action_set_to_dropout" type="object" class="oe_stat_button" invisible="status == 'dropout'"/>
                 </header>
@@ -47,6 +48,7 @@
                             <field name="date_of_birth"/>
                             <field name="classroom_id" options="{'no_create': true}"/>
                             <field name="nisn" />
+                            <field name="student_login_id"/>
                         </group>
                     </group>
                     <notebook>

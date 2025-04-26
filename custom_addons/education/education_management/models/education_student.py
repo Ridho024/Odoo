@@ -1,6 +1,6 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
-
+import random, string
 
 class EducationStudent(models.Model):
     _name = 'education.student'
@@ -20,6 +20,7 @@ class EducationStudent(models.Model):
 
     # === Basic Information ===
     sequence = fields.Integer(string='Sequence', default=10)
+    student_login_id = fields.Many2one('res.users', string='Portal Student User', readonly=True)
     name = fields.Char(string='Student Name', required=True, tracking=True, default="John Doe")
     nisn = fields.Char(string='NISN', required=True, tracking=True)
     id_student = fields.Char(
@@ -114,3 +115,52 @@ class EducationStudent(models.Model):
             student.message_post(
                 body=_("Student dropout status has been canceled. Status changed to 'Draft'.")
             )
+            
+    def action_create_student_user(self):
+        """Create related user account for a student (as portal user)."""
+        self.ensure_one()
+
+        if self.student_login_id:
+            raise ValidationError(_("User login for this student already exists."))
+
+        if not self.email:
+            raise ValidationError(_("Student must have an email to create a user."))
+
+        # Generate random password
+        password = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+
+        # Get necessary group IDs
+        portal_group = self.env.ref('base.group_portal')
+        student_group = self.env.ref('education_management.group_education_student')
+
+        # Create the user
+        new_user = self.env['res.users'].sudo().create({
+            'name': self.name,
+            'login': self.email,
+            'partner_id': self.env['res.partner'].create({
+                'name': self.name,
+                'email': self.email,
+            }).id,
+            'groups_id': [(6, 0, [portal_group.id, student_group.id])],
+            'password': password,
+            'active': True,
+        })
+
+        # Link to student
+        self.student_login_id = new_user
+
+        # Show message with login details
+        message = _(
+            'User student successfully created!\n\n'
+            'Login: {}\nPassword: {}'
+        ).format(new_user.login, password)
+
+        message_id = self.env['message.wizard'].create({'message': message})
+        return {
+            'name': _('User Created'),
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'message.wizard',
+            'res_id': message_id.id,
+            'target': 'new'
+        }
