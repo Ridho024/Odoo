@@ -46,7 +46,7 @@
         'views/student_attendance_views.xml',
         'views/education_student_assessment_views.xml',
         'views/education_teacher_evaluation_views.xml',
-        'views/education_student_menu_views.xml',
+        'views/education_management_menu_views.xml',
     ],
     
     'images': ['education_management/static/description/icon.png'],

@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <menuitem id="menu_education_student_root" name="Education"/>
-
-    <!-- Classroom -->
-    <menuitem
-        id="education_classroom_menu"
-        name="Classroom"
-        action="education_classroom_action"
-        parent="menu_education_student_root"
-        sequence="10"/>
+    <menuitem id="menu_education_management_root" name="Education"/>
 
     <!-- Students -->
     <menuitem
         id="menu_students_root"
         name="Students"
-        parent="menu_education_student_root"
+        parent="menu_education_management_root"
         sequence="1"/>
         
     <menuitem 
         id="menu_education_list" 
         name="Student List" 
         parent="menu_students_root" 
-        sequence="2" 
+        sequence="1" 
         action="education_student_action"/>
 
     <menuitem
@@ -30,70 +22,77 @@
         name="Assessment"
         action="education_student_assessment_action"
         parent="menu_students_root"
-        sequence="3"/>
+        sequence="2"/>
 
     <menuitem
         id="student_attendance_menu"
         name="Attendances"
         action="education_student_attendance_action"
         parent="menu_students_root"
-        sequence="4"/>
+        sequence="3"/>
 
     <!-- Teachers -->
     <menuitem
         id="menu_teachers_root"
         name="Teachers"
-        parent="menu_education_student_root"
-        sequence="4"/>
+        parent="menu_education_management_root"
+        sequence="2"/>
 
     <menuitem
         id="education_teacher_menu"
         name="Teacher List"
         action="education_teacher_action"
         parent="menu_teachers_root"
-        sequence="5"/>
+        sequence="1"/>
 
     <menuitem
         id="teacher_evaluation_menu"
         name="Evaluation"
         action="education_teacher_evaluation_action"
         parent="menu_teachers_root"
-        sequence="6"/>
+        sequence="2"/>
 
+    <!-- Classroom -->
+    <menuitem
+        id="education_classroom_menu"
+        name="Classroom"
+        action="education_classroom_action"
+        parent="menu_education_management_root"
+        sequence="3"/>
+
+    <!-- Configuration -->
+    <menuitem
+        id="menu_education_management_config"
+        name="Configuration"
+        parent="menu_education_management_root"
+        sequence="4"/>
+
+    <menuitem
+        id="menu_grade_promotion"
+        name="Grade Promotion"
+        action="classroom_promotion_wizard_action"
+        parent="menu_education_management_config"
+        sequence="1"/>
 
     <!-- Courses -->
     <menuitem
-        id="menu_studies_root"
+        id="menu_studies_header"
         name="Studies"
-        parent="menu_education_student_root"
-        sequence="7"/>
+        parent="menu_education_management_config"
+        sequence="2"/>
 
     <menuitem
         id="education_major_menu"
         name="Education Major"
         action="education_major_action"
-        parent="menu_studies_root"
-        sequence="8"/>
+        parent="menu_studies_header"
+        sequence="3"/>
 
     <menuitem
         id="education_subject_menu"
         name="Subjects"
         action="education_subject_action"
-        parent="menu_studies_root"
-        sequence="9"/>
-
-    <!-- Configuration -->
-    <menuitem
-        id="menu_education_config_root"
-        name="Configuration"
-        parent="menu_education_student_root"
-        sequence="10"/>
-
-    <menuitem
-        id="menu_education_classroom_config"
-        name="Classroom"
-        action="classroom_promotion_wizard_action"
-        parent="menu_education_config_root"
-        sequence="11"/>
+        parent="menu_studies_header"
+        sequence="4"/>
 
 </odoo>
