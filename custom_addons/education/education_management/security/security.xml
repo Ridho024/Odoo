@@ -21,6 +21,12 @@
             <field name="implied_ids" eval="[(4, ref('education_management.group_education_teacher'))]" />
         </record>
 
+        <record id="group_education_admin" model="res.groups">
+            <field name="name">Admin</field>
+            <field name="category_id" ref="education_management.module_category_education_management"/>
+            <field name="implied_ids" eval="[(4, ref('education_management.group_education_staff'))]" />
+        </record>
+
         <!-- Record Rule -->
         <record id="restrict_access_teacher" model="ir.rule">
             <field name="name">Teacher cannot create teacher record</field>
