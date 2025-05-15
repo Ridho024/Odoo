@@ -68,14 +68,14 @@
 
     <menuitem
         id="education_classroom_property_menu"
-        name="Classroom Property"
+        name="Properties"
         action="education_classroom_property_action"
         parent="education_classroom_menu"
         sequence="2"/>
 
     <menuitem
         id="education_classroom_schedule_menu"
-        name="Classroom Schedule"
+        name="Schedules"
         action="education_classroom_schedule_action"
         parent="education_classroom_menu"
         sequence="3"/>
