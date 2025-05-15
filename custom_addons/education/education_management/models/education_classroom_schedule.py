@@ -1,21 +1,11 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
-class EducationSchedule(models.Model):
-    _name = 'education.schedule'
-    _description = 'Class Schedule'
-    _rec_name = "subject_id"
+class EducationClassroomSchedule(models.Model):
+    _name = 'education.classroom.schedule'
+    _description = 'Classrom Schedule'
+    _rec_name = "classroom_id"
 
-    subject_id = fields.Many2one(
-        'education.subject', string='Subject Name', required=True
-    )
-    classroom_id = fields.Many2one(
-        'education.classroom', string='Classroom', readonly=True
-    )
-    teacher_id = fields.Many2one(
-        'res.partner', string='Teacher', required=True,
-        domain="[('is_teacher', '=', True)]"
-    )
     day_of_week = fields.Selection([
         ('monday', 'Monday'),
         ('tuesday', 'Tuesday'),
@@ -25,18 +15,41 @@ class EducationSchedule(models.Model):
         ('saturday', 'Saturday'),
         ('sunday', 'Sunday'),
     ], string='Day of Week', required=True)
+    
+    classroom_id = fields.Many2one(
+        'education.classroom', string='Classroom', readonly=True
+    )
+    
+    grade = fields.Selection([
+        ('1', 'X'),
+        ('2', 'XI'),
+        ('3', 'XII'),
+        ('4', 'XIII')
+    ], string='Grade', readonly=True, related='classroom_id.grade', store=True)
+    
+    subject_id = fields.Many2one(
+        'education.subject', string='Subject Name', required=True
+    )
+    
+    teacher_id = fields.Many2one(
+        'res.partner', string='Main Teacher', required=True,
+        domain="[('is_teacher', '=', True)]"
+    )
 
     start_time = fields.Float(
-        string='Start Time', required=True,
+        string='From', required=True,
         help='Start time in 24-hour format (e.g., 9.00 for 9:00 AM)'
     )
+    
     end_time = fields.Float(
-        string='End Time', required=True,
+        string='To', required=True,
         help='End time in 24-hour format (e.g., 11.00 for 11:00 AM)'
     )
+    
     duration = fields.Float(
         string='Duration (hours)', compute='_compute_duration', store=True
     )
+    
     notes = fields.Text(string='Notes')
 
     @api.depends('start_time', 'end_time')

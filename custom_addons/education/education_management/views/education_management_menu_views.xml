@@ -73,6 +73,13 @@
         parent="education_classroom_menu"
         sequence="2"/>
 
+    <menuitem
+        id="education_classroom_schedule_menu"
+        name="Classroom Schedule"
+        action="education_classroom_schedule_action"
+        parent="education_classroom_menu"
+        sequence="3"/>
+
     <!-- Configuration -->
     <menuitem
         id="menu_education_management_config"

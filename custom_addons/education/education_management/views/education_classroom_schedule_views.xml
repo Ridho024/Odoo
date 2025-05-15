@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="education_classroom_schedule_view_t" model="ir.ui.view">
+        <field name="name">education_classroom_schedule.view.tree</field>
+        <field name="model">education.classroom.schedule</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="day_of_week" class="fw-bolder" />
+                <field name="classroom_id" class="fw-bolder" decoration-danger="grade == '1'" decoration-warning="grade == '2'" decoration-success="grade == '3' or grade == '4'"/>
+                <field name="subject_id" class="fw-bolder" />
+                <field name="teacher_id" widget="many2one_avatar" />
+                <field name="start_time" />
+                <field name="end_time" />
+                <field name="duration" class="fw-bolder" />
+                <field name="notes" />
+            </list>
+        </field>
+    </record>
+
+    <record id="education_classroom_schedule_view_f" model="ir.ui.view">
+        <field name="name">education_classroom_schedule.view.form</field>
+        <field name="model">education.classroom.schedule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="classroom_id" />
+                            <field name="subject_id" />
+                            <field name="teacher_id" widget="many2one_avatar"/>
+                        </group>
+                        <group>
+                            <field name="day_of_week" />
+                            <field name="start_time" />
+                            <field name="end_time" />
+                            <field name="duration" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_classroom_view_search" model="ir.ui.view">
+        <field name="name">education.classroom.view.search</field>
+        <field name="model">education.classroom.schedule</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="classroom_id" />
+                <field name="subject_id" />
+                <field name="teacher_id" />
+                <field name="grade" />
+                <group expand="1" string="Group By">
+                    <filter string="Grade" name="group_by_grade" context="{'group_by':'grade'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="education_classroom_schedule_action" model="ir.actions.act_window">
+        <field name="name">Classroom Schedule</field>
+        <field name="res_model">education.classroom.schedule</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">
+        {
+            'search_default_group_by_grade': 1,
+        }
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create a classroom</p>
+            <p>Click "Create" to add new classroom.</p>
+        </field>
+    </record>
+
+</odoo>

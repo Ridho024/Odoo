@@ -19,7 +19,7 @@ class EducationClassroom(models.Model):
     teacher_id = fields.Many2one('res.partner', string='Teacher', domain="[('is_teacher', '=', True)]", help='Main teacher responsible for the class')
     student_ids = fields.Many2many('education.student', string='Enrolled Students', domain="[('classroom_id', '=', False)]")
     major_id = fields.Many2one('education.major', string='Class Major')
-    schedule_ids = fields.One2many('education.schedule', 'classroom_id', string='Class Schedule')
+    schedule_ids = fields.One2many('education.classroom.schedule', 'classroom_id', string='Class Schedule')
     active = fields.Boolean(string='Active', default=True)
     color = fields.Integer(string='Color')
 
