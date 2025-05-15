@@ -36,6 +36,7 @@
         id="menu_teachers_root"
         name="Teachers"
         parent="menu_education_management_root"
+        groups="education_management.group_education_admin"
         sequence="2"/>
 
     <menuitem

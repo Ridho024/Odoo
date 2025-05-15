@@ -1,0 +1,94 @@
+<odoo>
+    <!-- Demo data for Education Major -->
+    <record id="education_major_demo_1" model="education.major">
+        <field name="name">Rekayasa Perangkat Lunak</field>
+        <field name="code">MJR-001</field>
+        <field name="teacher_id" ref="base.res_partner_2"/>
+        <field name="academic_year">2025/2026</field>
+    </record>
+
+    <record id="education_major_demo_2" model="education.major">
+        <field name="name">Teknik Komputer dan Jaringan</field>
+        <field name="code">MJR-002</field>
+        <field name="teacher_id" ref="base.res_partner_2"/>
+        <field name="academic_year">2025/2026</field>
+    </record>
+
+    <record id="education_major_demo_3" model="education.major">
+        <field name="name">Sistem Jaringan dan Aplikasi</field>
+        <field name="code">MJR-003</field>
+        <field name="teacher_id" ref="base.res_partner_2"/>
+        <field name="academic_year">2025/2026</field>
+    </record>
+
+    <record id="education_major_demo_4" model="education.major">
+        <field name="name">Teknik Permesin</field>
+        <field name="code">MJR-004</field>
+        <field name="teacher_id" ref="base.res_partner_2"/>
+        <field name="academic_year">2025/2026</field>
+    </record>
+
+    <record id="education_major_demo_5" model="education.major">
+        <field name="name">Teknik Otomotif</field>
+        <field name="code">MJR-005</field>
+        <field name="teacher_id" ref="base.res_partner_2"/>
+        <field name="academic_year">2025/2026</field>
+    </record>
+
+    <record id="education_major_demo_6" model="education.major">
+        <field name="name">Desain Komunikasi Visual</field>
+        <field name="code">MJR-006</field>
+        <field name="teacher_id" ref="base.res_partner_2"/>
+        <field name="academic_year">2025/2026</field>
+    </record>
+
+    <record id="education_major_demo_7" model="education.major">
+        <field name="name">Teknik Perancangan Bangunan</field>
+        <field name="code">MJR-007</field>
+        <field name="teacher_id" ref="base.res_partner_2"/>
+        <field name="academic_year">2025/2026</field>
+    </record>
+
+    <!-- Demo data for Education Major Curriculum -->
+    <record id="education_major_curriculum_demo_1" model="education.major.curriculum">
+        <field name="major_id" ref="education_major_demo_1"/>
+        <field name="core_competency">Programing Dasar</field>
+        <field name="basic_competency">Memahami basic programming</field>
+    </record>
+
+    <record id="education_major_curriculum_demo_2" model="education.major.curriculum">
+        <field name="major_id" ref="education_major_demo_2"/>
+        <field name="core_competency">Komponen Komputer</field>
+        <field name="basic_competency">Memahami komponen-komponen komputer</field>
+    </record>
+
+    <record id="education_major_curriculum_demo_3" model="education.major.curriculum">
+        <field name="major_id" ref="education_major_demo_3"/>
+        <field name="core_competency">Komponen Jaringan</field>
+        <field name="basic_competency">memahami komponen-komponen penting dalam jaringan komputer</field>
+    </record>
+
+    <record id="education_major_curriculum_demo_4" model="education.major.curriculum">
+        <field name="major_id" ref="education_major_demo_4"/>
+        <field name="core_competency">Dasar Permesinan</field>
+        <field name="basic_competency">Memahami dasar dari teknologi permesinan</field>
+    </record>
+
+    <record id="education_major_curriculum_demo_5" model="education.major.curriculum">
+        <field name="major_id" ref="education_major_demo_5"/>
+        <field name="core_competency">Dasar Otomotif</field>
+        <field name="basic_competency">Memahami dasar dari teknologi otomotif</field>
+    </record>
+
+    <record id="education_major_curriculum_demo_6" model="education.major.curriculum">
+        <field name="major_id" ref="education_major_demo_6"/>
+        <field name="core_competency">Dasar Desain Visual</field>
+        <field name="basic_competency">Memahami prinsip dasar dasar menggambar</field>
+    </record>
+
+    <record id="education_major_curriculum_demo_7" model="education.major.curriculum">
+        <field name="major_id" ref="education_major_demo_7"/>
+        <field name="core_competency">Dasar Perancangan Bangunan</field>
+        <field name="basic_competency">Memahami dasar dalam perancangan bangunan</field>
+    </record>
+</odoo>
