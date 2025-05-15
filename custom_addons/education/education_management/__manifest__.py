@@ -42,6 +42,7 @@
         'views/education_classroom_views.xml',
         'views/education_major_views.xml',
         'views/res_partner_views.xml',
+        'views/stock_location_views.xml',
         'views/education_subject_views.xml',
         'views/student_attendance_views.xml',
         'views/education_student_assessment_views.xml',

@@ -12,7 +12,7 @@
         
     <menuitem 
         id="menu_education_list" 
-        name="Student List" 
+        name="List Students" 
         parent="menu_students_root" 
         sequence="1" 
         action="education_student_action"/>
@@ -40,7 +40,7 @@
 
     <menuitem
         id="education_teacher_menu"
-        name="Teacher List"
+        name="List Teachers"
         action="education_teacher_action"
         parent="menu_teachers_root"
         sequence="1"/>
@@ -56,9 +56,22 @@
     <menuitem
         id="education_classroom_menu"
         name="Classroom"
-        action="education_classroom_action"
         parent="menu_education_management_root"
         sequence="3"/>
+
+    <menuitem
+        id="education_classroom_list_menu"
+        name="List Classrooms"
+        action="education_classroom_action"
+        parent="education_classroom_menu"
+        sequence="1"/>
+
+    <menuitem
+        id="education_classroom_property_menu"
+        name="Classroom Property"
+        action="education_classroom_property_action"
+        parent="education_classroom_menu"
+        sequence="2"/>
 
     <!-- Configuration -->
     <menuitem
