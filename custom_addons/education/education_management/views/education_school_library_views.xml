@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="education_school_library_view_list" model="ir.ui.view">
+        <field name="name">education.school.library.view.list</field>
+        <field name="model">education.library</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="product_id" widget="many2one_avatar" />
+                <field name="stock_location_id" />
+                <field name="row" />
+                <field name="user_id" />
+                <field name="book_genre_ids" widget="many2many_tags" />
+            </list>
+        </field>
+    </record>
+
+    <record id="education_school_library_view_form" model="ir.ui.view">
+        <field name="name">education.school.library.view.form</field>
+        <field name="model">education.library</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id" widget="many2one_avatar" />
+                            <field name="stock_location_id" />
+                            <field name="row" />
+                        </group>
+                        <group>
+                            <field name="book_genre_ids" widget="many2many_tags" />
+                            <field name="user_id" widget="many2one_avatar" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Book Borrower">
+                            <field name="book_borrower_ids">
+                                <list>
+                                    <field name="book_id" class="fw-bolder" />
+                                    <field name="student_id" widget="many2one_avatar" />
+                                    <field name="date_borrowed" />
+                                    <field name="expected_return" />
+                                    <field name="is_returned" widget="boolean_toggle" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="education_school_library_action" model="ir.actions.act_window">
+        <field name="name">School Library</field>
+        <field name="res_model">education.library</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p>Help me god or whatever</p>
+        </field>
+    </record>
+
+</odoo>

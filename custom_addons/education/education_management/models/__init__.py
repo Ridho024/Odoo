@@ -10,3 +10,4 @@ from . import education_subject_detail
 from . import education_student_attendance
 from . import education_student_assessment
 from . import education_teacher_evaluation
+from . import education_school_library

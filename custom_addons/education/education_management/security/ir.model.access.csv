@@ -82,3 +82,6 @@ access_teacher_evaluation_result,access.teacher.evaluation.result,model_teacher_
 access_teacher_evaluation_feedback,access.teacher.evaluation.feedback,model_teacher_evaluation_feedback,base.group_user,1,0,0,0
 access_message_wizard,access.message.wizard,model_message_wizard,base.group_user,1,0,0,0
 access_create_student_attendance,access.create.student.attendance,model_create_student_attendance,base.group_user,1,0,0,0
+access_education_school_library,access.education.school.library,model_education_library,base.group_user,1,1,1,1
+access_library_book_borrower,access.library.book.borrower,model_book_borrower,base.group_user,1,1,1,1
+access_librart_book_genre,access.library.book.genre,model_library_book_genre,base.group_user,1,1,1,1

@@ -6,20 +6,20 @@
     <!-- Students -->
     <menuitem
         id="menu_students_root"
-        name="Students"
+        name="Student"
         parent="menu_education_management_root"
         sequence="1"/>
         
     <menuitem 
         id="menu_education_list" 
-        name="List Students" 
+        name="List Student" 
         parent="menu_students_root" 
         sequence="1" 
         action="education_student_action"/>
 
     <menuitem
         id="assessment_record_menu"
-        name="Assessment"
+        name="Assessments"
         action="education_student_assessment_action"
         parent="menu_students_root"
         sequence="2"/>
@@ -34,21 +34,21 @@
     <!-- Teachers -->
     <menuitem
         id="menu_teachers_root"
-        name="Teachers"
+        name="Teacher"
         parent="menu_education_management_root"
         groups="education_management.group_education_admin"
         sequence="2"/>
 
     <menuitem
         id="education_teacher_menu"
-        name="List Teachers"
+        name="List Teacher"
         action="education_teacher_action"
         parent="menu_teachers_root"
         sequence="1"/>
 
     <menuitem
         id="teacher_evaluation_menu"
-        name="Evaluation"
+        name="Evaluations"
         action="education_teacher_evaluation_action"
         parent="menu_teachers_root"
         sequence="2"/>
@@ -62,7 +62,7 @@
 
     <menuitem
         id="education_classroom_list_menu"
-        name="List Classrooms"
+        name="List Classroom"
         action="education_classroom_action"
         parent="education_classroom_menu"
         sequence="1"/>
@@ -81,12 +81,26 @@
         parent="education_classroom_menu"
         sequence="3"/>
 
+    <!-- School Facilities -->
+    <menuitem
+        id="education_school_facilities_menu"
+        name="Facility"
+        parent="menu_education_management_root"
+        sequence="4"/>
+
+    <menuitem
+        id="education_school_library_menu"
+        name="School Library"
+        action="education_school_library_action"
+        parent="education_school_facilities_menu"
+        sequence="1"/>
+
     <!-- Configuration -->
     <menuitem
         id="menu_education_management_config"
         name="Configuration"
         parent="menu_education_management_root"
-        sequence="4"/>
+        sequence="5"/>
 
     <menuitem
         id="menu_grade_promotion"
@@ -104,7 +118,7 @@
 
     <menuitem
         id="education_major_menu"
-        name="Education Major"
+        name="Education Majors"
         action="education_major_action"
         parent="menu_studies_header"
         sequence="3"/>
